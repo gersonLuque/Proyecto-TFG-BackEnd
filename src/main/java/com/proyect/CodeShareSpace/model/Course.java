@@ -1,11 +1,13 @@
 package com.proyect.CodeShareSpace.model;
 
 import jakarta.persistence.*;
+import lombok.NoArgsConstructor;
 
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@NoArgsConstructor
 @Table(name = "courses")
 public class Course {
 
@@ -25,4 +27,5 @@ public class Course {
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
     private Set<User> users = new HashSet<>();
+
 }
