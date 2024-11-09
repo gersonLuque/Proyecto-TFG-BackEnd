@@ -1,11 +1,13 @@
 package com.proyect.CodeShareSpace.model;
 
 import jakarta.persistence.*;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "tasks")
+@NoArgsConstructor
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,5 +31,6 @@ public class Task {
     @JoinColumn(name = "teacher_id")
     private User teacher;
 
+    @Column(name = "file_path")
     private String filePath;
 }
