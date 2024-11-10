@@ -23,7 +23,7 @@ public class User {
     private Long userId;
     private String username;
     private String password;
-    @Column(name = "completeName")
+    @Column(name = "complete_name")
     private String completeName;
 
     @Enumerated(EnumType.STRING)
