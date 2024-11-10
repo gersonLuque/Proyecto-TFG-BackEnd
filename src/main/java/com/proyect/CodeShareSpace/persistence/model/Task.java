@@ -1,4 +1,4 @@
-package com.proyect.CodeShareSpace.model;
+package com.proyect.CodeShareSpace.persistence.model;
 
 import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
