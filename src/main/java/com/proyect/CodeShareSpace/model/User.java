@@ -1,13 +1,35 @@
 package com.proyect.CodeShareSpace.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
+import java.util.Set;
+
+@Getter
+@EqualsAndHashCode
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
+@Table(name = "users")
 public class User {
 
-  
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
+    private Long userId;
+    private String username;
+    private String password;
+    @Column(name = "name_complete")
+    private String nameComplete;
+
+    @Enumerated(EnumType.STRING)
+    private Rol rol;
+
+    @ManyToMany(mappedBy = "users")
+    private Set<Course> courses = new HashSet<>(); // Cursos asociados al usuario
 
 }
