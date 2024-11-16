@@ -5,9 +5,11 @@ import com.proyect.CodeShareSpace.persistence.model.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-@Mapper
+import java.util.List;
+
+@Mapper(componentModel = "spring")
 public interface UserMapper {
-    UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
     UserDto userToUserDto(User user);
     User userDtoToUser(UserDto userDto);
+    List<UserDto> usersToUsersDto(List<User> users);
 }
