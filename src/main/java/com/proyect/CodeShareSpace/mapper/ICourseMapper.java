@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 @Mapper
 public interface ICourseMapper {
     ICourseMapper INSTANCE = Mappers.getMapper(ICourseMapper.class);
-
+    Course courseDtoToCourse(CourseDto courseDto);
+    CourseDto courseToCourseDto(Course course);
 
 }
