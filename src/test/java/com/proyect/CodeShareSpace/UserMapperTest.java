@@ -37,7 +37,7 @@ public class UserMapperTest {
         assertEquals(user.getPassword(), userDto.getPassword());
         assertEquals(user.getCompleteName(), userDto.getCompleteName());
         assertEquals(user.getRol(), userDto.getRol());
-        assertEquals(user.getCourses().size(), userDto.getCourses().size());
+        assertEquals(user.getCourses().size(), userDto.getCoursesName().size());
     }
     @Test
     public void testUserDtoToUser() {
@@ -48,7 +48,6 @@ public class UserMapperTest {
         userDto.setPassword("password123");
         userDto.setCompleteName("Juan Pérez");
         userDto.setRol(Rol.STUDENT);
-        userDto.setCourses(new HashSet<>());  // Puedes agregar cursos si es necesario
 
         // Mapear el UserDto a User
         User user = userMapper.userDtoToUser(userDto);
@@ -60,7 +59,7 @@ public class UserMapperTest {
         assertEquals(userDto.getPassword(), user.getPassword());
         assertEquals(userDto.getCompleteName(), user.getCompleteName());
         assertEquals(userDto.getRol(), user.getRol());
-        assertEquals(userDto.getCourses().size(), user.getCourses().size());
+        assertEquals(userDto.getCoursesName().size(), user.getCourses().size());
     }
 
     @Test

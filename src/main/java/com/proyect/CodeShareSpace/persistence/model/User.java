@@ -9,9 +9,11 @@ import java.util.Set;
 
 @Getter
 @Setter
-@Entity
+@EqualsAndHashCode
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
 @Table(name = "users")
 public class User {
 
@@ -27,27 +29,9 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Rol rol;
 
-    @ManyToMany(mappedBy = "users")
+    @ManyToMany(mappedBy = "users",fetch = FetchType.LAZY)
     private Set<Course> courses = new HashSet<>(); // Cursos asociados al usuario
 
-
-    @Override
-    public boolean equals(Object object) {
-        if (this == object)
-            return true;
-        if (object == null || getClass() != object.getClass())
-            return false;
-        User user = (User) object;
-        return Objects.equals(userId, user.userId) && Objects.equals(username, user.username) && Objects.equals(password, user.password) && Objects.equals(completeName, user.completeName) && rol == user.rol && Objects.equals(courses, user.courses);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(userId, username, password, completeName, rol, courses);
-    }
-
-    @Override
-    public String toString() {
-        return "User{" + "userId=" + userId + ", username='" + username + '\'' + ", password='" + password + '\'' + ", completeName='" + completeName + '\'' + ", rol=" + rol + ", courses=" + courses + '}';
-    }
 }
+
+
