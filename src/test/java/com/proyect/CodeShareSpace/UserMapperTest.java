@@ -14,7 +14,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class UserMapperTest {
     private UserMapper userMapper = Mappers.getMapper(UserMapper.class);
-
     @Test
     public void testUserToUserDto() {
         // Crear un objeto User para probar
