@@ -1,5 +1,7 @@
 package com.proyect.CodeShareSpace.persistence.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -29,7 +31,8 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Rol rol;
 
-    @ManyToMany(mappedBy = "users",fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "users")
+    @JsonManagedReference // evita la recursion infinita en el json
     private Set<Course> courses = new HashSet<>(); // Cursos asociados al usuario
 
 }
