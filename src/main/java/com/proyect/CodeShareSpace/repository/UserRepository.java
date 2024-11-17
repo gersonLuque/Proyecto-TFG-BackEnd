@@ -10,6 +10,5 @@ import java.util.List;
 
 @Repository
 public interface UserRepository extends JpaRepository<User,Long> {
-    @Query("SELECT u FROM User u JOIN u.courses c WHERE c.id = :courseId")
-    List<User> findAllByCourseId(@Param("courseId") Long courseId);
+
 }
