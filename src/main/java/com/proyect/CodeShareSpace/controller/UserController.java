@@ -21,4 +21,6 @@ public class UserController {
     public ResponseEntity<UserDto> findById(@PathVariable Long id){
         return new ResponseEntity<>(iUserService.findById(id), HttpStatus.OK);
     }
+
+
 }
