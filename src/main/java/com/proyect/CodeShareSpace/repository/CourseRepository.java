@@ -1,6 +1,5 @@
 package com.proyect.CodeShareSpace.repository;
 
-import com.proyect.CodeShareSpace.dto.UserDto;
 import com.proyect.CodeShareSpace.persistence.model.Course;
 import com.proyect.CodeShareSpace.persistence.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,8 +11,8 @@ import java.util.List;
 
 @Repository
 public interface CourseRepository extends JpaRepository<Course, Long> {
-//    @Query("SELECT u.* FROM users u LEFT JOIN users_courses uc ON uc.user_id=u.user_id WHERE uc.course_id = :courseId")
-//    List<User> findAllByCourseId(@Param("courseId") Long courseId);
-    List<User> findUsersByCourseId(Long courseId);
+
+    @Query("SELECT u FROM User u JOIN u.courses c WHERE c.courseId = :courseId")
+    List<User> findUsersByCourseId(@Param("courseId") Long courseId);
 
 }
