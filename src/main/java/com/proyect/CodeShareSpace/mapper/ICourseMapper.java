@@ -13,8 +13,8 @@ import java.util.stream.Collectors;
 
 @Mapper(componentModel = "spring")
 public interface ICourseMapper {
-    ICourseMapper INSTANCE = Mappers.getMapper(ICourseMapper.class);
     Course courseDtoToCourse(CourseDto courseDto);
     CourseDto courseToCourseDto(Course course);
+    List<CourseDto> coursesToCourseDtos(List<Course> courses);
 
 }

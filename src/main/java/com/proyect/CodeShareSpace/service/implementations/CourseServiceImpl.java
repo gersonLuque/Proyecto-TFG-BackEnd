@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CourseServiceImpl implements ICourseService {
@@ -34,5 +35,10 @@ public class CourseServiceImpl implements ICourseService {
     public CourseDto findById(Long courseId) {
         Optional<Course> course = courseRepository.findById(courseId);
         return iCourseMapper.courseToCourseDto(course.get());
+    }
+
+    @Override
+    public List<CourseDto> findAll() {
+        return iCourseMapper.coursesToCourseDtos(courseRepository.findAll());
     }
 }

@@ -9,4 +9,5 @@ import java.util.List;
 public interface ICourseService {
     List<UserDto> findUsersByCourseId(Long courseId);
     CourseDto findById(Long courseId);
+    List<CourseDto> findAll();
 }
