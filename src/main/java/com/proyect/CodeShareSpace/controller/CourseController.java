@@ -1,26 +1,27 @@
 package com.proyect.CodeShareSpace.controller;
 
 import com.proyect.CodeShareSpace.dto.UserDto;
-import com.proyect.CodeShareSpace.service.interfaces.IUserService;
+import com.proyect.CodeShareSpace.service.interfaces.ICourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("api/user")
-public class UserController {
+@RequestMapping("api/courses")
+public class CourseController {
+
     @Autowired
-    private IUserService iUserService;
+    private ICourseService iCourseService;
 
-    @GetMapping(value = "find/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UserDto> findById(@PathVariable Long id){
-        return new ResponseEntity<>(iUserService.findById(id), HttpStatus.OK);
+    @GetMapping("{courseId}/users")
+    public ResponseEntity<List<UserDto>> getUsersByCourse(@PathVariable Long courseId){
+        List<UserDto> users = iCourseService.findUsersByCourseId(courseId);
+        return new ResponseEntity<>(users, HttpStatus.OK);
     }
-
-
 }
