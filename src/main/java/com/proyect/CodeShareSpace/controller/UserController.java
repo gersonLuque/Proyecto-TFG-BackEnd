@@ -11,16 +11,21 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("api/user")
+@RequestMapping("api/users")
 public class UserController {
     @Autowired
     private IUserService iUserService;
 
-    @GetMapping(value = "find/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<UserDto> findById(@PathVariable Long id){
-        return new ResponseEntity<>(iUserService.findById(id), HttpStatus.OK);
+    @GetMapping
+    public ResponseEntity<List<UserDto>> findAll(){
+        return new ResponseEntity<>(iUserService.findAll(),HttpStatus.OK);
     }
 
-
+    @GetMapping(value = "{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<UserDto> findById(@PathVariable Long userId){
+        return new ResponseEntity<>(iUserService.findById(userId), HttpStatus.OK);
+    }
 }
