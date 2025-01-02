@@ -3,14 +3,15 @@ package com.proyect.CodeShareSpace.service.implementations;
 import com.proyect.CodeShareSpace.dto.TaskDto;
 import com.proyect.CodeShareSpace.mapper.ITaskMapper;
 import com.proyect.CodeShareSpace.persistence.model.Task;
-import com.proyect.CodeShareSpace.repository.CourseRepository;
 import com.proyect.CodeShareSpace.repository.TaskRepository;
 import com.proyect.CodeShareSpace.service.interfaces.ITaskService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class TaskServiceImpl implements ITaskService {
 
     @Autowired
@@ -18,8 +19,8 @@ public class TaskServiceImpl implements ITaskService {
     @Autowired
     private ITaskMapper taskMapper;
     @Override
-    public List<TaskDto> findAll() {
-        List<Task> tasks = taskRepository.findAll();
+    public List<TaskDto> findTasksByCourseId(Long courseId) {
+        List<Task> tasks = taskRepository.findByCourse_CourseId(courseId);
         return taskMapper.tasksToTasksDto(tasks);
     }
     @Override

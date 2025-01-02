@@ -1,13 +1,16 @@
 package com.proyect.CodeShareSpace.persistence.model;
 
 import jakarta.persistence.*;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "tasks")
 @NoArgsConstructor
+@AllArgsConstructor
+@Getter @Setter
+@ToString
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
