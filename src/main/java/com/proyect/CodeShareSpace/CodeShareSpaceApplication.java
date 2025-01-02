@@ -9,5 +9,4 @@ public class CodeShareSpaceApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CodeShareSpaceApplication.class, args);
 	}
-
 }
