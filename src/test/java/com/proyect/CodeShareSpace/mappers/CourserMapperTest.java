@@ -1,10 +1,14 @@
-package com.proyect.CodeShareSpace;
+package com.proyect.CodeShareSpace.mappers;
 
 import com.proyect.CodeShareSpace.dto.CourseDto;
 import com.proyect.CodeShareSpace.mapper.ICourseMapper;
 import com.proyect.CodeShareSpace.persistence.model.Course;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mapstruct.factory.Mappers;
+import org.springframework.beans.factory.annotation.Autowired;
+
 
 import java.util.HashSet;
 
@@ -13,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class CourserMapperTest {
 
-    private ICourseMapper iCourseMapper = ICourseMapper.INSTANCE;
+    private ICourseMapper iCourseMapper = Mappers.getMapper(ICourseMapper.class);
 
 
     @Test
