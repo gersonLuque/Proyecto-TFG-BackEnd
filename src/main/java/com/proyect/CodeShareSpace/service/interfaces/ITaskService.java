@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface ITaskService {
     List<TaskDto> findTasksByCourseId(Long courseId);
-    TaskDto findById(Long id);
+    TaskDto findById(Long taskId);
 }
