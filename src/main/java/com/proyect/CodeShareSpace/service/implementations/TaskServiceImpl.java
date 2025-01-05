@@ -26,6 +26,7 @@ public class TaskServiceImpl implements ITaskService {
     @Override
     public TaskDto findById(Long id) {
         Optional<Task> task = taskRepository.findById(id);
+        System.out.println(task);
         return taskMapper.taskToTaskDto(task.get());
     }
 }

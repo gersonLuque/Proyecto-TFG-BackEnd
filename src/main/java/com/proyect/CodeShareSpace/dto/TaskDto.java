@@ -15,7 +15,7 @@ public class TaskDto {
     private LocalDate startDate;
     private LocalDate endDate;
     private boolean visible;
-    private CourseDto course;
-    private UserDto teacher;
+    private String courseName;
+    private String nameTeacher;
     private String filePath;
 }
