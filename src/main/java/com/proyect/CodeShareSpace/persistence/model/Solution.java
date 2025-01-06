@@ -2,11 +2,15 @@ package com.proyect.CodeShareSpace.persistence.model;
 
 
 import jakarta.persistence.*;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Table(name = "solutions")
 @NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
 public class Solution {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
