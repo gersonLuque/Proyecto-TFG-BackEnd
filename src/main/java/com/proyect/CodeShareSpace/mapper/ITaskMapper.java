@@ -14,7 +14,6 @@ public interface ITaskMapper {
     @Mapping(source = "teacher.completeName", target = "nameTeacher")
     TaskDto taskToTaskDto(Task task);
 
-    // Optional: add explicit mappings for the nested entities (Course and User)
     Task taskDtoToTask(TaskDto taskDto);
 
     List<TaskDto> tasksToTasksDto(List<Task> tasks);
