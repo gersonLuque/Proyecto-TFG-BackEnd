@@ -13,7 +13,7 @@ import lombok.*;
 public class SolutionDto {
     private Long solutionId;
     private Long taskId;
-    private Long studentId;
+    private UserBasicDto userBasicDto;
     private String filePath;
     private boolean star;
     private boolean anonymous;
