@@ -1,7 +1,6 @@
 package com.proyect.CodeShareSpace.dto;
 
-import com.proyect.CodeShareSpace.persistence.model.Task;
-import com.proyect.CodeShareSpace.persistence.model.User;
+import com.proyect.CodeShareSpace.dto.user.UserBasicDto;
 import lombok.*;
 
 @AllArgsConstructor

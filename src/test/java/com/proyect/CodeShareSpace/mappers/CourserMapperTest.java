@@ -60,7 +60,6 @@ public class CourserMapperTest {
         CourseDto courseDto = new CourseDto();
         courseDto.setCourseId(1L);
         courseDto.setName("Matemáticas");
-        courseDto.setUsers(new HashSet<>());  // Crear un conjunto vacío de usuarios
         return courseDto;
     }
 

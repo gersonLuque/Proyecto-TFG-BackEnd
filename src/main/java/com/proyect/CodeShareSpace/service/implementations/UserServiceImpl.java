@@ -1,11 +1,10 @@
 package com.proyect.CodeShareSpace.service.implementations;
 
-import com.proyect.CodeShareSpace.dto.UserDto;
+import com.proyect.CodeShareSpace.dto.user.UserDto;
 import com.proyect.CodeShareSpace.mapper.UserMapper;
 import com.proyect.CodeShareSpace.persistence.model.User;
 import com.proyect.CodeShareSpace.repository.UserRepository;
 import com.proyect.CodeShareSpace.service.interfaces.IUserService;
-import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

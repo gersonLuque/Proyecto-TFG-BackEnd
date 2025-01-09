@@ -1,7 +1,7 @@
 package com.proyect.CodeShareSpace;
 
 import com.proyect.CodeShareSpace.dto.CourseDto;
-import com.proyect.CodeShareSpace.dto.UserDto;
+import com.proyect.CodeShareSpace.dto.user.UserDto;
 import com.proyect.CodeShareSpace.persistence.model.Course;
 import com.proyect.CodeShareSpace.persistence.model.Rol;
 import com.proyect.CodeShareSpace.persistence.model.User;
@@ -17,7 +17,6 @@ public class DataProvider {
         Course course = new Course();
         course.setCourseId(3L);
         course.setName("Programación");
-        course.setUsers(new HashSet<>());
         return course;
     }
 
@@ -25,7 +24,6 @@ public class DataProvider {
         CourseDto courseDto = new CourseDto();
         courseDto.setCourseId(1L);
         courseDto.setName("Matemáticas");
-        courseDto.setUsers(new HashSet<>());
         return courseDto;
     }
 
