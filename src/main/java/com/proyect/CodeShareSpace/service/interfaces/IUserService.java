@@ -1,6 +1,6 @@
 package com.proyect.CodeShareSpace.service.interfaces;
 
-import com.proyect.CodeShareSpace.dto.UserDto;
+import com.proyect.CodeShareSpace.dto.user.UserDto;
 
 import java.util.List;
 
