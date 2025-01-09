@@ -15,5 +15,4 @@ import java.util.Set;
 public class CourseDto {
     private Long courseId;
     private String name;
-    private Set<User> users = new HashSet<>();
 }

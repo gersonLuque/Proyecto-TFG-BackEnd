@@ -39,8 +39,15 @@ public class CourseController {
         return new ResponseEntity<>(iCourseService.findById(courseId),HttpStatus.OK);
     }
 
+    @GetMapping("user/{userId}")
+    public ResponseEntity<List<CourseDto>> getCoursesByUserId(@PathVariable Long userId){
+        return new ResponseEntity<>(iCourseService.findByUserId(userId),HttpStatus.OK);
+    }
+
     @GetMapping("{courseId}/tasks")
     public ResponseEntity<List<TaskDto>> getTaskByCourseId(@PathVariable Long courseId){
         return new ResponseEntity<>(iTaskService.findTasksByCourseId(courseId),HttpStatus.OK);
     }
+
+
 }
