@@ -41,4 +41,10 @@ public class CourseServiceImpl implements ICourseService {
     public List<CourseDto> findAll() {
         return iCourseMapper.coursesToCourseDtos(courseRepository.findAll());
     }
+
+    @Override
+    public List<CourseDto> findByUserId(Long userId) {
+        List<Course> courses = courseRepository.findByUsers_UserId(userId);
+        return iCourseMapper.coursesToCourseDtos(courses);
+    }
 }

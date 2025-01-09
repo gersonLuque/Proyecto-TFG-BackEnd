@@ -10,4 +10,5 @@ public interface ICourseService {
     List<UserDto> findUsersByCourseId(Long courseId);
     CourseDto findById(Long courseId);
     List<CourseDto> findAll();
+    List<CourseDto> findByUserId(Long userId);
 }
