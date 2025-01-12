@@ -34,4 +34,10 @@ public class UserServiceImpl implements IUserService {
             return null;
         }
     }
+
+    @Override
+    public User findUserByUsername(String username) {
+        return userRepository.findUserByUsername(username)
+                .orElseThrow(() -> new IllegalArgumentException("usuario no encontrado"));
+    }
 }
