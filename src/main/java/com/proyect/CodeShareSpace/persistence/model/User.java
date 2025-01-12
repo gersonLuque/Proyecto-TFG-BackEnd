@@ -5,11 +5,11 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.*;
 
-@Getter
 @Setter
 @EqualsAndHashCode
 @ToString
@@ -37,9 +37,34 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+        return List.of(new SimpleGrantedAuthority("ROLE_" + rol.name()));
     }
 
+    public Long getUserId() {
+        return userId;
+    }
+
+    public String getCompleteName() {
+        return completeName;
+    }
+
+    public Rol getRol() {
+        return rol;
+    }
+
+    public Set<Course> getCourses() {
+        return courses;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
 }
 
 
