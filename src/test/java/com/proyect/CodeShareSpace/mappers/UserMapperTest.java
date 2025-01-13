@@ -2,20 +2,15 @@ package com.proyect.CodeShareSpace.mappers;
 
 import com.proyect.CodeShareSpace.DataProvider;
 import com.proyect.CodeShareSpace.dto.UserDto;
-import com.proyect.CodeShareSpace.mapper.UserMapper;
+import com.proyect.CodeShareSpace.mapper.IUserMapper;
 import com.proyect.CodeShareSpace.persistence.model.Rol;
 import com.proyect.CodeShareSpace.persistence.model.User;
 import org.junit.jupiter.api.Test;
-import org.mapstruct.factory.Mappers;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -24,7 +19,7 @@ import static org.mockito.ArgumentMatchers.any;
 public class UserMapperTest {
 
     @Mock
-    private UserMapper iUserMapper;
+    private IUserMapper iUserMapper;
     @Test
     public void testUserToUserDto() {
         // Given
