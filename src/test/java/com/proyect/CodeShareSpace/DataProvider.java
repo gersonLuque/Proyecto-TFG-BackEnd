@@ -134,6 +134,15 @@ public class DataProvider {
         return taskDto;
     }
 
+    public static List<Course> newCoursesListMock(){
+        Course course1 = new Course(); course1.setName("SSII");
+        Course course2 = new Course(); course2.setName("Programación");
+        Course course3 = new Course(); course3.setName("Acceso a Datos");
+        Course course4 = new Course(); course4.setName("Inglés");
+        Course course5 = new Course(); course5.setName("Servicios y Procesos");
+        return List.of(course1, course2, course3, course4, course5);
+    }
+
     public static List<SolutionDto> newSolutionDtoListMock(){
         SolutionDto solutionDto1 = new SolutionDto(); solutionDto1.setSolutionId(1L); solutionDto1.setAnonymous(true);
         SolutionDto solutionDto2 = new SolutionDto(); solutionDto2.setSolutionId(2L); solutionDto2.setAnonymous(false);
