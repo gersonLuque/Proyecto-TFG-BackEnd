@@ -25,24 +25,6 @@ public class UserControllerTest {
     private UserController userController;
 
     @Test
-    public void testFindById(){
-        // Given
-        Long id = 5L;
-
-        // When
-        Mockito.when(iUserService.findById(Mockito.anyLong())).thenReturn(DataProvider.newUserDtoMock());
-        ResponseEntity<UserDto> responseUserDto = userController.findById(id);
-
-        // Then
-        Mockito.verify(this.iUserService).findById(Mockito.anyLong());
-        assertNotNull(responseUserDto);
-
-        assertEquals("antonioMayorista", responseUserDto.getBody().getUsername());
-        assertEquals(5L, responseUserDto.getBody().getUserId());
-        assertEquals(Rol.STUDENT, responseUserDto.getBody().getRol());
-    }
-
-    @Test
     public void testFindAll(){
         // Given
         List<UserDto> userDtoList = DataProvider.newUsersDtoListMock();
@@ -60,4 +42,23 @@ public class UserControllerTest {
         assertEquals("carlomagno", responseUserrDtoList.getBody().get(1).getUsername());
         assertEquals(7L, responseUserrDtoList.getBody().get(4).getUserId());
     }
+    
+    @Test
+    public void testFindById(){
+        // Given
+        Long id = 5L;
+
+        // When
+        Mockito.when(iUserService.findById(Mockito.anyLong())).thenReturn(DataProvider.newUserDtoMock());
+        ResponseEntity<UserDto> responseUserDto = userController.findById(id);
+
+        // Then
+        Mockito.verify(this.iUserService).findById(Mockito.anyLong());
+        assertNotNull(responseUserDto);
+
+        assertEquals("antonioMayorista", responseUserDto.getBody().getUsername());
+        assertEquals(5L, responseUserDto.getBody().getUserId());
+        assertEquals(Rol.STUDENT, responseUserDto.getBody().getRol());
+    }
+
 }
