@@ -5,7 +5,7 @@ import com.proyect.CodeShareSpace.persistence.model.Solution;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring",uses = {ITaskMapper.class,UserMapper.class})
+@Mapper(componentModel = "spring",uses = {ITaskMapper.class, IUserMapper.class})
 public interface ISolutionMapper {
 
     @Mapping(source = "solution.solutionId", target = "solutionId")
