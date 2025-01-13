@@ -10,6 +10,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.ResponseEntity;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -28,14 +31,33 @@ public class UserControllerTest {
 
         // When
         Mockito.when(iUserService.findById(Mockito.anyLong())).thenReturn(DataProvider.newUserDtoMock());
-        UserDto UserDto = userController.findById(id).getBody();
+        ResponseEntity<UserDto> responseUserDto = userController.findById(id);
 
         // Then
         Mockito.verify(this.iUserService).findById(Mockito.anyLong());
-        assertNotNull(UserDto);
-        assertInstanceOf(UserDto.class, UserDto);
-        assertEquals("anaFrank08", UserDto.getUsername());
-        assertEquals(1L, UserDto.getUserId());
-        assertEquals(Rol.TEACHER, UserDto.getRol());
+        assertNotNull(responseUserDto);
+
+        assertEquals("antonioMayorista", responseUserDto.getBody().getUsername());
+        assertEquals(5L, responseUserDto.getBody().getUserId());
+        assertEquals(Rol.STUDENT, responseUserDto.getBody().getRol());
+    }
+
+    @Test
+    public void testFindAll(){
+        // Given
+        List<UserDto> userDtoList = DataProvider.newUsersDtoListMock();
+
+        // When
+        Mockito.when(iUserService.findAll()).thenReturn(userDtoList);
+        ResponseEntity<List<UserDto>> responseUserrDtoList = userController.findAll();
+
+        // Then
+        Mockito.verify(this.iUserService).findAll();
+        assertNotNull(responseUserrDtoList);
+        assertFalse(responseUserrDtoList.getBody().isEmpty());
+
+        assertEquals(5, responseUserrDtoList.getBody().size());
+        assertEquals("carlomagno", responseUserrDtoList.getBody().get(1).getUsername());
+        assertEquals(7L, responseUserrDtoList.getBody().get(4).getUserId());
     }
 }
