@@ -6,6 +6,7 @@ import com.proyect.CodeShareSpace.persistence.model.User;
 import com.proyect.CodeShareSpace.repository.UserRepository;
 import com.proyect.CodeShareSpace.service.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,7 +17,6 @@ public class UserServiceImpl implements IUserService {
     private UserRepository userRepository;
     @Autowired
     private UserMapper userMapper;
-
 
     @Override
     public List<UserDto> findAll() {
@@ -38,6 +38,6 @@ public class UserServiceImpl implements IUserService {
     @Override
     public User findUserByUsername(String username) {
         return userRepository.findUserByUsername(username)
-                .orElseThrow(() -> new IllegalArgumentException("usuario no encontrado"));
+                .orElseThrow(() -> new UsernameNotFoundException("usuario no encontrado"));
     }
 }
