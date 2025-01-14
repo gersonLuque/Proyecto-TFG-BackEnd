@@ -104,6 +104,17 @@ public class DataProvider {
         CourseDto courseDto3 = new CourseDto(); courseDto3.setCourseId(3L); courseDto3.setName("Inglés");
         return List.of(courseDto1, courseDto2, courseDto3);
     }
+    public static Task newTaskMock(){
+        Task task = new Task();
+        task.setTaskId(3L);
+        task.setDescription("Conditional exam");
+        task.setVisible(false);
+        User teacher = new User();
+        teacher.setUsername("severiano");
+
+        task.setTeacher(teacher);
+        return task;
+    }
     // Crea un TaskDto como plantilla
     public static TaskDto newTaskDtoMock(){
         TaskDto taskDto = new TaskDto();
