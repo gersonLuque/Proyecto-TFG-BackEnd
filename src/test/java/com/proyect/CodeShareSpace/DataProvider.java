@@ -109,10 +109,15 @@ public class DataProvider {
         task.setTaskId(3L);
         task.setDescription("Conditional exam");
         task.setVisible(false);
+
         User teacher = new User();
         teacher.setCompleteName("Antonio Flores");
-
         task.setTeacher(teacher);
+
+        Course course = new Course();
+        course.setName("Física");
+        task.setCourse(course);
+
         return task;
     }
     // Crea un TaskDto como plantilla
