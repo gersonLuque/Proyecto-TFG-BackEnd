@@ -146,7 +146,13 @@ public class DataProvider {
         solution.setTask(task);
         return solution;
     }
-
+    public static SolutionDto newSolutionDtoMock(){
+        SolutionDto solutionDto = new SolutionDto();
+        solutionDto.setSolutionId(5L);
+        solutionDto.setAnonymous(true);
+        solutionDto.setTaskId(1L);
+        return solutionDto;
+    }
     // Crea una lista de Cursos como plantilla
     private static Set<Course> newCoursesSet(){
         Course course1 = new Course(); course1.setName("SSII");
