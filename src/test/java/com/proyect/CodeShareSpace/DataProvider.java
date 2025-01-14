@@ -34,7 +34,7 @@ public class DataProvider {
         user.setPassword("mamba");
         user.setCompleteName("Kobe Bryant");
         user.setRol(Rol.TEACHER);
-        user.setCourses(new HashSet<>());
+        user.setCourses(newCoursesSet());
         return user;
     }
     // Crea un UsuarioDTO como plantilla
@@ -47,6 +47,19 @@ public class DataProvider {
         userDto.setRol(Rol.STUDENT);
         userDto.setCourses(new HashSet<>());
         return userDto;
+    }
+    public static List<User> newUsersListMock(){
+        User user1 = new User();
+        user1.setUsername("casilla");
+        User user2 = new User();
+        user2.setUsername("ramos");
+        User user3 = new User();
+        user3.setUsername("dexter");
+        User user4 = new User();
+        user4.setUsername("marioBros");
+        User user5 = new User();
+        user5.setUsername("sonic");
+        return List.of(user1, user2, user3, user4, user5);
     }
     // Crea una lista de UsuariosDTO como plantilla
     public static List<UserDto> newUsersDtoListMock(){
