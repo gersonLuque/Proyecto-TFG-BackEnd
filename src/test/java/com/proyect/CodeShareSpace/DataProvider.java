@@ -110,7 +110,7 @@ public class DataProvider {
         task.setDescription("Conditional exam");
         task.setVisible(false);
         User teacher = new User();
-        teacher.setUsername("severiano");
+        teacher.setCompleteName("Antonio Flores");
 
         task.setTeacher(teacher);
         return task;
