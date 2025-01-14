@@ -4,9 +4,7 @@ import com.proyect.CodeShareSpace.dto.CourseDto;
 import com.proyect.CodeShareSpace.dto.SolutionDto;
 import com.proyect.CodeShareSpace.dto.TaskDto;
 import com.proyect.CodeShareSpace.dto.UserDto;
-import com.proyect.CodeShareSpace.persistence.model.Course;
-import com.proyect.CodeShareSpace.persistence.model.Rol;
-import com.proyect.CodeShareSpace.persistence.model.User;
+import com.proyect.CodeShareSpace.persistence.model.*;
 
 import java.util.HashSet;
 import java.util.List;
@@ -99,7 +97,6 @@ public class DataProvider {
 
         return List.of(UserDto1, UserDto2);
     }
-
     // Crea una lista de CursosDTO como plantilla
     public static List<CourseDto> newCoursesDTOListMock() {
         CourseDto courseDto1 = new CourseDto(); courseDto1.setCourseId(1L); courseDto1.setName("Programación");
@@ -107,24 +104,7 @@ public class DataProvider {
         CourseDto courseDto3 = new CourseDto(); courseDto3.setCourseId(3L); courseDto3.setName("Inglés");
         return List.of(courseDto1, courseDto2, courseDto3);
     }
-    // Crea una lista de Cursos como plantilla
-    private static Set<Course> newCoursesSet(){
-        Course course1 = new Course(); course1.setName("SSII");
-        Course course2 = new Course(); course2.setName("Programación");
-        Course course3 = new Course(); course3.setName("Acceso a Datos");
-        Course course4 = new Course(); course4.setName("Inglés");
-        Course course5 = new Course(); course5.setName("Servicios y Procesos");
-        return Set.of(course1, course2, course3, course4, course5);
-    }
-
-    public static List<TaskDto> newTaskDtoListMock() {
-        TaskDto task1 = new TaskDto(); task1.setTaskId(1L); task1.setDescription("Conditionals exam");
-        TaskDto task2 = new TaskDto(); task2.setTaskId(2L); task2.setDescription("Complete the course syllabus");
-        TaskDto task3 = new TaskDto(); task3.setTaskId(3L); task3.setDescription("Fix bugs in user interface");
-        TaskDto task4 = new TaskDto(); task4.setTaskId(4L); task4.setDescription("Write unit tests for methods");
-        return List.of(task1, task2, task3, task4);
-    }
-
+    // Crea un TaskDto como plantilla
     public static TaskDto newTaskDtoMock(){
         TaskDto taskDto = new TaskDto();
         taskDto.setTaskId(5L);
@@ -132,6 +112,14 @@ public class DataProvider {
         taskDto.setCourseName("Data Access");
         taskDto.setNameTeacher("Jose Sala Gutierrez");
         return taskDto;
+    }
+    // Crea una lista de TaskDto como plantilla
+    public static List<TaskDto> newTaskDtoListMock() {
+        TaskDto task1 = new TaskDto(); task1.setTaskId(1L); task1.setDescription("Conditionals exam");
+        TaskDto task2 = new TaskDto(); task2.setTaskId(2L); task2.setDescription("Complete the course syllabus");
+        TaskDto task3 = new TaskDto(); task3.setTaskId(3L); task3.setDescription("Fix bugs in user interface");
+        TaskDto task4 = new TaskDto(); task4.setTaskId(4L); task4.setDescription("Write unit tests for methods");
+        return List.of(task1, task2, task3, task4);
     }
 
     public static List<Course> newCoursesListMock(){
@@ -148,6 +136,25 @@ public class DataProvider {
         SolutionDto solutionDto2 = new SolutionDto(); solutionDto2.setSolutionId(2L); solutionDto2.setAnonymous(false);
         SolutionDto solutionDto3 = new SolutionDto(); solutionDto3.setSolutionId(3L); solutionDto3.setAnonymous(false);
         return List.of(solutionDto1, solutionDto2, solutionDto3);
+    }
+    // Crea una Solution como plantilla
+    public static Solution newSolutionMock(){
+        Solution solution = new Solution();
+        solution.setSolutionId(2L);
+        solution.setAnonymous(false);
+        Task task = new Task(); task.setDescription("Write unit tests for methods");
+        solution.setTask(task);
+        return solution;
+    }
+
+    // Crea una lista de Cursos como plantilla
+    private static Set<Course> newCoursesSet(){
+        Course course1 = new Course(); course1.setName("SSII");
+        Course course2 = new Course(); course2.setName("Programación");
+        Course course3 = new Course(); course3.setName("Acceso a Datos");
+        Course course4 = new Course(); course4.setName("Inglés");
+        Course course5 = new Course(); course5.setName("Servicios y Procesos");
+        return Set.of(course1, course2, course3, course4, course5);
     }
 
 }
