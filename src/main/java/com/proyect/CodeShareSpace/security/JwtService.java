@@ -27,7 +27,7 @@ public class JwtService {
 
     public String createToken(User user){
         Date now = new Date();
-        Date timeOfToken = new Date(now.getTime() + 30000 );
+        Date timeOfToken = new Date(now.getTime() + 300000 );
 
         Key key = Keys.hmacShaKeyFor(secretKey.getBytes());
 
@@ -65,7 +65,7 @@ public class JwtService {
     }
 
     public Date getDateExpirationFromToken(String token){
-        return getClaimFromToken(token,Claims::getIssuedAt);
+        return getClaimFromToken(token,Claims::getExpiration);
     }
 
     private Claims getAllClaimsFromToken(String token) {
