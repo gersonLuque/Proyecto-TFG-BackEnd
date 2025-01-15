@@ -9,10 +9,12 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
+@Component
 public class JwtFilter extends OncePerRequestFilter {
 
     @Autowired
@@ -36,8 +38,10 @@ public class JwtFilter extends OncePerRequestFilter {
             if (username != null && SecurityContextHolder.getContext().getAuthentication() == null){
                 UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 
+                System.out.println("autoridades"+ userDetails.getAuthorities());
+
                 if (jwtService.validateToken(userDetails,token)){
-                    // El token JWT ha sido validado, por lo que no es necesario incluir las credenciales por seguridad.
+                    // El token ha sido validado por lo que no es necesario incluir las credenciales por seguridad
                     UsernamePasswordAuthenticationToken userAutheticated =
                             new UsernamePasswordAuthenticationToken(userDetails,null,userDetails.getAuthorities());
 

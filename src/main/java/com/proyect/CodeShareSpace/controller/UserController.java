@@ -26,4 +26,9 @@ public class UserController {
     public ResponseEntity<UserDto> findById(@PathVariable Long userId){
         return new ResponseEntity<>(iUserService.findById(userId), HttpStatus.OK);
     }
+    @PostMapping
+    public ResponseEntity<String> crear(){
+        return ResponseEntity.ok("estoy creando un usuario");
+    }
+
 }
