@@ -38,8 +38,6 @@ public class JwtFilter extends OncePerRequestFilter {
             if (username != null && SecurityContextHolder.getContext().getAuthentication() == null){
                 UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 
-                System.out.println("autoridades"+ userDetails.getAuthorities());
-
                 if (jwtService.validateToken(userDetails,token)){
                     // El token ha sido validado por lo que no es necesario incluir las credenciales por seguridad
                     UsernamePasswordAuthenticationToken userAutheticated =
