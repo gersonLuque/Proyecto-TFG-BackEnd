@@ -5,6 +5,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -35,7 +36,16 @@ public class JwtFilter extends OncePerRequestFilter {
             if (username != null && SecurityContextHolder.getContext().getAuthentication() == null){
                 UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 
+                if (jwtService.validateToken(userDetails,token)){
+                    // El token JWT ha sido validado, por lo que no es necesario incluir las credenciales por seguridad.
+                    UsernamePasswordAuthenticationToken userAutheticated =
+                            new UsernamePasswordAuthenticationToken(userDetails,null,userDetails.getAuthorities());
+
+                    SecurityContextHolder.getContext().setAuthentication(userAutheticated);
+                }
+
             }
         }
+        filterChain.doFilter(request,response);
     }
 }
