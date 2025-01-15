@@ -5,5 +5,5 @@ import com.proyect.CodeShareSpace.dto.user.LoginResponse;
 
 public interface IAuthService {
     LoginResponse singIn(LoginRequest loginRequest);
-    LoginResponse singOut(String jwt);
+    void singOut(String jwt);
 }

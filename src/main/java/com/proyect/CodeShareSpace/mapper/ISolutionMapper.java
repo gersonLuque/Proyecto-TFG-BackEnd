@@ -12,6 +12,5 @@ public interface ISolutionMapper {
     @Mapping(source = "task.taskId", target = "taskId")
     @Mapping(source = "student", target = "userBasicDto")  // Usa el UserMapper para mapear User -> UserBasicDto
     SolutionDto solutionToSolutionDto(Solution solution);
-
     Solution solutionDtoToSolution(SolutionDto solutionDto);
 }

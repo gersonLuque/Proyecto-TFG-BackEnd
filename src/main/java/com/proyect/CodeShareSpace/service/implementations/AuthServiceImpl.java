@@ -38,7 +38,7 @@ public class AuthServiceImpl implements IAuthService {
     }
 
     @Override
-    public LoginResponse singOut(String jwt) {
-        return null;
+    public void singOut(String jwt) {
+        jwtService.tokenLogOut(jwt);
     }
 }
