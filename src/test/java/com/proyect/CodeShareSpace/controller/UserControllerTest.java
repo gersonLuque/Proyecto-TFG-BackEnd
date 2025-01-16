@@ -10,6 +10,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
@@ -60,5 +61,22 @@ public class UserControllerTest {
         assertEquals(5L, responseUserDto.getBody().getUserId());
         assertEquals(Rol.STUDENT, responseUserDto.getBody().getRol());
     }
+
+    @Test
+    public void testDeleteUserById(){
+        // Given
+        Long userId = 5L;
+
+        // When
+        Mockito.doNothing().when(iUserService).deleteUserById(Mockito.anyLong());
+        ResponseEntity<Void> response = userController.deleteUserById(userId);
+
+        // Then
+        Mockito.verify(iUserService).deleteUserById(Mockito.anyLong());
+        assertNotNull(response);
+        assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
+    }
+
+
 
 }

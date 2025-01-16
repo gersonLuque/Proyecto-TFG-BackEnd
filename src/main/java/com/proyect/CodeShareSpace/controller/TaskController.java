@@ -30,4 +30,7 @@ public class TaskController {
     public ResponseEntity<List<SolutionDto>> getSolutionsByTaskId(@PathVariable Long taskId){
         return new ResponseEntity<>(iSolutionService.getSolutionsByTaskId(taskId),HttpStatus.OK);
     }
+
+
+
 }
