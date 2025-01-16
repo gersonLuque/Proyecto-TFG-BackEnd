@@ -27,6 +27,7 @@ public class SecurityConfig {
     @Autowired
     private JwtFilter jwtFilter;
 
+    // METODO PARA HABILITAR LA AUTENTICACION CON TOKEN
 //    @Bean
 //    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 //        return http
@@ -41,6 +42,7 @@ public class SecurityConfig {
 //                .build();
 //    }
 
+    // METODO PARA DESHABILITAR LA AUTENTICACION CON TOKEN
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
