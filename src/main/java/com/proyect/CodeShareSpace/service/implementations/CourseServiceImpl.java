@@ -1,7 +1,7 @@
 package com.proyect.CodeShareSpace.service.implementations;
 
 import com.proyect.CodeShareSpace.dto.CourseDto;
-import com.proyect.CodeShareSpace.dto.UserDto;
+import com.proyect.CodeShareSpace.dto.user.UserDto;
 import com.proyect.CodeShareSpace.mapper.ICourseMapper;
 import com.proyect.CodeShareSpace.mapper.IUserMapper;
 import com.proyect.CodeShareSpace.persistence.model.Course;

@@ -1,7 +1,7 @@
 package com.proyect.CodeShareSpace.controller;
 
 import com.proyect.CodeShareSpace.DataProvider;
-import com.proyect.CodeShareSpace.dto.UserDto;
+import com.proyect.CodeShareSpace.dto.user.UserDto;
 import com.proyect.CodeShareSpace.persistence.model.Rol;
 import com.proyect.CodeShareSpace.service.interfaces.IUserService;
 import org.junit.jupiter.api.Test;
