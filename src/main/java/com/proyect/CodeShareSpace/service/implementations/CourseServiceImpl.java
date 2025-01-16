@@ -3,7 +3,7 @@ package com.proyect.CodeShareSpace.service.implementations;
 import com.proyect.CodeShareSpace.dto.CourseDto;
 import com.proyect.CodeShareSpace.dto.UserDto;
 import com.proyect.CodeShareSpace.mapper.ICourseMapper;
-import com.proyect.CodeShareSpace.mapper.UserMapper;
+import com.proyect.CodeShareSpace.mapper.IUserMapper;
 import com.proyect.CodeShareSpace.persistence.model.Course;
 import com.proyect.CodeShareSpace.persistence.model.User;
 import com.proyect.CodeShareSpace.repository.CourseRepository;
@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class CourseServiceImpl implements ICourseService {
@@ -21,14 +20,14 @@ public class CourseServiceImpl implements ICourseService {
     @Autowired
     private CourseRepository courseRepository;
     @Autowired
-    private UserMapper userMapper;
+    private IUserMapper IUserMapper;
     @Autowired
     private ICourseMapper iCourseMapper;
 
     @Override
     public List<UserDto> findUsersByCourseId(Long courseId) {
         List<User> users = courseRepository.findUsersByCourseId(courseId);
-        return userMapper.usersToUsersDto(users);
+        return IUserMapper.usersToUsersDto(users);
     }
 
     @Override
