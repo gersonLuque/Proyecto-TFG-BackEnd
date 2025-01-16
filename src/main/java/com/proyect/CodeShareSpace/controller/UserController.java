@@ -31,4 +31,12 @@ public class UserController {
         return ResponseEntity.ok("estoy creando un usuario");
     }
 
+    @DeleteMapping("{userId}")
+    public ResponseEntity<Void> deleteUserById(@PathVariable Long id){
+        return null;
+    }
+
+
+
+
 }

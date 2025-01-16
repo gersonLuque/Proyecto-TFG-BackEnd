@@ -49,5 +49,8 @@ public class CourseController {
         return new ResponseEntity<>(iTaskService.findTasksByCourseId(courseId),HttpStatus.OK);
     }
 
-
+    @DeleteMapping("{courseId}")
+    public ResponseEntity<Void> deleteCourseById(@PathVariable Long courseId){
+        return null;
+    }
 }
