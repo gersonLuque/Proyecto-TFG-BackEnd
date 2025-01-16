@@ -1,7 +1,7 @@
 package com.proyect.CodeShareSpace.mappers;
 
 import com.proyect.CodeShareSpace.DataProvider;
-import com.proyect.CodeShareSpace.dto.UserDto;
+import com.proyect.CodeShareSpace.dto.user.UserDto;
 import com.proyect.CodeShareSpace.mapper.IUserMapper;
 import com.proyect.CodeShareSpace.persistence.model.User;
 import org.junit.jupiter.api.Test;

@@ -1,7 +1,7 @@
 package com.proyect.CodeShareSpace.mapper;
 
-import com.proyect.CodeShareSpace.dto.UserBasicDto;
-import com.proyect.CodeShareSpace.dto.UserDto;
+import com.proyect.CodeShareSpace.dto.user.UserBasicDto;
+import com.proyect.CodeShareSpace.dto.user.UserDto;
 import com.proyect.CodeShareSpace.persistence.model.User;
 import org.mapstruct.Mapper;
 
