@@ -4,12 +4,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
-@Getter
 @Setter
 @EqualsAndHashCode
 @ToString
@@ -17,7 +17,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,6 +35,36 @@ public class User {
     @JsonManagedReference // evita la recursion infinita en el json
     private Set<Course> courses = new HashSet<>(); // Cursos asociados al usuario
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority("ROLE_" + rol.name()));
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public String getCompleteName() {
+        return completeName;
+    }
+
+    public Rol getRol() {
+        return rol;
+    }
+
+    public Set<Course> getCourses() {
+        return courses;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
 }
 
 

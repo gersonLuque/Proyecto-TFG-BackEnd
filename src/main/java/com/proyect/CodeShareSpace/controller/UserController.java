@@ -1,6 +1,6 @@
 package com.proyect.CodeShareSpace.controller;
 
-import com.proyect.CodeShareSpace.dto.UserDto;
+import com.proyect.CodeShareSpace.dto.user.UserDto;
 import com.proyect.CodeShareSpace.service.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,4 +26,9 @@ public class UserController {
     public ResponseEntity<UserDto> findById(@PathVariable Long userId){
         return new ResponseEntity<>(iUserService.findById(userId), HttpStatus.OK);
     }
+    @PostMapping
+    public ResponseEntity<String> crear(){
+        return ResponseEntity.ok("estoy creando un usuario");
+    }
+
 }

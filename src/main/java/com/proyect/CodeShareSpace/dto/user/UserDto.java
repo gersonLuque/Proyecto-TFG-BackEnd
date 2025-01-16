@@ -1,4 +1,4 @@
-package com.proyect.CodeShareSpace.dto;
+package com.proyect.CodeShareSpace.dto.user;
 
 import com.proyect.CodeShareSpace.persistence.model.Course;
 import com.proyect.CodeShareSpace.persistence.model.Rol;
