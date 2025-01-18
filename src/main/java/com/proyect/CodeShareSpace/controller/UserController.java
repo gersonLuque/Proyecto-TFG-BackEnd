@@ -1,5 +1,6 @@
 package com.proyect.CodeShareSpace.controller;
 
+import com.proyect.CodeShareSpace.dto.user.UserCreateDto;
 import com.proyect.CodeShareSpace.dto.user.UserDto;
 import com.proyect.CodeShareSpace.service.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,10 +27,17 @@ public class UserController {
     public ResponseEntity<UserDto> findById(@PathVariable Long userId){
         return new ResponseEntity<>(iUserService.findById(userId), HttpStatus.OK);
     }
-    @PostMapping
-    public ResponseEntity<String> crear(){
+    @PostMapping("prueba")
+    public ResponseEntity<String> create(){
         return ResponseEntity.ok("estoy creando un usuario");
     }
+
+    @PostMapping()
+    public ResponseEntity<UserDto> createUser(@RequestBody UserCreateDto userCreateDto){
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body()
+    }
+
 
     @DeleteMapping("{userId}")
     public ResponseEntity<Void> deleteUserById(@PathVariable Long id){

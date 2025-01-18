@@ -1,5 +1,6 @@
 package com.proyect.CodeShareSpace.service.implementations;
 
+import com.proyect.CodeShareSpace.dto.user.UserCreateDto;
 import com.proyect.CodeShareSpace.dto.user.UserDto;
 import com.proyect.CodeShareSpace.mapper.IUserMapper;
 import com.proyect.CodeShareSpace.persistence.model.User;
@@ -39,5 +40,10 @@ public class UserServiceImpl implements IUserService {
     public User findUserByUsername(String username) {
         return userRepository.findUserByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("usuario no encontrado"));
+    }
+
+    @Override
+    public UserDto createUser(UserCreateDto userCreateDto) {
+        
     }
 }
