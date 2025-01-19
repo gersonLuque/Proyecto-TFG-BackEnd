@@ -6,6 +6,7 @@ import com.proyect.CodeShareSpace.dto.TaskDto;
 import com.proyect.CodeShareSpace.dto.user.UserDto;
 import com.proyect.CodeShareSpace.persistence.model.*;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -16,7 +17,7 @@ public class DataProvider {
         Course course = new Course();
         course.setCourseId(1L);
         course.setName("Programación");
-        course.setUsers(new HashSet<>());
+        course.setUsers(new ArrayList<>());
         return course;
     }
     // Crea un CursoDTO como plantilla
@@ -45,7 +46,7 @@ public class DataProvider {
         userDto.setPassword("noLimpioPescado");
         userDto.setCompleteName("Antonio Recio");
         userDto.setRol(Rol.STUDENT);
-        userDto.setCourses(new HashSet<>());
+        userDto.setCourses(new ArrayList<>());
         return userDto;
     }
     public static List<User> newUsersListMock(){
@@ -183,13 +184,13 @@ public class DataProvider {
         return solutionDto;
     }
     // Crea una lista de Cursos como plantilla
-    private static Set<Course> newCoursesSet(){
+    private static List<Course> newCoursesSet(){
         Course course1 = new Course(); course1.setName("SSII");
         Course course2 = new Course(); course2.setName("Programación");
         Course course3 = new Course(); course3.setName("Acceso a Datos");
         Course course4 = new Course(); course4.setName("Inglés");
         Course course5 = new Course(); course5.setName("Servicios y Procesos");
-        return Set.of(course1, course2, course3, course4, course5);
+        return List.of(course1, course2, course3, course4, course5);
     }
 
 }
