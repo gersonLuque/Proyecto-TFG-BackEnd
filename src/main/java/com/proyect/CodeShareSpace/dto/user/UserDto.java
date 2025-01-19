@@ -19,5 +19,5 @@ public class UserDto {
     private String password;
     private String completeName;
     private Rol rol;
-    private Set<Course> courses;
+    private List<Course> courses;
 }
