@@ -31,9 +31,14 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private Rol rol;
 
-    @ManyToMany(mappedBy = "users")
+   @ManyToMany
+   @JoinTable(
+           name = "users_courses",
+           joinColumns = @JoinColumn(name = "user_id"),
+           inverseJoinColumns = @JoinColumn(name = "course_id")
+   )
     @JsonManagedReference // evita la recursion infinita en el json
-    private Set<Course> courses = new HashSet<>(); // Cursos asociados al usuario
+    private List<Course> courses; // Cursos asociados al usuario
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -52,7 +57,7 @@ public class User implements UserDetails {
         return rol;
     }
 
-    public Set<Course> getCourses() {
+    public List<Course> getCourses() {
         return courses;
     }
 
