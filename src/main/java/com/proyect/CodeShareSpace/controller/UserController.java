@@ -35,7 +35,7 @@ public class UserController {
     @PostMapping()
     public ResponseEntity<UserDto> createUser(@RequestBody UserCreateDto userCreateDto){
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body()
+                .body(iUserService.createUser(userCreateDto));
     }
 
 
@@ -43,8 +43,5 @@ public class UserController {
     public ResponseEntity<Void> deleteUserById(@PathVariable Long id){
         return null;
     }
-
-
-
 
 }
