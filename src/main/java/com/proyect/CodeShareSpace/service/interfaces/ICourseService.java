@@ -12,4 +12,5 @@ public interface ICourseService {
     List<CourseDto> findAll();
     List<CourseDto> findByUserId(Long userId);
     CourseDto createCourse(CourseCreateDto courseCreateDto);
+    Boolean deleteCourseById(Long courseId);
 }
