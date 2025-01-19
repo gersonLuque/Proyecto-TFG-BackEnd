@@ -1,5 +1,6 @@
 package com.proyect.CodeShareSpace.service.implementations;
 
+import com.proyect.CodeShareSpace.dto.CourseCreateDto;
 import com.proyect.CodeShareSpace.dto.CourseDto;
 import com.proyect.CodeShareSpace.dto.user.UserDto;
 import com.proyect.CodeShareSpace.mapper.ICourseMapper;
@@ -45,5 +46,13 @@ public class CourseServiceImpl implements ICourseService {
     public List<CourseDto> findByUserId(Long userId) {
         List<Course> courses = courseRepository.findByUsers_UserId(userId);
         return iCourseMapper.coursesToCourseDtos(courses);
+    }
+
+    @Override
+    public CourseDto createCourse(CourseCreateDto courseCreateDto) {
+        Course course = new Course();
+        course.setName(courseCreateDto.getName());
+        Course courseCreated = courseRepository.save(course);
+        return iCourseMapper.courseToCourseDto(courseRepository.save(course));
     }
 }
