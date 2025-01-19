@@ -12,6 +12,4 @@ public interface ICourseMapper {
     CourseDto courseToCourseDto(Course course);
     List<Course> mapToCourse(List<CourseDto> courses);
     List<CourseDto> coursesToCourseDtos(List<Course> courses);
-
-
 }

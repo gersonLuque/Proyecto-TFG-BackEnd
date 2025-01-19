@@ -1,5 +1,6 @@
 package com.proyect.CodeShareSpace.controller;
 
+import com.proyect.CodeShareSpace.dto.CourseCreateDto;
 import com.proyect.CodeShareSpace.dto.CourseDto;
 import com.proyect.CodeShareSpace.dto.TaskDto;
 import com.proyect.CodeShareSpace.dto.user.UserDto;
@@ -47,6 +48,13 @@ public class CourseController {
     @GetMapping("{courseId}/tasks")
     public ResponseEntity<List<TaskDto>> getTaskByCourseId(@PathVariable Long courseId){
         return new ResponseEntity<>(iTaskService.findTasksByCourseId(courseId),HttpStatus.OK);
+    }
+
+    @PostMapping
+    public ResponseEntity<CourseDto> createCourse(@RequestBody CourseCreateDto courseCreateDto){
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(iCourseService.createCourse(courseCreateDto));
     }
 
     @DeleteMapping("{courseId}")
