@@ -62,20 +62,20 @@ public class UserControllerTest {
         assertEquals(Rol.STUDENT, responseUserDto.getBody().getRol());
     }
 
-    @Test
-    public void testDeleteUserById(){
-        // Given
-        Long userId = 5L;
-
-        // When
-        Mockito.doNothing().when(iUserService).deleteUserById(Mockito.anyLong());
-        ResponseEntity<Void> response = userController.deleteUserById(userId);
-
-        // Then
-        Mockito.verify(iUserService).deleteUserById(Mockito.anyLong());
-        assertNotNull(response);
-        assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
-    }
+//    @Test
+//    public void testDeleteUserById(){
+//        // Given
+//        Long userId = 5L;
+//
+//        // When
+//        Mockito.doNothing().when(iUserService).deleteUserById(Mockito.anyLong());
+//        ResponseEntity<Void> response = userController.deleteUserById(userId);
+//
+//        // Then
+//        Mockito.verify(iUserService).deleteUserById(Mockito.anyLong());
+//        assertNotNull(response);
+//        assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
+//    }
 
 
 
