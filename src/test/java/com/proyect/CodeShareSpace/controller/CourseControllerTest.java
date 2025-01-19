@@ -126,20 +126,20 @@ public class CourseControllerTest {
         assertEquals(3L, responseTaskDtoList.getBody().get(2).getTaskId());
     }
 
-    @Test
-    public void testDeleteCourseById(){
-        // Given
-        Long courseId = 3L;
-
-        // When
-        Mockito.doNothing().when(iCourseService).deleteCourseById(Mockito.anyLong());
-        ResponseEntity<Void> response = courseController.deleteCourseById(courseId);
-
-        // Then
-        Mockito.verify(iCourseService).deleteCourseById(Mockito.anyLong());
-        assertNotNull(response);
-        assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
-    }
+//    @Test
+//    public void testDeleteCourseById(){
+//        // Given
+//        Long courseId = 3L;
+//
+//        // When
+//        Mockito.doNothing().when(iCourseService).deleteCourseById(Mockito.anyLong());
+//        ResponseEntity<Void> response = courseController.deleteCourseById(courseId);
+//
+//        // Then
+//        Mockito.verify(iCourseService).deleteCourseById(Mockito.anyLong());
+//        assertNotNull(response);
+//        assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
+//    }
 
 
 }

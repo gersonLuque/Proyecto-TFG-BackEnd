@@ -1,7 +1,7 @@
 package com.proyect.CodeShareSpace.controller;
 
-import com.proyect.CodeShareSpace.dto.user.LoginRequest;
-import com.proyect.CodeShareSpace.dto.user.LoginResponse;
+import com.proyect.CodeShareSpace.dto.LoginRequest;
+import com.proyect.CodeShareSpace.dto.LoginResponse;
 import com.proyect.CodeShareSpace.security.JwtService;
 import com.proyect.CodeShareSpace.service.interfaces.IAuthService;
 import jakarta.servlet.http.HttpServletRequest;

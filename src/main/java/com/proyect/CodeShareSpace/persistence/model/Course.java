@@ -3,12 +3,10 @@ package com.proyect.CodeShareSpace.persistence.model;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -26,13 +24,12 @@ public class Course {
     @Column(name = "course_name")
     private String name;
 
-    // Relación de muchos a muchos con usuarios (alumnos o profesores)
-    @ManyToMany
-    @JoinTable(
-            name = "users_courses",
-            joinColumns = @JoinColumn(name = "course_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id")
-    )
+    @ManyToMany(mappedBy = "courses")
     @JsonBackReference // evita la recursion infita en el json
-    private Set<User> users = new HashSet<>();
+    private List<User> users;
+
+    @Override
+    public String toString() {
+        return "Course{" + "courseId=" + courseId + ", name='" + name + '\'' + '}';
+    }
 }
