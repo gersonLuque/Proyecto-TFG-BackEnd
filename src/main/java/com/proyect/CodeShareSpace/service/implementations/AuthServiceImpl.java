@@ -9,7 +9,10 @@ import com.proyect.CodeShareSpace.service.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class AuthServiceImpl implements IAuthService {
@@ -27,11 +30,15 @@ public class AuthServiceImpl implements IAuthService {
 
     @Override
     public LoginResponse singIn(LoginRequest loginRequest) {
-        User user = iUserService.findUserByUsername(loginRequest.getUsername());
+        Optional<User> user = iUserService.findUserByUsername(loginRequest.getUsername());
+
+        if (!user.isPresent())
+            throw new UsernameNotFoundException("El usuario no existe");
+
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(),loginRequest.getPassword()));
 
-        return new LoginResponse(jwtService.createToken(user));
+        return new LoginResponse(jwtService.createToken(user.get()));
     }
 
     @Override

@@ -1,9 +1,9 @@
-INSERT INTO users (user_id, complete_name, password, username, rol) VALUES (1, 'Juan Pérez', 'password123', 'juanperez', 'STUDENT');
-INSERT INTO users (user_id, complete_name, password, username, rol) VALUES (2, 'María Gómez', 'password123', 'mariagomez', 'STUDENT');
-INSERT INTO users (user_id, complete_name, password, username, rol) VALUES (3, 'Carlos López', 'password123', 'carloslopez', 'TEACHER');
-INSERT INTO users (user_id, complete_name, password, username, rol) VALUES (4, 'Ana Sánchez', 'password123', 'anasanchez', 'TEACHER');
-INSERT INTO users (user_id, complete_name, password, username, rol) VALUES (5, 'Luis Rodríguez', 'password123', 'luisrodriguez', 'STUDENT');
-INSERT INTO users (user_id, complete_name, password, username, rol) VALUES (6, 'Pedro Martínez', 'password123', 'pedromartinez', 'TEACHER');
+INSERT INTO users (user_id, complete_name, password, username, rol) VALUES (1, 'Gerson Luque', '$2a$12$/P7G1iW1sTCGwu09.u9v3uGBZOFvJ/OUaMkk2MYnkW6vGwCWGMvLS', 'gerson', 'STUDENT');
+INSERT INTO users (user_id, complete_name, password, username, rol) VALUES (2, 'Lino Espinosa', '$2a$12$/P7G1iW1sTCGwu09.u9v3uGBZOFvJ/OUaMkk2MYnkW6vGwCWGMvLS', 'lino', 'STUDENT');
+INSERT INTO users (user_id, complete_name, password, username, rol) VALUES (3, 'Salvador Sanchez', '$2a$12$Ul/NS43XbR62JkNyCKPSSe7vhTSympX6AO8V03j0LCbhY.bQ20R5q', 'salva', 'TEACHER');
+INSERT INTO users (user_id, complete_name, password, username, rol) VALUES (4, 'Jose Sala', '$2a$12$Ul/NS43XbR62JkNyCKPSSe7vhTSympX6AO8V03j0LCbhY.bQ20R5q', 'jose', 'TEACHER');
+INSERT INTO users (user_id, complete_name, password, username, rol) VALUES (5, 'Daniel Franco', '$2a$12$/P7G1iW1sTCGwu09.u9v3uGBZOFvJ/OUaMkk2MYnkW6vGwCWGMvLS', 'daniel', 'STUDENT');
+INSERT INTO users (user_id, complete_name, password, username, rol) VALUES (6, 'Javier del Cerro', '$2a$12$/P7G1iW1sTCGwu09.u9v3uGBZOFvJ/OUaMkk2MYnkW6vGwCWGMvLS', 'javi', 'STUDENT');
 INSERT INTO users (user_id, complete_name, password, username, rol) VALUES (7, 'Sofía García', 'password123', 'sofiagarcia', 'STUDENT');
 INSERT INTO users (user_id, complete_name, password, username, rol) VALUES (8, 'Juanita Pérez', 'password123', 'juanitaperez', 'TEACHER');
 
