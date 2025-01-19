@@ -59,6 +59,6 @@ public class CourseController {
 
     @DeleteMapping("{courseId}")
     public ResponseEntity<Void> deleteCourseById(@PathVariable Long courseId){
-        return null;
+        return new ResponseEntity<>(iCourseService.deleteCourseById(courseId) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
 }
