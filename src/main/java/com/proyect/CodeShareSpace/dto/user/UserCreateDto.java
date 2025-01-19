@@ -5,6 +5,7 @@ import com.proyect.CodeShareSpace.persistence.model.Course;
 import com.proyect.CodeShareSpace.persistence.model.Rol;
 import lombok.*;
 
+import java.util.List;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -17,5 +18,5 @@ public class UserCreateDto {
     private String password;
     private String completeName;
     private Rol rol;
-    private Set<CourseDto> courses;
+    private List<CourseDto> courses;
 }

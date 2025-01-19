@@ -10,6 +10,8 @@ import java.util.List;
 public interface ICourseMapper {
     Course courseDtoToCourse(CourseDto courseDto);
     CourseDto courseToCourseDto(Course course);
+    List<Course> mapToCourse(List<CourseDto> courses);
     List<CourseDto> coursesToCourseDtos(List<Course> courses);
+
 
 }
