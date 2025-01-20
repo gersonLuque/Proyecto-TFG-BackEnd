@@ -40,8 +40,8 @@ public class UserController {
 
 
     @DeleteMapping("{userId}")
-    public ResponseEntity<Void> deleteUserById(@PathVariable Long id){
-        return null;
+    public ResponseEntity<Void> deleteUserById(@PathVariable Long userId){
+        return new ResponseEntity<>(iUserService.deleteUserById(userId) ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
 
 }
