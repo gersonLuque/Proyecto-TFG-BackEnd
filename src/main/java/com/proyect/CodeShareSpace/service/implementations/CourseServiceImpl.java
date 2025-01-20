@@ -3,9 +3,11 @@ package com.proyect.CodeShareSpace.service.implementations;
 import com.proyect.CodeShareSpace.dto.CourseCreateDto;
 import com.proyect.CodeShareSpace.dto.CourseDto;
 import com.proyect.CodeShareSpace.dto.user.UserDto;
+import com.proyect.CodeShareSpace.exception.CourseNotFoundException;
 import com.proyect.CodeShareSpace.mapper.ICourseMapper;
 import com.proyect.CodeShareSpace.mapper.IUserMapper;
 import com.proyect.CodeShareSpace.persistence.model.Course;
+import com.proyect.CodeShareSpace.persistence.model.Task;
 import com.proyect.CodeShareSpace.persistence.model.User;
 import com.proyect.CodeShareSpace.repository.CourseRepository;
 import com.proyect.CodeShareSpace.service.interfaces.ICourseService;
@@ -55,4 +57,24 @@ public class CourseServiceImpl implements ICourseService {
         Course courseCreated = courseRepository.save(course);
         return iCourseMapper.courseToCourseDto(courseRepository.save(course));
     }
+
+    @Override
+    public Boolean deleteCourseById(Long courseId){
+        Course course = courseRepository.findById(courseId)
+                                        .orElse(null);
+        if(course != null){
+            List<User> userList = course.getUsers();
+
+            for (User user : userList){
+                user.getCourses().remove(course);
+            }
+
+            course.getUsers().clear();
+            courseRepository.delete(course);
+
+            return true;
+        }
+        return false;
+    }
+
 }
