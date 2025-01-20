@@ -7,6 +7,8 @@ import com.proyect.CodeShareSpace.exception.CourseNotFoundException;
 import com.proyect.CodeShareSpace.exception.UserExistException;
 import com.proyect.CodeShareSpace.mapper.IUserMapper;
 import com.proyect.CodeShareSpace.persistence.model.Course;
+import com.proyect.CodeShareSpace.persistence.model.Rol;
+import com.proyect.CodeShareSpace.persistence.model.Solution;
 import com.proyect.CodeShareSpace.persistence.model.User;
 import com.proyect.CodeShareSpace.repository.CourseRepository;
 import com.proyect.CodeShareSpace.repository.UserRepository;
@@ -75,10 +77,27 @@ public class UserServiceImpl implements IUserService {
         return IUserMapper.userToUserDto(userRepository.save(user));
     }
 
+
     private List<Course> getCourses(UserCreateDto userCreateDto) {
         return userCreateDto.getCourses().stream()
                 .map(courseDto -> courseRepository.findById(courseDto.getCourseId())
                         .orElseThrow(() -> new CourseNotFoundException("Error al encontrar el curso")))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public Boolean deleteUserById(Long userId) {
+        User user = userRepository.findById(userId)
+                                    .orElse(null);
+        if(user != null){
+            List<Course> courseList = user.getCourses();
+            for (Course course : courseList){
+                course.getUsers().remove(user);
+            }
+            userRepository.delete(user);
+            return true;
+        } else
+            return false;
+    }
+
 }
