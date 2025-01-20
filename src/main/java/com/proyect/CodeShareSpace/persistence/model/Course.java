@@ -28,6 +28,9 @@ public class Course {
     @JsonBackReference // evita la recursion infita en el json
     private List<User> users;
 
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+    private List<Task> tasks;
+
     @Override
     public String toString() {
         return "Course{" + "courseId=" + courseId + ", name='" + name + '\'' + '}';
