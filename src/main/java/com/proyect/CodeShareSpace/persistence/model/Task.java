@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "tasks")
@@ -26,13 +27,16 @@ public class Task {
 
     private boolean visible;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "course_id")
     private Course course;
 
     @ManyToOne
     @JoinColumn(name = "teacher_id")
     private User teacher;
+
+    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
+    private List<Solution> solutions;
 
     @Column(name = "file_path")
     private String filePath;
