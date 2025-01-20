@@ -17,7 +17,7 @@ public class Solution {
     @Column(name = "solution_id")
     private Long solutionId;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "task_id")
     private Task task;
 
