@@ -12,4 +12,5 @@ public interface IUserService {
     UserDto findById(Long id);
     Optional<User> findUserByUsername(String username);
     UserDto createUser(UserCreateDto userCreateDto);
+    Boolean deleteUserById(Long userId);
 }
