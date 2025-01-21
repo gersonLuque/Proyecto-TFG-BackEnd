@@ -1,5 +1,6 @@
 package com.proyect.CodeShareSpace.mapper;
 
+import com.proyect.CodeShareSpace.dto.task.CreateTaskDto;
 import com.proyect.CodeShareSpace.dto.task.TaskDto;
 import com.proyect.CodeShareSpace.persistence.model.Task;
 import org.mapstruct.Mapper;
@@ -14,7 +15,9 @@ public interface ITaskMapper {
     @Mapping(source = "teacher.completeName", target = "nameTeacher")
     TaskDto taskToTaskDto(Task task);
 
-    Task taskDtoToTask(TaskDto taskDto);
+    Task mapToTask(CreateTaskDto createTaskDto);
 
     List<TaskDto> tasksToTasksDto(List<Task> tasks);
+
+
 }

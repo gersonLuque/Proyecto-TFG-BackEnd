@@ -11,7 +11,7 @@ import java.time.LocalDate;
 public class CreateTaskDto {
     private String description;
     private String title;
-    private LocalDate startDate;
+    private LocalDate endDate;
     private boolean visible;
     private Long courseId;
     private Long teacherId;
