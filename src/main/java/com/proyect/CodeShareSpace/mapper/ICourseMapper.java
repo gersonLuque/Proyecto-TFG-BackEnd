@@ -1,6 +1,6 @@
 package com.proyect.CodeShareSpace.mapper;
 
-import com.proyect.CodeShareSpace.dto.CourseDto;
+import com.proyect.CodeShareSpace.dto.course.CourseDto;
 import com.proyect.CodeShareSpace.persistence.model.Course;
 import org.mapstruct.Mapper;
 

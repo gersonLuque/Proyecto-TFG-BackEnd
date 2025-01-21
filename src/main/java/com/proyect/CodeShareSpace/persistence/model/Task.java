@@ -29,6 +29,9 @@ public class Task {
 
     private boolean visible;
 
+    @Column(name = "file_path")
+    private String filePath;
+
     @ManyToOne
     @JoinColumn(name = "course_id")
     private Course course;
@@ -40,6 +43,5 @@ public class Task {
     @OneToMany(mappedBy = "task")
     private List<Solution> solutions;
 
-    @Column(name = "file_path")
-    private String filePath;
+
 }

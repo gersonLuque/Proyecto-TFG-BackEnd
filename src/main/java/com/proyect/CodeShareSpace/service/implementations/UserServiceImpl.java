@@ -1,6 +1,5 @@
 package com.proyect.CodeShareSpace.service.implementations;
 
-import com.proyect.CodeShareSpace.dto.CourseDto;
 import com.proyect.CodeShareSpace.dto.user.UserCreateDto;
 import com.proyect.CodeShareSpace.dto.user.UserDto;
 import com.proyect.CodeShareSpace.exception.CourseNotFoundException;
@@ -18,7 +17,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service

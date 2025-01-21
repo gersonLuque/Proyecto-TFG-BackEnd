@@ -1,4 +1,4 @@
-package com.proyect.CodeShareSpace.dto;
+package com.proyect.CodeShareSpace.dto.course;
 
 import com.proyect.CodeShareSpace.persistence.model.User;
 import lombok.*;
