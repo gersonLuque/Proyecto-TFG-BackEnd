@@ -1,5 +1,6 @@
 package com.proyect.CodeShareSpace.dto.user;
 
+import com.proyect.CodeShareSpace.dto.CourseDto;
 import com.proyect.CodeShareSpace.persistence.model.Course;
 import com.proyect.CodeShareSpace.persistence.model.Rol;
 import lombok.*;
@@ -19,5 +20,5 @@ public class UserDto {
     private String password;
     private String completeName;
     private Rol rol;
-    private List<Course> courses;
+    private List<CourseDto> courses;
 }

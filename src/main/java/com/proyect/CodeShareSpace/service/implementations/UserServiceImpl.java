@@ -40,13 +40,9 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public UserDto findById(Long id) {
-        try {
-            User user = userRepository.findById(id).orElseThrow();
-            return IUserMapper.userToUserDto(user);
-        } catch (Exception e) {
-            System.out.println("User not found or error occurred: " + e.getMessage());
-            return null;
-        }
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
+        return IUserMapper.userToUserDto(user);
     }
 
     @Override
@@ -60,16 +56,10 @@ public class UserServiceImpl implements IUserService {
         if (findUserByUsername(userCreateDto.getUsername()).isPresent())
             throw new UserExistException("El usuario ya esta registrado");
 
-
         List<Course> courseList = getCourses(userCreateDto);
-        System.out.println(courseList);
         User user = IUserMapper.userCreateToUser(userCreateDto);
 
-        System.out.println(user);
-
         user.setCourses(courseList);
-
-        System.out.println(user);
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return IUserMapper.userToUserDto(userRepository.save(user));
