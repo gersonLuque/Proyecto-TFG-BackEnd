@@ -12,6 +12,7 @@ import java.time.LocalDate;
 public class TaskDto {
     private Long taskId;
     private String description;
+    private String title;
     private LocalDate startDate;
     private LocalDate endDate;
     private boolean visible;
