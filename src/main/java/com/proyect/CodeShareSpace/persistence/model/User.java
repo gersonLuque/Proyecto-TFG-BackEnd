@@ -40,6 +40,9 @@ public class User implements UserDetails {
     @JsonManagedReference // evita la recursion infinita en el json
     private List<Course> courses; // Cursos asociados al usuario
 
+    @OneToMany(mappedBy = "student")
+    private List<Solution> solutions;
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority("ROLE_" + rol.name()));

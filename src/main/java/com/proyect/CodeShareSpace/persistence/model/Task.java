@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "tasks")
@@ -16,6 +17,8 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "task_id")
     private Long taskId;
+
+    private String title;
 
     private String description;
     @Column(name = "start_date")
@@ -33,6 +36,9 @@ public class Task {
     @ManyToOne
     @JoinColumn(name = "teacher_id")
     private User teacher;
+
+    @OneToMany(mappedBy = "task")
+    private List<Solution> solutions;
 
     @Column(name = "file_path")
     private String filePath;

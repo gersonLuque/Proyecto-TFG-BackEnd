@@ -5,12 +5,12 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "solutions")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @ToString
+@Table(name = "solutions")
 public class Solution {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,3 +32,6 @@ public class Solution {
     private boolean anonymous;
 
 }
+
+
+

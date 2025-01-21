@@ -24,9 +24,12 @@ public class Course {
     @Column(name = "course_name")
     private String name;
 
-    @ManyToMany(mappedBy = "courses")
+    @ManyToMany(mappedBy = "courses", fetch = FetchType.LAZY)
     @JsonBackReference // evita la recursion infita en el json
     private List<User> users;
+
+    @OneToMany(mappedBy = "course",fetch = FetchType.LAZY)
+    private List<Task> tasks;
 
     @Override
     public String toString() {
