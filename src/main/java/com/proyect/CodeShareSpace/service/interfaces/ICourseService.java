@@ -1,7 +1,7 @@
 package com.proyect.CodeShareSpace.service.interfaces;
 
-import com.proyect.CodeShareSpace.dto.CourseCreateDto;
-import com.proyect.CodeShareSpace.dto.CourseDto;
+import com.proyect.CodeShareSpace.dto.course.CourseCreateDto;
+import com.proyect.CodeShareSpace.dto.course.CourseDto;
 import com.proyect.CodeShareSpace.dto.user.UserDto;
 
 import java.util.List;

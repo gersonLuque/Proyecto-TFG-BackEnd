@@ -1,6 +1,6 @@
 package com.proyect.CodeShareSpace.service.implementations;
 
-import com.proyect.CodeShareSpace.dto.TaskDto;
+import com.proyect.CodeShareSpace.dto.task.TaskDto;
 import com.proyect.CodeShareSpace.mapper.ITaskMapper;
 import com.proyect.CodeShareSpace.persistence.model.Task;
 import com.proyect.CodeShareSpace.repository.TaskRepository;

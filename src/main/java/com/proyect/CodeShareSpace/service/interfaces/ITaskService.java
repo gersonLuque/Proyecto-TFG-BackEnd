@@ -1,6 +1,6 @@
 package com.proyect.CodeShareSpace.service.interfaces;
 
-import com.proyect.CodeShareSpace.dto.TaskDto;
+import com.proyect.CodeShareSpace.dto.task.TaskDto;
 
 import java.util.List;
 

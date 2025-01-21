@@ -1,13 +1,10 @@
 package com.proyect.CodeShareSpace.dto.user;
 
-import com.proyect.CodeShareSpace.dto.CourseDto;
-import com.proyect.CodeShareSpace.persistence.model.Course;
+import com.proyect.CodeShareSpace.dto.course.CourseDto;
 import com.proyect.CodeShareSpace.persistence.model.Rol;
 import lombok.*;
 
 import java.util.List;
-import java.util.Objects;
-import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor

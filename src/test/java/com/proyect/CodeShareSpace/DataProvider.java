@@ -1,15 +1,13 @@
 package com.proyect.CodeShareSpace;
 
-import com.proyect.CodeShareSpace.dto.CourseDto;
+import com.proyect.CodeShareSpace.dto.course.CourseDto;
 import com.proyect.CodeShareSpace.dto.SolutionDto;
-import com.proyect.CodeShareSpace.dto.TaskDto;
+import com.proyect.CodeShareSpace.dto.task.TaskDto;
 import com.proyect.CodeShareSpace.dto.user.UserDto;
 import com.proyect.CodeShareSpace.persistence.model.*;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class DataProvider {
     // Crea un Curso como plantilla

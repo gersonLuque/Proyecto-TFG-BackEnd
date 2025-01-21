@@ -1,4 +1,4 @@
-package com.proyect.CodeShareSpace.dto;
+package com.proyect.CodeShareSpace.dto.task;
 
 import lombok.*;
 
@@ -7,7 +7,6 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter @Setter
-@EqualsAndHashCode
 @ToString
 public class TaskDto {
     private Long taskId;

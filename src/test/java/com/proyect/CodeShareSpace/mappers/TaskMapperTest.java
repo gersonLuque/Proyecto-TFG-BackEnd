@@ -1,12 +1,10 @@
 package com.proyect.CodeShareSpace.mappers;
 
-import com.proyect.CodeShareSpace.mapper.ICourseMapper;
 import com.proyect.CodeShareSpace.mapper.ITaskMapper;
-import com.proyect.CodeShareSpace.persistence.model.Course;
 import com.proyect.CodeShareSpace.persistence.model.Task;
 import org.junit.jupiter.api.Test;
 import com.proyect.CodeShareSpace.DataProvider;
-import com.proyect.CodeShareSpace.dto.TaskDto;
+import com.proyect.CodeShareSpace.dto.task.TaskDto;
 import org.mapstruct.factory.Mappers;
 
 import static org.junit.jupiter.api.Assertions.*;
