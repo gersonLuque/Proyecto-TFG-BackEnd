@@ -42,6 +42,4 @@ public class Task {
 
     @OneToMany(mappedBy = "task")
     private List<Solution> solutions;
-
-
 }

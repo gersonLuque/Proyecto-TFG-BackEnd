@@ -19,6 +19,7 @@ public class CourseMapperTest {
         // Given
         Course course = DataProvider.newCourseMock();
 
+
         // Mapea el Course -> CourseDto
         CourseDto courseDto = iCourseMapper.courseToCourseDto(course);
 

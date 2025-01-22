@@ -54,7 +54,7 @@ public class UserServiceImpl implements IUserService {
         if (findUserByUsername(userCreateDto.getUsername()).isPresent())
             throw new UserExistException("El usuario ya esta registrado");
 
-        List<Course> courseList = getCourses(userCreateDto);
+        List<Course> courseList = getCoursesFromDto(userCreateDto);
         User user = IUserMapper.userCreateToUser(userCreateDto);
 
         user.setCourses(courseList);
@@ -63,7 +63,7 @@ public class UserServiceImpl implements IUserService {
         return IUserMapper.userToUserDto(userRepository.save(user));
     }
 
-    private List<Course> getCourses(UserCreateDto userCreateDto) {
+    private List<Course> getCoursesFromDto(UserCreateDto userCreateDto) {
         return userCreateDto.getCourses().stream()
                 .map(courseDto -> courseRepository.findById(courseDto.getCourseId())
                         .orElseThrow(() -> new CourseNotFoundException("Error al encontrar el curso")))
