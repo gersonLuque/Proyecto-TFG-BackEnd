@@ -1,8 +1,11 @@
 package com.proyect.CodeShareSpace.persistence.model;
 
 
+import com.proyect.CodeShareSpace.persistence.model.File.FileSolutions;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -30,6 +33,9 @@ public class Solution {
 
     private boolean star;
     private boolean anonymous;
+
+    @OneToMany(mappedBy = "solution")
+    private List<FileSolutions> fileSolutions;
 
 }
 

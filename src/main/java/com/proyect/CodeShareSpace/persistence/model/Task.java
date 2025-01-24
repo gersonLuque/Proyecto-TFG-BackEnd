@@ -1,5 +1,6 @@
 package com.proyect.CodeShareSpace.persistence.model;
 
+import com.proyect.CodeShareSpace.persistence.model.File.FileTasks;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -42,4 +43,7 @@ public class Task {
 
     @OneToMany(mappedBy = "task")
     private List<Solution> solutions;
+
+    @OneToMany(mappedBy = "task")
+    private List<FileTasks> fileTasks;
 }
