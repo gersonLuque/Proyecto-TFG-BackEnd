@@ -6,10 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import software.amazon.awssdk.core.ResponseBytes;
+import software.amazon.awssdk.core.sync.RequestBody;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.*;
 
+import java.io.IOException;
+import java.nio.file.Path;
 import java.util.List;
 
 @Service
@@ -51,6 +55,20 @@ public class S3Service implements IS3Service {
     public InputStreamResource downloadFile(String key){
         ResponseBytes<GetObjectResponse> objectBytes = getObjectBytes(key);
         return new InputStreamResource(objectBytes.asInputStream());
+    }
+
+    @Override
+    public void uploadFile(String key, MultipartFile file) throws IOException {
+        PutObjectRequest putObjectRequest = PutObjectRequest.builder()
+                .bucket(bucket)
+                .key(key)
+                .build();
+
+        RequestBody requestBody = RequestBody
+                .fromInputStream(file.getInputStream(), file.getSize());
+
+        s3Client.putObject(putObjectRequest,requestBody);
+
     }
 
     @Override

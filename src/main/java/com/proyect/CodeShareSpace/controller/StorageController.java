@@ -11,11 +11,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.List;
 
 @RestController
@@ -40,5 +38,12 @@ public class StorageController {
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + fileName)
                 .contentType(MediaType.APPLICATION_OCTET_STREAM)
                 .body(resource);
+    }
+    @PostMapping("/upload")
+    public ResponseEntity<Void> uploadFile(@RequestParam String key,
+                                           @RequestPart MultipartFile file) throws IOException {
+
+        is3Service.uploadFile(key,file);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
