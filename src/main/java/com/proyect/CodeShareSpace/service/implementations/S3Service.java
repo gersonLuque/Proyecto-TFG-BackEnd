@@ -1,19 +1,16 @@
 package com.proyect.CodeShareSpace.service.implementations;
 
 import com.proyect.CodeShareSpace.exception.S3ObjectNotFoundException;
-import com.proyect.CodeShareSpace.persistence.model.File.FileBase;
 import com.proyect.CodeShareSpace.service.interfaces.IS3Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.stereotype.Service;
 import software.amazon.awssdk.core.ResponseBytes;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.*;
 
-import java.io.File;
 import java.util.List;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 @Service
 public class S3Service implements IS3Service {
@@ -45,16 +42,31 @@ public class S3Service implements IS3Service {
     }
 
     @Override
-    public String getFileContent(String prefix, String fileName) {
+    public String getFileContent(String key) {
+        ResponseBytes<GetObjectResponse> objectBytes = getObjectBytes(key);
+        return objectBytes.asUtf8String();
+    }
 
+    @Override
+    public InputStreamResource downloadFile(String key){
+        ResponseBytes<GetObjectResponse> objectBytes = getObjectBytes(key);
+        return new InputStreamResource(objectBytes.asInputStream());
+    }
+
+    @Override
+    public String getFileName(String key){
+        return key.substring(key.lastIndexOf("/") + 1);
+    }
+
+    private ResponseBytes<GetObjectResponse> getObjectBytes(String key) {
         GetObjectRequest getObjectRequest = GetObjectRequest.builder()
                 .bucket(bucket)
-                .key(prefix + fileName)
+                .key(key)
                 .build();
 
-        ResponseBytes<GetObjectResponse> objectBytes = s3Client.getObjectAsBytes(getObjectRequest);
 
-        return objectBytes.asUtf8String();
+        ResponseBytes<GetObjectResponse> objectBytes = s3Client.getObjectAsBytes(getObjectRequest);
+        return objectBytes;
     }
 
     private boolean isFile(String route) {
