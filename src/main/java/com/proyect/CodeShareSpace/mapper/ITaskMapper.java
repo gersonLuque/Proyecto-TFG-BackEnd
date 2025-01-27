@@ -8,7 +8,7 @@ import org.mapstruct.Mapping;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", uses = IFileMapper.class)
 public interface ITaskMapper {
 
     @Mapping(source = "course.name",target = "courseName")

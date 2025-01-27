@@ -16,6 +16,10 @@ public abstract class FileBase {
     private String fileName;
     private String prefix;
     private String type;
-    private Double KBytes;
+    private Long KBytes;
+
+    public String extractExtension(String fileName){
+        return fileName.substring(fileName.lastIndexOf(".")+ 1);
+    }
 }
 

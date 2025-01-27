@@ -32,10 +32,8 @@ public class TaskController {
     }
 
     @PostMapping
-    public ResponseEntity<TaskDto> createTask(@RequestBody CreateTaskDto createTaskDto){
+    public ResponseEntity<TaskDto> createTask(@ModelAttribute CreateTaskDto createTaskDto){
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(iTaskService.createTask(createTaskDto));
     }
-
-
 }

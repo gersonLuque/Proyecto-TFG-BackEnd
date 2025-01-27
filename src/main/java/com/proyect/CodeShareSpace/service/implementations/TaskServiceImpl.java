@@ -6,19 +6,21 @@ import com.proyect.CodeShareSpace.exception.CourseNotFoundException;
 import com.proyect.CodeShareSpace.exception.UserNotFoundException;
 import com.proyect.CodeShareSpace.mapper.ITaskMapper;
 import com.proyect.CodeShareSpace.persistence.model.Course;
+import com.proyect.CodeShareSpace.persistence.model.File.FileTask;
 import com.proyect.CodeShareSpace.persistence.model.Task;
 import com.proyect.CodeShareSpace.persistence.model.User;
 import com.proyect.CodeShareSpace.repository.CourseRepository;
 import com.proyect.CodeShareSpace.repository.TaskRepository;
 import com.proyect.CodeShareSpace.repository.UserRepository;
+import com.proyect.CodeShareSpace.service.interfaces.IStorageService;
 import com.proyect.CodeShareSpace.service.interfaces.ITaskService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class TaskServiceImpl implements ITaskService {
@@ -31,11 +33,16 @@ public class TaskServiceImpl implements ITaskService {
     private CourseRepository courseRepository;
     @Autowired
     private ITaskMapper taskMapper;
+    @Autowired
+    private IStorageService iStorageService;
+
+
     @Override
     public List<TaskDto> findTasksByCourseId(Long courseId) {
         List<Task> tasks = taskRepository.findByCourse_CourseId(courseId);
         return taskMapper.tasksToTasksDto(tasks);
     }
+
     @Override
     public TaskDto findById(Long id) {
         Optional<Task> task = taskRepository.findById(id);
@@ -53,8 +60,13 @@ public class TaskServiceImpl implements ITaskService {
         Course course = courseRepository.findById(createTaskDto.getCourseId())
                 .orElseThrow(() -> new CourseNotFoundException("Curso no encontrado"));
 
+        String prefix = UUID.randomUUID().toString(); // carpeta donde se guardara los ficheros
+        List<FileTask> fileTasks = iStorageService.upload(prefix,createTaskDto.getFiles(),FileTask::new);
+
         task.setCourse(course);
         task.setTeacher(teacher);
+        task.setFileTasks(fileTasks);
+        fileTasks.forEach(fileTask -> fileTask.setTask(task));
 
         return taskMapper.taskToTaskDto(taskRepository.save(task));
     }

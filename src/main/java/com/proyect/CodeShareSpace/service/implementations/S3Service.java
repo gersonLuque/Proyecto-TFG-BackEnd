@@ -2,6 +2,7 @@ package com.proyect.CodeShareSpace.service.implementations;
 
 import com.proyect.CodeShareSpace.exception.S3ObjectNotFoundException;
 import com.proyect.CodeShareSpace.service.interfaces.IS3Service;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.InputStreamResource;
@@ -13,7 +14,6 @@ import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.*;
 
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.List;
 
 @Service
@@ -61,7 +61,7 @@ public class S3Service implements IS3Service {
     public void uploadFile(String key, MultipartFile file) throws IOException {
         PutObjectRequest putObjectRequest = PutObjectRequest.builder()
                 .bucket(bucket)
-                .key(key)
+                .key(key+"/"+file.getOriginalFilename())
                 .build();
 
         RequestBody requestBody = RequestBody
@@ -86,6 +86,8 @@ public class S3Service implements IS3Service {
         ResponseBytes<GetObjectResponse> objectBytes = s3Client.getObjectAsBytes(getObjectRequest);
         return objectBytes;
     }
+
+
 
     private boolean isFile(String route) {
         return !route.endsWith("/");

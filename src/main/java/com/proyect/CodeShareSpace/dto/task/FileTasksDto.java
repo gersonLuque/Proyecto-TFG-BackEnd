@@ -12,6 +12,6 @@ public class FileTasksDto {
     private String fileName;
     private String prefix;
     private String type;
-    private Double KBytes;
+    private Long KBytes;
     private Long taskId;
 }

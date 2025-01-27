@@ -1,11 +1,9 @@
 package com.proyect.CodeShareSpace.service.interfaces;
 
-import com.proyect.CodeShareSpace.persistence.model.File.FileBase;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.web.multipart.MultipartFile;
 import software.amazon.awssdk.services.s3.model.S3Object;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -20,4 +18,5 @@ public interface IS3Service {
     void uploadFile(String key, MultipartFile file) throws IOException;
 
     String getFileName(String key);
+
 }

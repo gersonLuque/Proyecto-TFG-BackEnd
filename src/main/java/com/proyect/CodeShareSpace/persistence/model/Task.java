@@ -44,6 +44,6 @@ public class Task {
     @OneToMany(mappedBy = "task")
     private List<Solution> solutions;
 
-    @OneToMany(mappedBy = "task")
+    @OneToMany(mappedBy = "task", cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
     private List<FileTask> fileTasks;
 }
