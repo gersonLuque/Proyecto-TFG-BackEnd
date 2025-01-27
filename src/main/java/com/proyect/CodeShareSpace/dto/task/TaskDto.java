@@ -1,8 +1,10 @@
 package com.proyect.CodeShareSpace.dto.task;
 
+import com.proyect.CodeShareSpace.persistence.model.File.FileTasks;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,5 +19,5 @@ public class TaskDto {
     private boolean visible;
     private String courseName;
     private String nameTeacher;
-    private String filePath;
+    private List<FileTasksDto> fileTasks;
 }

@@ -27,7 +27,7 @@ public class StorageController {
     @GetMapping("{prefix}/{fileName}/content")
     public ResponseEntity<String> getContentFromFile(@PathVariable String prefix,
                                                      @PathVariable String fileName){
-        return new ResponseEntity<>( is3Service.getFileContent("nose"),HttpStatus.OK);
+        return new ResponseEntity<>(is3Service.getFileContent("nose"),HttpStatus.OK);
     }
 
     @GetMapping("/download")
@@ -42,7 +42,6 @@ public class StorageController {
     @PostMapping("/upload")
     public ResponseEntity<Void> uploadFile(@RequestParam String key,
                                            @RequestPart MultipartFile file) throws IOException {
-
         is3Service.uploadFile(key,file);
         return new ResponseEntity<>(HttpStatus.OK);
     }

@@ -16,5 +16,6 @@ public abstract class FileBase {
     private String fileName;
     private String prefix;
     private String type;
+    private Double KBytes;
 }
 

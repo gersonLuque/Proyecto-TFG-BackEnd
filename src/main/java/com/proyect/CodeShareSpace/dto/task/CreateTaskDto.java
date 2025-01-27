@@ -1,8 +1,10 @@
 package com.proyect.CodeShareSpace.dto.task;
 
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,5 +17,5 @@ public class CreateTaskDto {
     private boolean visible;
     private Long courseId;
     private Long teacherId;
-    private String filePath;
+    private List<MultipartFile> files;
 }
