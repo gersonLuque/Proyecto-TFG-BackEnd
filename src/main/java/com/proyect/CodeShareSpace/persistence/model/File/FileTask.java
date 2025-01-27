@@ -5,11 +5,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "files_tasks")
-public class FileTasks extends FileBase {
+@Getter
+@Setter
+public class FileTask extends FileBase {
 
     @ManyToOne
     @JoinColumn(name = "task_id")

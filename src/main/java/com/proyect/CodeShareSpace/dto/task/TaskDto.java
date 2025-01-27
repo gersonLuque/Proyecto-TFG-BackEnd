@@ -1,6 +1,5 @@
 package com.proyect.CodeShareSpace.dto.task;
 
-import com.proyect.CodeShareSpace.persistence.model.File.FileTasks;
 import lombok.*;
 
 import java.time.LocalDate;
