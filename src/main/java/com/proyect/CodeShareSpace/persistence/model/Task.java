@@ -30,6 +30,9 @@ public class Task {
 
     private boolean visible;
 
+    @Column(name = "file_path")
+    private String filePath;
+
     @ManyToOne
     @JoinColumn(name = "course_id")
     private Course course;

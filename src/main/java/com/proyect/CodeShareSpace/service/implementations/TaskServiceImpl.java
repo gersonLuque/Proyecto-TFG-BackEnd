@@ -15,6 +15,7 @@ import com.proyect.CodeShareSpace.repository.UserRepository;
 import com.proyect.CodeShareSpace.service.interfaces.IStorageService;
 import com.proyect.CodeShareSpace.service.interfaces.ITaskService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
