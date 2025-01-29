@@ -28,9 +28,6 @@ public class Solution {
     @JoinColumn(name = "student_id")
     private User student;
 
-    @Column(name = "file_path")
-    private String filePath;
-
     private boolean star;
     private boolean anonymous;
 

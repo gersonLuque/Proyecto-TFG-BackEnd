@@ -65,8 +65,7 @@ public class TaskServiceImpl implements ITaskService {
 
         task.setCourse(course);
         task.setTeacher(teacher);
-        task.setFileTasks(fileTasks);
-        fileTasks.forEach(fileTask -> fileTask.setTask(task));
+        task.setFiletasks(fileTasks);
 
         return taskMapper.taskToTaskDto(taskRepository.save(task));
     }

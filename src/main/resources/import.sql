@@ -28,15 +28,15 @@ INSERT INTO users_courses (course_id, user_id) VALUES (4, 7);
 INSERT INTO users_courses (course_id, user_id) VALUES (5, 8);
 INSERT INTO users_courses (course_id, user_id) VALUES (1, 8);
 
-INSERT INTO tasks (task_id, start_date, end_date, visible, course_id, teacher_id, description, file_path) VALUES (1, '2024-12-01', '2024-12-15', b'1', 1, 3, 'Mathematics Assignment 1', 'path/to/prefix');
-INSERT INTO tasks (task_id, start_date, end_date, visible, course_id, teacher_id, description, file_path) VALUES (2, '2024-12-05', '2024-12-20', b'1', 2, 4, 'History Project 1', 'path/to');
-INSERT INTO tasks (task_id, start_date, end_date, visible, course_id, teacher_id, description, file_path) VALUES (3, '2024-12-10', '2024-12-25', b'1', 3, 3, 'Physics Lab 1', 'path/to');
-INSERT INTO tasks (task_id, start_date, end_date, visible, course_id, teacher_id, description, file_path) VALUES (4, '2024-12-12', '2024-12-19', b'1', 4, 6, 'Chemistry Lab 1', 'path/to/chem');
-INSERT INTO tasks (task_id, start_date, end_date, visible, course_id, teacher_id, description, file_path) VALUES (5, '2024-12-15', '2024-12-30', b'1', 5, 6, 'Biology Assignment 1', 'path/to/bio');
+INSERT INTO tasks (task_id, title, start_date, end_date, visible, course_id, teacher_id, description) VALUES (1, 'Math Assignment', '2024-12-01', '2024-12-15', b'1', 1, 3, 'Mathematics Assignment 1');
+INSERT INTO tasks (task_id, title, start_date, end_date, visible, course_id, teacher_id, description) VALUES (2, 'History Project', '2024-12-05', '2024-12-20', b'1', 2, 4, 'History Project 1');
+INSERT INTO tasks (task_id, title, start_date, end_date, visible, course_id, teacher_id, description) VALUES (3, 'Physics Lab', '2024-12-10', '2024-12-25', b'1', 3, 3, 'Physics Lab 1');
+INSERT INTO tasks (task_id, title, start_date, end_date, visible, course_id, teacher_id, description) VALUES (4, 'Chemistry Lab', '2024-12-12', '2024-12-19', b'1', 4, 6, 'Chemistry Lab 1');
+INSERT INTO tasks (task_id, title, start_date, end_date, visible, course_id, teacher_id, description) VALUES (5, 'Biology Assignment', '2024-12-15', '2024-12-30', b'1', 5, 6, 'Biology Assignment 1');
 
-INSERT INTO solutions (solution_id, anonymous, star, student_id, task_id, file_path) VALUES (1, b'0', b'1', 1, 1, 'path/to');
-INSERT INTO solutions (solution_id, anonymous, star, student_id, task_id, file_path) VALUES (2, b'1', b'0', 2, 2, 'path/to');
-INSERT INTO solutions (solution_id, anonymous, star, student_id, task_id, file_path) VALUES (3, b'0', b'1', 1, 3, 'path/to');
-INSERT INTO solutions (solution_id, anonymous, star, student_id, task_id, file_path) VALUES (4, b'0', b'1', 2, 1, 'path/to');
-INSERT INTO solutions (solution_id, anonymous, star, student_id, task_id, file_path) VALUES (5, b'0', b'0', 5, 4, 'path/to/chem');
-INSERT INTO solutions (solution_id, anonymous, star, student_id, task_id, file_path) VALUES (6, b'1', b'0', 7, 5, 'path/to/bio');
+INSERT INTO solutions (solution_id, anonymous, star, student_id, task_id) VALUES (1, b'0', b'1', 1, 1);
+INSERT INTO solutions (solution_id, anonymous, star, student_id, task_id) VALUES (2, b'1', b'0', 2, 2);
+INSERT INTO solutions (solution_id, anonymous, star, student_id, task_id) VALUES (3, b'0', b'1', 1, 3);
+INSERT INTO solutions (solution_id, anonymous, star, student_id, task_id) VALUES (4, b'0', b'1', 2, 1);
+INSERT INTO solutions (solution_id, anonymous, star, student_id, task_id) VALUES (5, b'0', b'0', 5, 4);
+INSERT INTO solutions (solution_id, anonymous, star, student_id, task_id) VALUES (6, b'1', b'0', 7, 5);

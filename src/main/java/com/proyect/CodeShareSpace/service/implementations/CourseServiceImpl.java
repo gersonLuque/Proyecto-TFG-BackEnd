@@ -52,7 +52,6 @@ public class CourseServiceImpl implements ICourseService {
     public CourseDto createCourse(CourseCreateDto courseCreateDto) {
         Course course = new Course();
         course.setName(courseCreateDto.getName());
-        Course courseCreated = courseRepository.save(course);
         return iCourseMapper.courseToCourseDto(courseRepository.save(course));
     }
 }
