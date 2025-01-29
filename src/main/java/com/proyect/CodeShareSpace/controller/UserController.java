@@ -32,7 +32,7 @@ public class UserController {
         return ResponseEntity.ok("estoy creando un usuario");
     }
 
-    @PostMapping()
+    @PostMapping
     public ResponseEntity<UserDto> createUser(@RequestBody UserCreateDto userCreateDto){
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(iUserService.createUser(userCreateDto));

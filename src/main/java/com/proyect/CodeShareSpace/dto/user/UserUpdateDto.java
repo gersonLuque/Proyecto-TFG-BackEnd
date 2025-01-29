@@ -1,0 +1,15 @@
+package com.proyect.CodeShareSpace.dto.user;
+
+import com.proyect.CodeShareSpace.dto.course.CourseDto;
+import lombok.*;
+
+import java.util.List;
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
+public class UserUpdateDto {
+    private String nameComplete;
+    private List<CourseDto> courseDtos;
+}
