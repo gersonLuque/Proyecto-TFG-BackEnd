@@ -3,6 +3,7 @@ package com.proyect.CodeShareSpace.service.implementations;
 import com.proyect.CodeShareSpace.dto.course.CourseCreateDto;
 import com.proyect.CodeShareSpace.dto.course.CourseDto;
 import com.proyect.CodeShareSpace.dto.user.UserDto;
+import com.proyect.CodeShareSpace.exception.CourseNotFoundException;
 import com.proyect.CodeShareSpace.mapper.ICourseMapper;
 import com.proyect.CodeShareSpace.mapper.IUserMapper;
 import com.proyect.CodeShareSpace.persistence.model.Course;
@@ -46,6 +47,15 @@ public class CourseServiceImpl implements ICourseService {
     public List<CourseDto> findByUserId(Long userId) {
         List<Course> courses = courseRepository.findByUsers_UserId(userId);
         return iCourseMapper.coursesToCourseDtos(courses);
+    }
+
+    @Override
+    public CourseDto updateCourse(CourseDto courseDto){
+        Course course = courseRepository.findById(courseDto.getCourseId())
+                .orElseThrow(() -> new CourseNotFoundException("Curso no encontrado"));
+
+        course.setName(courseDto.getName());
+        return iCourseMapper.courseToCourseDto(courseRepository.save(course));
     }
 
     @Override
