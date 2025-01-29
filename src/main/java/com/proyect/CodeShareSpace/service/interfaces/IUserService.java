@@ -11,5 +11,8 @@ public interface IUserService {
     List<UserDto> findAll();
     UserDto findById(Long id);
     Optional<User> findUserByUsername(String username);
+
+    UserDto updateUser(UserDto userDto);
+
     UserDto createUser(UserCreateDto userCreateDto);
 }
