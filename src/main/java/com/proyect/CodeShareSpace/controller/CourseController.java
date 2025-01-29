@@ -57,6 +57,13 @@ public class CourseController {
                 .body(iCourseService.createCourse(courseCreateDto));
     }
 
+    @PutMapping
+    public ResponseEntity<CourseDto> updateCourse(@RequestBody CourseDto courseDto){
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(iCourseService.updateCourse(courseDto));
+    }
+
     @DeleteMapping("{courseId}")
     public ResponseEntity<Void> deleteCourseById(@PathVariable Long courseId){
         return null;
