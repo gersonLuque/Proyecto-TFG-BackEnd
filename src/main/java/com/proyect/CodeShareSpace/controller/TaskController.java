@@ -1,6 +1,6 @@
 package com.proyect.CodeShareSpace.controller;
 
-import com.proyect.CodeShareSpace.dto.SolutionDto;
+import com.proyect.CodeShareSpace.dto.solution.SolutionDto;
 import com.proyect.CodeShareSpace.dto.task.CreateTaskDto;
 import com.proyect.CodeShareSpace.dto.task.TaskDto;
 import com.proyect.CodeShareSpace.service.interfaces.ISolutionService;

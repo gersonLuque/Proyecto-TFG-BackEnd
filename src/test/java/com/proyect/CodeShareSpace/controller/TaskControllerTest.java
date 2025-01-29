@@ -7,7 +7,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-import com.proyect.CodeShareSpace.dto.SolutionDto;
+import com.proyect.CodeShareSpace.dto.solution.SolutionDto;
 import com.proyect.CodeShareSpace.dto.task.TaskDto;
 import com.proyect.CodeShareSpace.service.interfaces.ISolutionService;
 import com.proyect.CodeShareSpace.service.interfaces.ITaskService;

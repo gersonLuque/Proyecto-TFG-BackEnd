@@ -1,4 +1,4 @@
-package com.proyect.CodeShareSpace.dto;
+package com.proyect.CodeShareSpace.dto.solution;
 
 import com.proyect.CodeShareSpace.dto.user.UserBasicDto;
 import lombok.*;

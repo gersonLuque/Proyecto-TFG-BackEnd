@@ -1,6 +1,6 @@
 package com.proyect.CodeShareSpace.mapper;
 
-import com.proyect.CodeShareSpace.dto.SolutionDto;
+import com.proyect.CodeShareSpace.dto.solution.SolutionDto;
 import com.proyect.CodeShareSpace.persistence.model.Solution;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

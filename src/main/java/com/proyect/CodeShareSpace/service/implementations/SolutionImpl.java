@@ -1,6 +1,7 @@
 package com.proyect.CodeShareSpace.service.implementations;
 
-import com.proyect.CodeShareSpace.dto.SolutionDto;
+import com.proyect.CodeShareSpace.dto.solution.CreateSolutionDto;
+import com.proyect.CodeShareSpace.dto.solution.SolutionDto;
 import com.proyect.CodeShareSpace.mapper.ISolutionMapper;
 import com.proyect.CodeShareSpace.persistence.model.Solution;
 import com.proyect.CodeShareSpace.repository.SolutionRepository;
@@ -30,5 +31,9 @@ public class SolutionImpl implements ISolutionService {
     @Override
     public SolutionDto findById(Long id) {
         return null;
+    }
+    @Override
+    public List<SolutionDto> createSolution(CreateSolutionDto createSolutionDto){
+        
     }
 }

@@ -1,7 +1,7 @@
 package com.proyect.CodeShareSpace;
 
 import com.proyect.CodeShareSpace.dto.course.CourseDto;
-import com.proyect.CodeShareSpace.dto.SolutionDto;
+import com.proyect.CodeShareSpace.dto.solution.SolutionDto;
 import com.proyect.CodeShareSpace.dto.task.TaskDto;
 import com.proyect.CodeShareSpace.dto.user.UserDto;
 import com.proyect.CodeShareSpace.persistence.model.*;
