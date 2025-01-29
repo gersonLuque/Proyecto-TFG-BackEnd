@@ -9,5 +9,5 @@ public interface ISolutionService {
     SolutionDto findById(Long id);
     List<SolutionDto> getSolutionsByTaskId(Long taskId);
 
-    List<SolutionDto> createSolution(CreateSolutionDto createSolutionDto);
+    SolutionDto createSolution(CreateSolutionDto createSolutionDto);
 }
