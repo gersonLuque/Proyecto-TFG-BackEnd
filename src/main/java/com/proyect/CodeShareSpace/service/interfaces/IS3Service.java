@@ -15,6 +15,8 @@ public interface IS3Service {
 
     InputStreamResource downloadFile(String key);
 
+    void deleteFiles(String prefix);
+
     void uploadFile(String key, MultipartFile file) throws IOException;
 
     String getFileName(String key);

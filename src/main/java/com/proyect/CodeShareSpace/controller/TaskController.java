@@ -3,6 +3,7 @@ package com.proyect.CodeShareSpace.controller;
 import com.proyect.CodeShareSpace.dto.solution.SolutionDto;
 import com.proyect.CodeShareSpace.dto.task.CreateTaskDto;
 import com.proyect.CodeShareSpace.dto.task.TaskDto;
+import com.proyect.CodeShareSpace.service.interfaces.IS3Service;
 import com.proyect.CodeShareSpace.service.interfaces.ISolutionService;
 import com.proyect.CodeShareSpace.service.interfaces.ITaskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,9 @@ public class TaskController {
 
     @Autowired
     private ISolutionService iSolutionService;
+
+    @Autowired
+    private IS3Service is3Service;
 
     @GetMapping("{taskId}")
     public ResponseEntity<TaskDto> getTaskById(@PathVariable Long taskId){

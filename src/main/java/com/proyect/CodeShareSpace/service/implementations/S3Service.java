@@ -2,7 +2,6 @@ package com.proyect.CodeShareSpace.service.implementations;
 
 import com.proyect.CodeShareSpace.exception.S3ObjectNotFoundException;
 import com.proyect.CodeShareSpace.service.interfaces.IS3Service;
-import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.InputStreamResource;
@@ -15,6 +14,7 @@ import software.amazon.awssdk.services.s3.model.*;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class S3Service implements IS3Service {
@@ -29,10 +29,12 @@ public class S3Service implements IS3Service {
     public List<S3Object> listObjectsS3(String prefix) {
         ListObjectsV2Request request =  ListObjectsV2Request.builder()
                 .bucket(bucket)
-                .prefix(prefix)
+                .prefix(prefix+"/")
                 .build();
 
         ListObjectsV2Response response = s3Client.listObjectsV2(request);
+
+        response.contents().forEach(res -> System.out.println(res.key()));
 
         return response.contents();
     }
@@ -55,6 +57,34 @@ public class S3Service implements IS3Service {
     public InputStreamResource downloadFile(String key){
         ResponseBytes<GetObjectResponse> objectBytes = getObjectBytes(key);
         return new InputStreamResource(objectBytes.asInputStream());
+    }
+
+    private List<ObjectIdentifier> getObjectsByPrefix(String prefix){
+        return listObjectsS3(prefix).stream()
+                .map(obj -> {
+                    return ObjectIdentifier.builder()
+                            .key(obj.key())
+                            .build();
+                })
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public void deleteFiles(String prefix){
+
+
+        Delete objectsToDelete = Delete.builder()
+                .objects(getObjectsByPrefix(prefix))
+                .build();
+
+
+        DeleteObjectsRequest deleteObjectRequest = DeleteObjectsRequest.builder()
+                .bucket(bucket)
+                .delete(objectsToDelete)
+                .build();
+
+        DeleteObjectsResponse response = s3Client.deleteObjects(deleteObjectRequest);
+
     }
 
     @Override
