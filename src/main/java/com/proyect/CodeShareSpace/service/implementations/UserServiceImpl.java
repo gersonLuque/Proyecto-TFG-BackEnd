@@ -1,5 +1,6 @@
 package com.proyect.CodeShareSpace.service.implementations;
 
+import com.proyect.CodeShareSpace.dto.course.CourseDto;
 import com.proyect.CodeShareSpace.dto.user.UserCreateDto;
 import com.proyect.CodeShareSpace.dto.user.UserDto;
 import com.proyect.CodeShareSpace.exception.CourseNotFoundException;
@@ -38,9 +39,14 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public UserDto findById(Long id) {
+        User user = findUserById(id);
+        return IUserMapper.userToUserDto(user);
+    }
+
+    private User findUserById(Long id) {
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
-        return IUserMapper.userToUserDto(user);
+        return user;
     }
 
     @Override
@@ -49,12 +55,21 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
+    public UserDto updateUser(UserDto userDto){
+        User user = findUserById(userDto.getUserId());
+        user.setCompleteName(userDto.getCompleteName());
+        List<Course> courses = getCoursesFromDto(userDto.getCourses());
+        user.setCourses(courses);
+        return IUserMapper.userToUserDto(userRepository.save(user));
+    }
+
+    @Override
     public UserDto createUser(UserCreateDto userCreateDto) {
 
         if (findUserByUsername(userCreateDto.getUsername()).isPresent())
             throw new UserExistException("El usuario ya esta registrado");
 
-        List<Course> courseList = getCoursesFromDto(userCreateDto);
+        List<Course> courseList = getCoursesFromDto(userCreateDto.getCourses());
         User user = IUserMapper.userCreateToUser(userCreateDto);
 
         user.setCourses(courseList);
@@ -63,8 +78,8 @@ public class UserServiceImpl implements IUserService {
         return IUserMapper.userToUserDto(userRepository.save(user));
     }
 
-    private List<Course> getCoursesFromDto(UserCreateDto userCreateDto) {
-        return userCreateDto.getCourses().stream()
+    private List<Course> getCoursesFromDto(List<CourseDto> coursesDto) {
+        return coursesDto.stream()
                 .map(courseDto -> courseRepository.findById(courseDto.getCourseId())
                         .orElseThrow(() -> new CourseNotFoundException("Error al encontrar el curso")))
                 .collect(Collectors.toList());

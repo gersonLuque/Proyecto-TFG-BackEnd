@@ -38,6 +38,12 @@ public class UserController {
                 .body(iUserService.createUser(userCreateDto));
     }
 
+    @PutMapping
+    public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto){
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(iUserService.updateUser(userDto));
+    }
+
 
     @DeleteMapping("{userId}")
     public ResponseEntity<Void> deleteUserById(@PathVariable Long id){
