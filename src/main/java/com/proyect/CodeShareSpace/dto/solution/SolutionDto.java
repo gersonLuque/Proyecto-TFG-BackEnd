@@ -9,7 +9,6 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-@EqualsAndHashCode
 @ToString
 public class SolutionDto {
     private Long solutionId;

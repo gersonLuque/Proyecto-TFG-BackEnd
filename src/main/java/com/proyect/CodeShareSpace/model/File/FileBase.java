@@ -1,4 +1,4 @@
-package com.proyect.CodeShareSpace.persistence.model.File;
+package com.proyect.CodeShareSpace.model.File;
 
 import jakarta.persistence.*;
 import lombok.*;

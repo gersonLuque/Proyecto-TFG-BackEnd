@@ -2,13 +2,15 @@ package com.proyect.CodeShareSpace.service.implementations;
 
 import com.proyect.CodeShareSpace.dto.solution.CreateSolutionDto;
 import com.proyect.CodeShareSpace.dto.solution.SolutionDto;
+import com.proyect.CodeShareSpace.dto.solution.UpdateSolutionDto;
+import com.proyect.CodeShareSpace.exception.SolutionNotFoundException;
 import com.proyect.CodeShareSpace.exception.TaskNotFoundException;
 import com.proyect.CodeShareSpace.exception.UserNotFoundException;
 import com.proyect.CodeShareSpace.mapper.ISolutionMapper;
-import com.proyect.CodeShareSpace.persistence.model.File.FileSolution;
-import com.proyect.CodeShareSpace.persistence.model.Solution;
-import com.proyect.CodeShareSpace.persistence.model.Task;
-import com.proyect.CodeShareSpace.persistence.model.User;
+import com.proyect.CodeShareSpace.model.File.FileSolution;
+import com.proyect.CodeShareSpace.model.Solution;
+import com.proyect.CodeShareSpace.model.Task;
+import com.proyect.CodeShareSpace.model.User;
 import com.proyect.CodeShareSpace.repository.SolutionRepository;
 import com.proyect.CodeShareSpace.repository.TaskRepository;
 import com.proyect.CodeShareSpace.repository.UserRepository;
@@ -16,9 +18,9 @@ import com.proyect.CodeShareSpace.service.interfaces.ISolutionService;
 import com.proyect.CodeShareSpace.service.interfaces.IStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -65,6 +67,21 @@ public class SolutionServiceImpl implements ISolutionService {
         solution.setStudent(user);
         solution.setFileSolutions(fileSolutions);
 
+        return iSolutionMapper.solutionToSolutionDto(solutionRepository.save(solution));
+    }
+
+    @Transactional
+    @Override
+    public SolutionDto updateSolution(UpdateSolutionDto updateSolutionDto) {
+        Solution solution = solutionRepository.findById(updateSolutionDto.getSolutionId())
+                .orElseThrow(() -> new SolutionNotFoundException("Solucion no encontrada"));
+
+        List<FileSolution> fileSolutions =  iStorageService.update(updateSolutionDto.getFiles(),
+                               solution.getFileSolutions(),
+                               FileSolution::new);
+
+        solution.setAnonymous(updateSolutionDto.isAnonymous());
+        solution.setFileSolutions(fileSolutions);
         return iSolutionMapper.solutionToSolutionDto(solutionRepository.save(solution));
     }
 }

@@ -1,7 +1,7 @@
 package com.proyect.CodeShareSpace.mapper;
 
 import com.proyect.CodeShareSpace.dto.course.CourseDto;
-import com.proyect.CodeShareSpace.persistence.model.Course;
+import com.proyect.CodeShareSpace.model.Course;
 import org.mapstruct.Mapper;
 
 import java.util.List;

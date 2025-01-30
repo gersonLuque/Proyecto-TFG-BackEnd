@@ -1,11 +1,10 @@
-package com.proyect.CodeShareSpace.persistence.model;
+package com.proyect.CodeShareSpace.model;
 
-import com.proyect.CodeShareSpace.persistence.model.File.FileTask;
+import com.proyect.CodeShareSpace.model.File.FileTask;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity

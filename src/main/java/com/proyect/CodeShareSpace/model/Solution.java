@@ -1,7 +1,7 @@
-package com.proyect.CodeShareSpace.persistence.model;
+package com.proyect.CodeShareSpace.model;
 
 
-import com.proyect.CodeShareSpace.persistence.model.File.FileSolution;
+import com.proyect.CodeShareSpace.model.File.FileSolution;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -31,7 +31,7 @@ public class Solution {
     private boolean star;
     private boolean anonymous;
 
-    @OneToMany(mappedBy = "solution",cascade ={CascadeType.PERSIST,CascadeType.REMOVE})
+    @OneToMany(mappedBy = "solution",cascade =CascadeType.ALL)
     private List<FileSolution> fileSolutions;
 
     public void setFileSolutions(List<FileSolution> fileSolutions) {

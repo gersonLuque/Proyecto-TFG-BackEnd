@@ -1,7 +1,7 @@
 package com.proyect.CodeShareSpace.dto.user;
 
 import com.proyect.CodeShareSpace.dto.course.CourseDto;
-import com.proyect.CodeShareSpace.persistence.model.Rol;
+import com.proyect.CodeShareSpace.model.Rol;
 import lombok.*;
 
 import java.util.List;

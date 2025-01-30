@@ -3,7 +3,7 @@ package com.proyect.CodeShareSpace.mapper;
 import com.proyect.CodeShareSpace.dto.user.UserBasicDto;
 import com.proyect.CodeShareSpace.dto.user.UserCreateDto;
 import com.proyect.CodeShareSpace.dto.user.UserDto;
-import com.proyect.CodeShareSpace.persistence.model.User;
+import com.proyect.CodeShareSpace.model.User;
 import org.mapstruct.Mapper;
 
 import java.util.List;

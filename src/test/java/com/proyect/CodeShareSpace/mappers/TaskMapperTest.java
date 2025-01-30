@@ -1,7 +1,7 @@
 package com.proyect.CodeShareSpace.mappers;
 
 import com.proyect.CodeShareSpace.mapper.ITaskMapper;
-import com.proyect.CodeShareSpace.persistence.model.Task;
+import com.proyect.CodeShareSpace.model.Task;
 import org.junit.jupiter.api.Test;
 import com.proyect.CodeShareSpace.DataProvider;
 import com.proyect.CodeShareSpace.dto.task.TaskDto;

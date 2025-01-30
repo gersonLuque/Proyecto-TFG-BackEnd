@@ -1,7 +1,7 @@
 package com.proyect.CodeShareSpace.repository;
 
-import com.proyect.CodeShareSpace.persistence.model.Course;
-import com.proyect.CodeShareSpace.persistence.model.User;
+import com.proyect.CodeShareSpace.model.Course;
+import com.proyect.CodeShareSpace.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

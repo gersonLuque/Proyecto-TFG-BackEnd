@@ -7,7 +7,7 @@ import org.mapstruct.factory.Mappers;
 import org.junit.jupiter.api.Test;
 import com.proyect.CodeShareSpace.dto.course.CourseDto;
 import com.proyect.CodeShareSpace.mapper.ICourseMapper;
-import com.proyect.CodeShareSpace.persistence.model.Course;
+import com.proyect.CodeShareSpace.model.Course;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class CourseMapperTest {

@@ -1,7 +1,7 @@
 package com.proyect.CodeShareSpace.service.implementations;
 
 import com.proyect.CodeShareSpace.exception.S3ObjectNotFoundException;
-import com.proyect.CodeShareSpace.persistence.model.File.FileBase;
+import com.proyect.CodeShareSpace.model.File.FileBase;
 import com.proyect.CodeShareSpace.service.interfaces.IS3Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

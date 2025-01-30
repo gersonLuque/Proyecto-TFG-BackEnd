@@ -1,6 +1,5 @@
-package com.proyect.CodeShareSpace.persistence.model;
+package com.proyect.CodeShareSpace.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;

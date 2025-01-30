@@ -2,7 +2,7 @@ package com.proyect.CodeShareSpace.service.implementations;
 
 import com.proyect.CodeShareSpace.dto.LoginRequest;
 import com.proyect.CodeShareSpace.dto.LoginResponse;
-import com.proyect.CodeShareSpace.persistence.model.User;
+import com.proyect.CodeShareSpace.model.User;
 import com.proyect.CodeShareSpace.security.JwtService;
 import com.proyect.CodeShareSpace.service.interfaces.IAuthService;
 import com.proyect.CodeShareSpace.service.interfaces.IUserService;

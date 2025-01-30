@@ -4,6 +4,7 @@ import com.proyect.CodeShareSpace.dto.course.CourseDto;
 import com.proyect.CodeShareSpace.dto.solution.SolutionDto;
 import com.proyect.CodeShareSpace.dto.task.TaskDto;
 import com.proyect.CodeShareSpace.dto.user.UserDto;
+import com.proyect.CodeShareSpace.model.*;
 import com.proyect.CodeShareSpace.persistence.model.*;
 
 import java.util.ArrayList;

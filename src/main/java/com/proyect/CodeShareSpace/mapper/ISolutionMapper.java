@@ -2,7 +2,7 @@ package com.proyect.CodeShareSpace.mapper;
 
 import com.proyect.CodeShareSpace.dto.solution.CreateSolutionDto;
 import com.proyect.CodeShareSpace.dto.solution.SolutionDto;
-import com.proyect.CodeShareSpace.persistence.model.Solution;
+import com.proyect.CodeShareSpace.model.Solution;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
