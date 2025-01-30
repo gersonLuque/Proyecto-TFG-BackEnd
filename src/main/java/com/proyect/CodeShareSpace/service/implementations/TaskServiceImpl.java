@@ -26,6 +26,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.function.Function;
 
 @Service
 public class TaskServiceImpl implements ITaskService {
@@ -76,27 +77,21 @@ public class TaskServiceImpl implements ITaskService {
         return taskMapper.taskToTaskDto(taskRepository.save(task));
     }
 
-    @Transactional // dado que hay varias operaciones en la bd todas se manejaran bajo el mismo contexto para evitar inconsistencias
+    // dado que hay varias operaciones en la bd todas se manejaran bajo el mismo contexto para evitar inconsistencias
+    @Transactional
     @Override
     public TaskDto updateTask(UpdateTaskDto updateTaskDto) {
         Task task = taskRepository.findById(updateTaskDto.getTaskId())
                 .orElseThrow(() -> new TaskNotFoundException("La tarea no existe"));
 
-        if (!updateTaskDto.getFiles().isEmpty()){
-            if (!task.getFileTasks().isEmpty()){
-                iStorageService.delete(task.getFileTasks());
-            }
-            List<FileTask> fileTasks = iStorageService.upload(updateTaskDto.getFiles(),FileTask::new);
-            task.setFiletasks(fileTasks);
-        }else{
-            iStorageService.delete(task.getFileTasks());
-            task.setFiletasks(List.of());
-        }
+        List<FileTask> fileTasks = iStorageService
+                .update(updateTaskDto.getFiles(),task.getFileTasks(),FileTask::new);
+
+        task.setFiletasks(fileTasks);
         task.setTitle(updateTaskDto.getTitle());
         task.setDescription(updateTaskDto.getDescription());
         task.setVisible(updateTaskDto.isVisible());
         task.setEndDate(updateTaskDto.getEndDate());
         return taskMapper.taskToTaskDto(taskRepository.save(task));
     }
-
 }

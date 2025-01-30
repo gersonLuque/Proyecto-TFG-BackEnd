@@ -11,4 +11,6 @@ public interface IStorageService {
     <T extends FileBase> List<T> upload(List<MultipartFile> files, Function<MultipartFile, T> fileConstructor);
 
     void delete(List<? extends FileBase> files);
+
+    <T extends FileBase> List<T> update(List<MultipartFile> filesTaskDto, List<T> filesEntity, Function<MultipartFile, T> entityConstructor);
 }
