@@ -1,10 +1,6 @@
 package com.proyect.CodeShareSpace.dto.course;
 
-import com.proyect.CodeShareSpace.persistence.model.User;
 import lombok.*;
-
-import java.util.HashSet;
-import java.util.Set;
 
 @Getter @Setter
 @NoArgsConstructor

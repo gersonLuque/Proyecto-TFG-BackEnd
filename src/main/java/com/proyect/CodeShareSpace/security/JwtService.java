@@ -1,6 +1,6 @@
 package com.proyect.CodeShareSpace.security;
 
-import com.proyect.CodeShareSpace.persistence.model.User;
+import com.proyect.CodeShareSpace.model.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -14,7 +14,6 @@ import java.security.Key;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.function.Function;
 
 @Service

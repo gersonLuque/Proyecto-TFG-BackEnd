@@ -1,15 +1,14 @@
 package com.proyect.CodeShareSpace.service.implementations;
 
-import com.proyect.CodeShareSpace.persistence.model.File.FileBase;
-import com.proyect.CodeShareSpace.persistence.model.File.FileSolution;
-import com.proyect.CodeShareSpace.persistence.model.File.FileTask;
+import com.proyect.CodeShareSpace.model.File.FileBase;
+import com.proyect.CodeShareSpace.model.File.FileSolution;
+import com.proyect.CodeShareSpace.model.File.FileTask;
 import com.proyect.CodeShareSpace.repository.FileSolutionRepository;
 import com.proyect.CodeShareSpace.repository.FileTaskRepository;
 import com.proyect.CodeShareSpace.service.interfaces.IS3Service;
 import com.proyect.CodeShareSpace.service.interfaces.IStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import software.amazon.awssdk.services.s3.model.S3Exception;
 

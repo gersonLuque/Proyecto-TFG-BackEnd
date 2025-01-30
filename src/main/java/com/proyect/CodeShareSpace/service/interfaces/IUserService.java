@@ -2,7 +2,7 @@ package com.proyect.CodeShareSpace.service.interfaces;
 
 import com.proyect.CodeShareSpace.dto.user.UserCreateDto;
 import com.proyect.CodeShareSpace.dto.user.UserDto;
-import com.proyect.CodeShareSpace.persistence.model.User;
+import com.proyect.CodeShareSpace.model.User;
 
 import java.util.List;
 import java.util.Optional;

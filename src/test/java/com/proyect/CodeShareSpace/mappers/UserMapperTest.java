@@ -3,7 +3,7 @@ package com.proyect.CodeShareSpace.mappers;
 import com.proyect.CodeShareSpace.DataProvider;
 import com.proyect.CodeShareSpace.dto.user.UserDto;
 import com.proyect.CodeShareSpace.mapper.IUserMapper;
-import com.proyect.CodeShareSpace.persistence.model.User;
+import com.proyect.CodeShareSpace.model.User;
 import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
 import static org.junit.jupiter.api.Assertions.*;

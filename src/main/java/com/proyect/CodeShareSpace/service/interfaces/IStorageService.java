@@ -1,6 +1,6 @@
 package com.proyect.CodeShareSpace.service.interfaces;
 
-import com.proyect.CodeShareSpace.persistence.model.File.FileBase;
+import com.proyect.CodeShareSpace.model.File.FileBase;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;

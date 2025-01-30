@@ -1,13 +1,10 @@
-package com.proyect.CodeShareSpace.persistence.model;
+package com.proyect.CodeShareSpace.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Getter @Setter

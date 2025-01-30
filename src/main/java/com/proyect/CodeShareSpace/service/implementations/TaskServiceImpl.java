@@ -7,11 +7,10 @@ import com.proyect.CodeShareSpace.exception.CourseNotFoundException;
 import com.proyect.CodeShareSpace.exception.TaskNotFoundException;
 import com.proyect.CodeShareSpace.exception.UserNotFoundException;
 import com.proyect.CodeShareSpace.mapper.ITaskMapper;
-import com.proyect.CodeShareSpace.persistence.model.Course;
-import com.proyect.CodeShareSpace.persistence.model.File.FileBase;
-import com.proyect.CodeShareSpace.persistence.model.File.FileTask;
-import com.proyect.CodeShareSpace.persistence.model.Task;
-import com.proyect.CodeShareSpace.persistence.model.User;
+import com.proyect.CodeShareSpace.model.Course;
+import com.proyect.CodeShareSpace.model.File.FileTask;
+import com.proyect.CodeShareSpace.model.Task;
+import com.proyect.CodeShareSpace.model.User;
 import com.proyect.CodeShareSpace.repository.CourseRepository;
 import com.proyect.CodeShareSpace.repository.TaskRepository;
 import com.proyect.CodeShareSpace.repository.UserRepository;
@@ -20,13 +19,10 @@ import com.proyect.CodeShareSpace.service.interfaces.ITaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
-import java.util.function.Function;
 
 @Service
 public class TaskServiceImpl implements ITaskService {

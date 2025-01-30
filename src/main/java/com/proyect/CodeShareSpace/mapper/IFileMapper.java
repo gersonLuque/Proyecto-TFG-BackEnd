@@ -2,8 +2,8 @@ package com.proyect.CodeShareSpace.mapper;
 
 import com.proyect.CodeShareSpace.dto.solution.FileSolutionDto;
 import com.proyect.CodeShareSpace.dto.task.FileTasksDto;
-import com.proyect.CodeShareSpace.persistence.model.File.FileSolution;
-import com.proyect.CodeShareSpace.persistence.model.File.FileTask;
+import com.proyect.CodeShareSpace.model.File.FileSolution;
+import com.proyect.CodeShareSpace.model.File.FileTask;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

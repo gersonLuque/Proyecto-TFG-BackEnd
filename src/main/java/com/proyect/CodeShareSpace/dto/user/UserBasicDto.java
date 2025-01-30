@@ -1,6 +1,6 @@
 package com.proyect.CodeShareSpace.dto.user;
 
-import com.proyect.CodeShareSpace.persistence.model.Rol;
+import com.proyect.CodeShareSpace.model.Rol;
 import lombok.*;
 
 @AllArgsConstructor

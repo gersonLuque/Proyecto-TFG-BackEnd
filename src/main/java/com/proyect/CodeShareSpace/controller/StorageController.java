@@ -1,11 +1,8 @@
 package com.proyect.CodeShareSpace.controller;
 
-import com.proyect.CodeShareSpace.persistence.model.File.FileBase;
-import com.proyect.CodeShareSpace.service.implementations.S3Service;
 import com.proyect.CodeShareSpace.service.interfaces.IS3Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -14,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
-import java.util.List;
 
 @RestController
 @CrossOrigin("*")
