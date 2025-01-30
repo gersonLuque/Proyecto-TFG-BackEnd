@@ -2,10 +2,13 @@ package com.proyect.CodeShareSpace.service.implementations;
 
 import com.proyect.CodeShareSpace.dto.task.CreateTaskDto;
 import com.proyect.CodeShareSpace.dto.task.TaskDto;
+import com.proyect.CodeShareSpace.dto.task.UpdateTaskDto;
 import com.proyect.CodeShareSpace.exception.CourseNotFoundException;
+import com.proyect.CodeShareSpace.exception.TaskNotFoundException;
 import com.proyect.CodeShareSpace.exception.UserNotFoundException;
 import com.proyect.CodeShareSpace.mapper.ITaskMapper;
 import com.proyect.CodeShareSpace.persistence.model.Course;
+import com.proyect.CodeShareSpace.persistence.model.File.FileBase;
 import com.proyect.CodeShareSpace.persistence.model.File.FileTask;
 import com.proyect.CodeShareSpace.persistence.model.Task;
 import com.proyect.CodeShareSpace.persistence.model.User;
@@ -15,8 +18,9 @@ import com.proyect.CodeShareSpace.repository.UserRepository;
 import com.proyect.CodeShareSpace.service.interfaces.IStorageService;
 import com.proyect.CodeShareSpace.service.interfaces.ITaskService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -61,13 +65,38 @@ public class TaskServiceImpl implements ITaskService {
         Course course = courseRepository.findById(createTaskDto.getCourseId())
                 .orElseThrow(() -> new CourseNotFoundException("Curso no encontrado"));
 
-        String prefix = UUID.randomUUID().toString(); // carpeta donde se guardara los ficheros
-        List<FileTask> fileTasks = iStorageService.upload(prefix,createTaskDto.getFiles(),FileTask::new);
+        if (!createTaskDto.getFiles().isEmpty()){
+            List<FileTask> filesTask =  iStorageService.upload(createTaskDto.getFiles(),FileTask::new);
+            task.setFiletasks(filesTask);
+        }
 
         task.setCourse(course);
         task.setTeacher(teacher);
-        task.setFiletasks(fileTasks);
 
         return taskMapper.taskToTaskDto(taskRepository.save(task));
     }
+
+    @Transactional // dado que hay varias operaciones en la bd todas se manejaran bajo el mismo contexto para evitar inconsistencias
+    @Override
+    public TaskDto updateTask(UpdateTaskDto updateTaskDto) {
+        Task task = taskRepository.findById(updateTaskDto.getTaskId())
+                .orElseThrow(() -> new TaskNotFoundException("La tarea no existe"));
+
+        if (!updateTaskDto.getFiles().isEmpty()){
+            if (!task.getFileTasks().isEmpty()){
+                iStorageService.delete(task.getFileTasks());
+            }
+            List<FileTask> fileTasks = iStorageService.upload(updateTaskDto.getFiles(),FileTask::new);
+            task.setFiletasks(fileTasks);
+        }else{
+            iStorageService.delete(task.getFileTasks());
+            task.setFiletasks(List.of());
+        }
+        task.setTitle(updateTaskDto.getTitle());
+        task.setDescription(updateTaskDto.getDescription());
+        task.setVisible(updateTaskDto.isVisible());
+        task.setEndDate(updateTaskDto.getEndDate());
+        return taskMapper.taskToTaskDto(taskRepository.save(task));
+    }
+
 }

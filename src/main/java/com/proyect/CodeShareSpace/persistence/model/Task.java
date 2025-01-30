@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -12,7 +13,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter @Setter
-@ToString
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,9 +30,6 @@ public class Task {
 
     private boolean visible;
 
-    @Column(name = "file_path")
-    private String filePath;
-
     @ManyToOne
     @JoinColumn(name = "course_id")
     private Course course;
@@ -44,7 +41,7 @@ public class Task {
     @OneToMany(mappedBy = "task")
     private List<Solution> solutions;
 
-    @OneToMany(mappedBy = "task", cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
+    @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
     private List<FileTask> fileTasks;
 
     public void setFiletasks(List<FileTask> fileTasks){

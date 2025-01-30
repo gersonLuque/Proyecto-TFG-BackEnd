@@ -21,5 +21,8 @@ public abstract class FileBase {
     public String extractExtension(String fileName){
         return fileName.substring(fileName.lastIndexOf(".")+ 1);
     }
+    public String getKey(){
+        return prefix + "/" + fileName;
+    }
 }
 
