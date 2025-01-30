@@ -1,6 +1,7 @@
 package com.proyect.CodeShareSpace.service.implementations;
 
 import com.proyect.CodeShareSpace.exception.S3ObjectNotFoundException;
+import com.proyect.CodeShareSpace.persistence.model.File.FileBase;
 import com.proyect.CodeShareSpace.service.interfaces.IS3Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -59,22 +60,21 @@ public class S3Service implements IS3Service {
         return new InputStreamResource(objectBytes.asInputStream());
     }
 
-    private List<ObjectIdentifier> getObjectsByPrefix(String prefix){
-        return listObjectsS3(prefix).stream()
-                .map(obj -> {
+    private List<ObjectIdentifier> getObjectsIdentifier(List<? extends FileBase> files){
+        return files.stream()
+                .map(file -> {
                     return ObjectIdentifier.builder()
-                            .key(obj.key())
+                            .key(file.getKey())
                             .build();
                 })
                 .collect(Collectors.toList());
     }
 
     @Override
-    public void deleteFiles(String prefix){
-
+    public void deleteFiles(List<? extends  FileBase> files) throws S3Exception{
 
         Delete objectsToDelete = Delete.builder()
-                .objects(getObjectsByPrefix(prefix))
+                .objects(getObjectsIdentifier(files))
                 .build();
 
 

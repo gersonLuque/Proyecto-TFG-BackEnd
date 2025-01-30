@@ -59,9 +59,7 @@ public class SolutionServiceImpl implements ISolutionService {
         User user = userRepository.findById(createSolutionDto.getUserId())
                 .orElseThrow(() -> new UserNotFoundException("Usuario no encontrado"));
 
-        String prefix = UUID.randomUUID().toString();
-
-        List<FileSolution> fileSolutions = iStorageService.upload(prefix,createSolutionDto.getFiles(),FileSolution::new);
+        List<FileSolution> fileSolutions = iStorageService.upload(createSolutionDto.getFiles(),FileSolution::new);
 
         solution.setTask(task);
         solution.setStudent(user);

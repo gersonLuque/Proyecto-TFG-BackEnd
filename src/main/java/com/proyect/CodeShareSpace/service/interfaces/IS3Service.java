@@ -1,7 +1,9 @@
 package com.proyect.CodeShareSpace.service.interfaces;
 
+import com.proyect.CodeShareSpace.persistence.model.File.FileBase;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.web.multipart.MultipartFile;
+import software.amazon.awssdk.services.s3.model.S3Exception;
 import software.amazon.awssdk.services.s3.model.S3Object;
 
 import java.io.IOException;
@@ -15,7 +17,7 @@ public interface IS3Service {
 
     InputStreamResource downloadFile(String key);
 
-    void deleteFiles(String prefix);
+    void deleteFiles(List<? extends FileBase> files) throws S3Exception;
 
     void uploadFile(String key, MultipartFile file) throws IOException;
 

@@ -44,7 +44,6 @@ public class UserController {
                 .body(iUserService.updateUser(userDto));
     }
 
-
     @DeleteMapping("{userId}")
     public ResponseEntity<Void> deleteUserById(@PathVariable Long id){
         return null;

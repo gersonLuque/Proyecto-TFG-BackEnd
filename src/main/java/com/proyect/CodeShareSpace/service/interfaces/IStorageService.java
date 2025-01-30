@@ -8,5 +8,7 @@ import java.util.function.Function;
 
 public interface IStorageService {
 
-    <T extends FileBase> List<T> upload(String prefix, List<MultipartFile> files, Function<MultipartFile, T> fileConstructor);
+    <T extends FileBase> List<T> upload(List<MultipartFile> files, Function<MultipartFile, T> fileConstructor);
+
+    void delete(List<? extends FileBase> files);
 }

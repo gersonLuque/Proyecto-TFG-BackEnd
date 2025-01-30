@@ -3,6 +3,7 @@ package com.proyect.CodeShareSpace.controller;
 import com.proyect.CodeShareSpace.dto.solution.SolutionDto;
 import com.proyect.CodeShareSpace.dto.task.CreateTaskDto;
 import com.proyect.CodeShareSpace.dto.task.TaskDto;
+import com.proyect.CodeShareSpace.dto.task.UpdateTaskDto;
 import com.proyect.CodeShareSpace.service.interfaces.IS3Service;
 import com.proyect.CodeShareSpace.service.interfaces.ISolutionService;
 import com.proyect.CodeShareSpace.service.interfaces.ITaskService;
@@ -39,5 +40,10 @@ public class TaskController {
     public ResponseEntity<TaskDto> createTask(@ModelAttribute CreateTaskDto createTaskDto){
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(iTaskService.createTask(createTaskDto));
+    }
+
+    @PutMapping
+    public ResponseEntity<TaskDto> updateTask(@ModelAttribute UpdateTaskDto updateTaskDto){
+        return ResponseEntity.ok(iTaskService.updateTask(updateTaskDto));
     }
 }
