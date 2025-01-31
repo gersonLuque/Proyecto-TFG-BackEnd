@@ -35,6 +35,10 @@ public class TaskController {
     public ResponseEntity<List<SolutionDto>> getSolutionsByTaskId(@PathVariable Long taskId){
         return new ResponseEntity<>(iSolutionService.getSolutionsByTaskId(taskId),HttpStatus.OK);
     }
+    @GetMapping("{taskId}/solutions/{userId}")
+    public ResponseEntity<SolutionDto> getSolutionByUserAndTask(@PathVariable Long taskId, @PathVariable Long userId){
+        return ResponseEntity.ok(iSolutionService.getSolutionByUserAndTask(taskId,userId));
+    }
 
     @PostMapping
     public ResponseEntity<TaskDto> createTask(@ModelAttribute CreateTaskDto createTaskDto){

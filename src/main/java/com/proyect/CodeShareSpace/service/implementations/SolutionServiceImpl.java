@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -83,5 +84,16 @@ public class SolutionServiceImpl implements ISolutionService {
         solution.setAnonymous(updateSolutionDto.isAnonymous());
         solution.setFileSolutions(fileSolutions);
         return iSolutionMapper.solutionToSolutionDto(solutionRepository.save(solution));
+    }
+
+    @Override
+    public SolutionDto getSolutionByUserAndTask(Long taskId, Long userId) {
+        Optional<Solution> solution =
+                solutionRepository.findByTask_TaskIdAndStudent_UserId(taskId,userId);
+
+        if (!solution.isPresent())
+            new SolutionNotFoundException("Solucion no encontrada");
+
+        return iSolutionMapper.solutionToSolutionDto(solution.get());
     }
 }
