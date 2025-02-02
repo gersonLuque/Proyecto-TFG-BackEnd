@@ -11,4 +11,5 @@ public interface ITaskService {
     TaskDto findById(Long taskId);
     TaskDto createTask(CreateTaskDto createTaskDto);
     TaskDto updateTask(UpdateTaskDto updateTaskDto);
+    void deleteById(Long taskId);
 }

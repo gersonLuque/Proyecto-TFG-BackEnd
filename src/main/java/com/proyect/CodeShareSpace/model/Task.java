@@ -37,7 +37,7 @@ public class Task {
     @JoinColumn(name = "teacher_id")
     private User teacher;
 
-    @OneToMany(mappedBy = "task")
+    @OneToMany(mappedBy = "task",cascade = CascadeType.REMOVE)
     private List<Solution> solutions;
 
     @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
