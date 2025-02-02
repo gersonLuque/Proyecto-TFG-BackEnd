@@ -68,7 +68,9 @@ public class StorageServiceImpl implements IStorageService {
     }
 
     @Override
-    public <T extends FileBase> List<T> update(List<MultipartFile> filesTaskDto, List<T> filesEntity, Function<MultipartFile, T> entityConstructor) {
+    public <T extends FileBase> List<T> update(List<MultipartFile> filesTaskDto,
+                                               List<T> filesEntity,
+                                               Function<MultipartFile, T> entityConstructor) {
         if (!filesTaskDto.isEmpty()) {
             if (!filesEntity.isEmpty()) {
                 delete(filesEntity);

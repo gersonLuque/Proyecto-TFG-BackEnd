@@ -3,6 +3,8 @@ package com.proyect.CodeShareSpace.model;
 import com.proyect.CodeShareSpace.model.File.FileTask;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -35,6 +37,7 @@ public class Task {
 
     @ManyToOne
     @JoinColumn(name = "teacher_id")
+    @OnDelete(action = OnDeleteAction.SET_NULL)
     private User teacher;
 
     @OneToMany(mappedBy = "task")
