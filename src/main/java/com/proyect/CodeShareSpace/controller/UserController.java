@@ -7,7 +7,6 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -71,8 +70,9 @@ public class UserController {
     }
 
     @DeleteMapping("{userId}")
-    public ResponseEntity<Void> deleteUserById(@PathVariable Long id){
-        return null;
+    public ResponseEntity<Void> deleteUserById(@PathVariable Long userId){
+        iUserService.deleteUserById(userId);
+        return ResponseEntity.noContent().build();
     }
 
 }

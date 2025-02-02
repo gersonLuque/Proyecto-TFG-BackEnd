@@ -7,9 +7,11 @@ import com.proyect.CodeShareSpace.exception.CourseNotFoundException;
 import com.proyect.CodeShareSpace.exception.UserExistException;
 import com.proyect.CodeShareSpace.mapper.IUserMapper;
 import com.proyect.CodeShareSpace.model.Course;
+import com.proyect.CodeShareSpace.model.File.FileSolution;
 import com.proyect.CodeShareSpace.model.User;
 import com.proyect.CodeShareSpace.repository.CourseRepository;
 import com.proyect.CodeShareSpace.repository.UserRepository;
+import com.proyect.CodeShareSpace.service.interfaces.IStorageService;
 import com.proyect.CodeShareSpace.service.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -30,6 +32,8 @@ public class UserServiceImpl implements IUserService {
     private IUserMapper IUserMapper;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private IStorageService iStorageService;
 
     @Override
     public List<UserDto> findAll() {
@@ -44,9 +48,8 @@ public class UserServiceImpl implements IUserService {
     }
 
     private User findUserById(Long id) {
-        User user = userRepository.findById(id)
+        return userRepository.findById(id)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
-        return user;
     }
 
     @Override
@@ -76,6 +79,24 @@ public class UserServiceImpl implements IUserService {
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return IUserMapper.userToUserDto(userRepository.save(user));
+    }
+
+    @Override
+    public void deleteUserById(Long userId) {
+        User user = findUserById(userId);
+
+        // se intenta borrar primero los ficheros relacionados con el usuario
+        // si hay una excepcion en s3 no se eliminaran los datos
+        List<FileSolution> fileSolutions = getFileSolutionsFromUser(user);
+        iStorageService.delete(fileSolutions);
+
+        userRepository.delete(user);
+    }
+
+    private List<FileSolution> getFileSolutionsFromUser(User user) {
+        return user.getSolutions().stream()
+                .flatMap(solution -> solution.getFileSolutions().stream())
+                .collect(Collectors.toList());
     }
 
     private List<Course> getCoursesFromDto(List<CourseDto> coursesDto) {
