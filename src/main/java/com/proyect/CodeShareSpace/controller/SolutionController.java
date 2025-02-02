@@ -25,4 +25,10 @@ public class SolutionController {
     public ResponseEntity<SolutionDto> updateSolution(@ModelAttribute UpdateSolutionDto updateSolutionDto){
         return ResponseEntity.ok(iSolutionService.updateSolution(updateSolutionDto));
     }
+
+    @DeleteMapping("{solutionId}")
+    public ResponseEntity<Void> deleteSolution(@PathVariable Long solutionId){
+        iSolutionService.deleteSolution(solutionId);
+        return ResponseEntity.noContent().build();
+    }
 }

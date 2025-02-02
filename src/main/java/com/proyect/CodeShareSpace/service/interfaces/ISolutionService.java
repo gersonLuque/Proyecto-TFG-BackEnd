@@ -12,4 +12,5 @@ public interface ISolutionService {
     SolutionDto createSolution(CreateSolutionDto createSolutionDto);
     SolutionDto updateSolution(UpdateSolutionDto updateSolutionDto);
     SolutionDto getSolutionByUserAndTask(Long taskId, Long userId);
+    void deleteSolution(Long solutionId);
 }

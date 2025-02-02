@@ -31,7 +31,7 @@ public class Solution {
     private boolean star;
     private boolean anonymous;
 
-    @OneToMany(mappedBy = "solution",cascade =CascadeType.ALL)
+    @OneToMany(mappedBy = "solution",cascade = CascadeType.ALL)
     private List<FileSolution> fileSolutions;
 
     public void setFileSolutions(List<FileSolution> fileSolutions) {
