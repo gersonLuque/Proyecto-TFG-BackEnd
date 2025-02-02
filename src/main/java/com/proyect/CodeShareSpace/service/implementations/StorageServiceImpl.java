@@ -32,8 +32,7 @@ public class StorageServiceImpl implements IStorageService {
     private FileSolutionRepository fileSolutionRepository;
 
     @Override
-    public <T extends FileBase> List<T> upload(List<MultipartFile> files,
-                                               Function<MultipartFile, T> fileConstructor) {
+    public <T extends FileBase> List<T> upload(List<MultipartFile> files, Function<MultipartFile, T> fileConstructor) {
 
         String prefix = UUID.randomUUID().toString();
         List<T> result = new ArrayList<>();
@@ -51,31 +50,31 @@ public class StorageServiceImpl implements IStorageService {
     }
 
     @Override
-    public void delete(List<? extends FileBase> files){
+    public void delete(List<? extends FileBase> files) {
         try {
-            is3Service.deleteFiles(files);
-            files.forEach( file -> {
-                if (file instanceof FileTask fileTask) {
-                    fileTaskRepository.deleteById(fileTask.getFileId());
-                }else if (file instanceof FileSolution fileSolution){
-                    fileSolutionRepository.deleteById(fileSolution.getFileId());
-                }
-            });
-        }catch (S3Exception e){
+            if (!files.isEmpty()) {
+                is3Service.deleteFiles(files);
+                files.forEach(file -> {
+                    if (file instanceof FileTask fileTask) {
+                        fileTaskRepository.deleteById(fileTask.getFileId());
+                    } else if (file instanceof FileSolution fileSolution) {
+                        fileSolutionRepository.deleteById(fileSolution.getFileId());
+                    }
+                });
+            }
+        } catch (S3Exception e) {
             throw new RuntimeException(e);
         }
     }
 
     @Override
-    public <T extends FileBase> List<T> update(List<MultipartFile> filesTaskDto,
-                                               List<T> filesEntity,
-                                               Function<MultipartFile, T> entityConstructor) {
-        if (!filesTaskDto.isEmpty()){
-            if (!filesEntity.isEmpty()){
+    public <T extends FileBase> List<T> update(List<MultipartFile> filesTaskDto, List<T> filesEntity, Function<MultipartFile, T> entityConstructor) {
+        if (!filesTaskDto.isEmpty()) {
+            if (!filesEntity.isEmpty()) {
                 delete(filesEntity);
             }
-            return upload(filesTaskDto,entityConstructor);
-        } else{
+            return upload(filesTaskDto, entityConstructor);
+        } else {
             delete(filesEntity);
             return List.of();
         }
