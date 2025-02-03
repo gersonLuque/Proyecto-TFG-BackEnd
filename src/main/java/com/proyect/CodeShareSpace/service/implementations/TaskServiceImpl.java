@@ -100,7 +100,8 @@ public class TaskServiceImpl implements ITaskService {
         taskRepository.delete(task);
     }
 
-    private List<FileBase> getFilesFromTask(Task task){
+    @Override
+    public List<FileBase> getFilesFromTask(Task task){
 
         List<FileBase> result = new ArrayList<>();
         result.addAll(task.getFileTasks());

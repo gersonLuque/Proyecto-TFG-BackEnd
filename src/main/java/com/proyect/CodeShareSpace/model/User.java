@@ -36,7 +36,7 @@ public class User implements UserDetails {
            inverseJoinColumns = @JoinColumn(name = "course_id")
    )
     @JsonManagedReference // evita la recursion infinita en el json
-    private List<Course> courses; // Cursos asociados al usuario
+    private List<Course> courses;
 
     @OneToMany(mappedBy = "student",cascade = CascadeType.REMOVE)
     private List<Solution> solutions;
