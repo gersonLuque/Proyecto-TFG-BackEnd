@@ -117,8 +117,6 @@ public class S3Service implements IS3Service {
         return objectBytes;
     }
 
-
-
     private boolean isFile(String route) {
         return !route.endsWith("/");
     }
