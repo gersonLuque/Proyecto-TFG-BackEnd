@@ -8,6 +8,7 @@ import com.proyect.CodeShareSpace.exception.TaskNotFoundException;
 import com.proyect.CodeShareSpace.exception.UserNotFoundException;
 import com.proyect.CodeShareSpace.mapper.ITaskMapper;
 import com.proyect.CodeShareSpace.model.Course;
+import com.proyect.CodeShareSpace.model.File.FileBase;
 import com.proyect.CodeShareSpace.model.File.FileTask;
 import com.proyect.CodeShareSpace.model.Task;
 import com.proyect.CodeShareSpace.model.User;
@@ -21,8 +22,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class TaskServiceImpl implements ITaskService {
@@ -62,10 +65,8 @@ public class TaskServiceImpl implements ITaskService {
         Course course = courseRepository.findById(createTaskDto.getCourseId())
                 .orElseThrow(() -> new CourseNotFoundException("Curso no encontrado"));
 
-        if (!createTaskDto.getFiles().isEmpty()){
-            List<FileTask> filesTask =  iStorageService.upload(createTaskDto.getFiles(),FileTask::new);
-            task.setFiletasks(filesTask);
-        }
+        List<FileTask> filesTask =  iStorageService.upload(createTaskDto.getFiles(),FileTask::new);
+        task.setFiletasks(filesTask);
 
         task.setCourse(course);
         task.setTeacher(teacher);
@@ -89,5 +90,25 @@ public class TaskServiceImpl implements ITaskService {
         task.setVisible(updateTaskDto.isVisible());
         task.setEndDate(updateTaskDto.getEndDate());
         return taskMapper.taskToTaskDto(taskRepository.save(task));
+    }
+    @Override
+    public void deleteById(Long taskId) {
+        Task task = taskRepository.findById(taskId)
+                .orElseThrow(() -> new TaskNotFoundException("Tarea no encontrada"));
+
+        iStorageService.delete(getFilesFromTask(task));
+        taskRepository.delete(task);
+    }
+
+    @Override
+    public List<FileBase> getFilesFromTask(Task task){
+
+        List<FileBase> result = new ArrayList<>();
+        result.addAll(task.getFileTasks());
+
+        result.addAll(task.getSolutions().stream()
+                .flatMap(solution -> solution.getFileSolutions().stream())
+                .collect(Collectors.toList()));
+        return result;
     }
 }

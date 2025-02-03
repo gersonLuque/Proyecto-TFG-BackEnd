@@ -40,7 +40,7 @@ public class Task {
     @OnDelete(action = OnDeleteAction.SET_NULL)
     private User teacher;
 
-    @OneToMany(mappedBy = "task")
+    @OneToMany(mappedBy = "task",cascade = CascadeType.REMOVE)
     private List<Solution> solutions;
 
     @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)

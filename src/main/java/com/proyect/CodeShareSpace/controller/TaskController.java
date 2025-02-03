@@ -92,4 +92,10 @@ public class TaskController {
     public ResponseEntity<TaskDto> updateTask(@ModelAttribute UpdateTaskDto updateTaskDto){
         return ResponseEntity.ok(iTaskService.updateTask(updateTaskDto));
     }
+
+    @DeleteMapping("{taskId}")
+    public ResponseEntity<Void> deleteTask(@PathVariable Long taskId){
+        iTaskService.deleteById(taskId);
+        return ResponseEntity.noContent().build();
+    }
 }

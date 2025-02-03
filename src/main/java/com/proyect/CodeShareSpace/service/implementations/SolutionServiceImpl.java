@@ -41,6 +41,7 @@ public class SolutionServiceImpl implements ISolutionService {
     @Autowired
     private UserRepository userRepository;
 
+
     @Override
     public List<SolutionDto> getSolutionsByTaskId(Long taskId){
         List<Solution> solutions =  solutionRepository.findByTask_TaskId(taskId);
@@ -95,5 +96,13 @@ public class SolutionServiceImpl implements ISolutionService {
             new SolutionNotFoundException("Solucion no encontrada");
 
         return iSolutionMapper.solutionToSolutionDto(solution.get());
+    }
+
+    @Override
+    public void deleteSolution(Long solutionId) {
+        Solution solution = solutionRepository.findById(solutionId)
+                .orElseThrow(() -> new SolutionNotFoundException("Solucion no encontrada"));
+        iStorageService.delete(solution.getFileSolutions());
+        solutionRepository.delete(solution);
     }
 }

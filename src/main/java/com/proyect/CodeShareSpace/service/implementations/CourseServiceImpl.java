@@ -7,14 +7,20 @@ import com.proyect.CodeShareSpace.exception.CourseNotFoundException;
 import com.proyect.CodeShareSpace.mapper.ICourseMapper;
 import com.proyect.CodeShareSpace.mapper.IUserMapper;
 import com.proyect.CodeShareSpace.model.Course;
+import com.proyect.CodeShareSpace.model.File.FileBase;
+import com.proyect.CodeShareSpace.model.Task;
 import com.proyect.CodeShareSpace.model.User;
 import com.proyect.CodeShareSpace.repository.CourseRepository;
 import com.proyect.CodeShareSpace.service.interfaces.ICourseService;
+import com.proyect.CodeShareSpace.service.interfaces.IStorageService;
+import com.proyect.CodeShareSpace.service.interfaces.ITaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CourseServiceImpl implements ICourseService {
@@ -25,6 +31,10 @@ public class CourseServiceImpl implements ICourseService {
     private IUserMapper IUserMapper;
     @Autowired
     private ICourseMapper iCourseMapper;
+    @Autowired
+    private ITaskService iTaskService;
+    @Autowired
+    private IStorageService iStorageService;
 
     @Override
     public List<UserDto> findUsersByCourseId(Long courseId) {
@@ -63,5 +73,20 @@ public class CourseServiceImpl implements ICourseService {
         Course course = new Course();
         course.setName(courseCreateDto.getName());
         return iCourseMapper.courseToCourseDto(courseRepository.save(course));
+    }
+
+    @Override
+    public void deleteCourse(Long courseId) {
+        Course course = courseRepository.findById(courseId)
+                .orElseThrow(() -> new CourseNotFoundException("Curso no encontrado"));
+        List<FileBase> filesCourse = getFilesFromCourse(course);
+        iStorageService.delete(filesCourse);
+        courseRepository.delete(course);
+    }
+    public List<FileBase> getFilesFromCourse(Course course){
+        return course.getTasks().stream()
+                 .map(iTaskService::getFilesFromTask)
+                 .flatMap(List::stream)
+                 .collect(Collectors.toList());
     }
 }
