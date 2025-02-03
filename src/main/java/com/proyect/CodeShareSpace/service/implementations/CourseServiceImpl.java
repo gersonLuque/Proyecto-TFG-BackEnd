@@ -84,10 +84,9 @@ public class CourseServiceImpl implements ICourseService {
         courseRepository.delete(course);
     }
     public List<FileBase> getFilesFromCourse(Course course){
-        List<FileBase> result = new ArrayList<>();
-        for (Task task : course.getTasks()){
-            result.addAll(iTaskService.getFilesFromTask(task));
-        }
-        return result;
+        return course.getTasks().stream()
+                 .map(iTaskService::getFilesFromTask)
+                 .flatMap(List::stream)
+                 .collect(Collectors.toList());
     }
 }
