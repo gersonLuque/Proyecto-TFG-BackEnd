@@ -5,6 +5,7 @@ import com.proyect.CodeShareSpace.dto.user.UserCreateDto;
 import com.proyect.CodeShareSpace.dto.user.UserDto;
 import com.proyect.CodeShareSpace.exception.CourseNotFoundException;
 import com.proyect.CodeShareSpace.exception.UserExistException;
+import com.proyect.CodeShareSpace.exception.UserNotFoundException;
 import com.proyect.CodeShareSpace.mapper.IUserMapper;
 import com.proyect.CodeShareSpace.model.Course;
 import com.proyect.CodeShareSpace.model.File.FileSolution;
@@ -49,7 +50,7 @@ public class UserServiceImpl implements IUserService {
 
     private User findUserById(Long id) {
         return userRepository.findById(id)
-                .orElseThrow(() -> new UsernameNotFoundException("Usuario no encontrado"));
+                .orElseThrow(() -> new UserNotFoundException("Usuario no encontrado"));
     }
 
     @Override

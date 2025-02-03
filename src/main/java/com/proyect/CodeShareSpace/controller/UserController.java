@@ -33,7 +33,7 @@ public class UserController {
 
     @Operation(
             summary = "Obtener un usuario por ID",
-            description = "Obtiene los detalles de un usuario según su ID. **Roles requeridos: STUDENT,TEACHER**",
+            description = "Obtiene los detalles de un usuario según su ID. **Roles requeridos: TEACHER,STUDENT**",
             security = {
                     @SecurityRequirement(name = "bearerAuth")
             }
