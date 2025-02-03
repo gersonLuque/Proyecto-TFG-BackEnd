@@ -115,6 +115,13 @@ public class CourseController {
                 .body(iCourseService.updateCourse(courseDto));
     }
 
+    @Operation(
+            summary = "Eliminar una curso por ID",
+            description = "Elimina un curso especifico identificado por su **ID**. **Roles requeridos: TEACHER**",
+            security = {
+                    @SecurityRequirement(name = "bearerAuth")
+            }
+    )
     @DeleteMapping("{courseId}")
     public ResponseEntity<Void> deleteCourseById(@PathVariable Long courseId){
         iCourseService.deleteCourse(courseId);

@@ -4,6 +4,8 @@ import com.proyect.CodeShareSpace.dto.solution.CreateSolutionDto;
 import com.proyect.CodeShareSpace.dto.solution.SolutionDto;
 import com.proyect.CodeShareSpace.dto.solution.UpdateSolutionDto;
 import com.proyect.CodeShareSpace.service.interfaces.ISolutionService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,16 +18,37 @@ public class SolutionController {
     @Autowired
     private ISolutionService iSolutionService;
 
+    @Operation(
+            summary = "Crear una nueva solución",
+            description = "Crea una nueva solución utilizando los datos proporcionados en el objeto **CreateSolutionDto**. **Roles requeridos: STUDENT, TEACHER**",
+            security = {
+                    @SecurityRequirement(name = "bearerAuth")
+            }
+    )
     @PostMapping
     public ResponseEntity<SolutionDto> createSolution(@ModelAttribute CreateSolutionDto createSolutionDto){
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(iSolutionService.createSolution(createSolutionDto));
     }
+    @Operation(
+            summary = "Actualizar una solución existente",
+            description = "Actualiza los detalles de una solución existente utilizando los datos proporcionados en el objeto **UpdateSolutionDto**. **Roles requeridos: STUDENT, TEACHER**",
+            security = {
+                    @SecurityRequirement(name = "bearerAuth")
+            }
+    )
     @PutMapping
     public ResponseEntity<SolutionDto> updateSolution(@ModelAttribute UpdateSolutionDto updateSolutionDto){
         return ResponseEntity.ok(iSolutionService.updateSolution(updateSolutionDto));
     }
 
+    @Operation(
+            summary = "Eliminar una solución existente",
+            description = "Elimina una solución específica identificada por su **ID**. **Roles requeridos: STUDENT,TEACHER**",
+            security = {
+                    @SecurityRequirement(name = "bearerAuth")
+            }
+    )
     @DeleteMapping("{solutionId}")
     public ResponseEntity<Void> deleteSolution(@PathVariable Long solutionId){
         iSolutionService.deleteSolution(solutionId);
