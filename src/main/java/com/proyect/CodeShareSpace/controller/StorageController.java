@@ -1,6 +1,8 @@
 package com.proyect.CodeShareSpace.controller;
 
 import com.proyect.CodeShareSpace.service.interfaces.IS3Service;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
@@ -20,12 +22,25 @@ public class StorageController {
     @Autowired
     private IS3Service is3Service;
 
-    @GetMapping("{prefix}/{fileName}/content")
-    public ResponseEntity<String> getContentFromFile(@PathVariable String prefix,
-                                                     @PathVariable String fileName){
-        return new ResponseEntity<>(is3Service.getFileContent("nose"),HttpStatus.OK);
+    @Operation(
+            summary = "Obtener el contenido de un archivo por key",
+            description = "Obtiene el contenido de un archivo específico identificado por su **key**. **Roles requeridos: STUDENT,TEACHER**",
+            security = {
+                    @SecurityRequirement(name = "bearerAuth")
+            }
+    )
+    @GetMapping("/content")
+    public ResponseEntity<String> getContentFromFile(@RequestParam String key){
+        return ResponseEntity.ok(is3Service.getFileContent(key));
     }
 
+    @Operation(
+            summary = "Descargar un archivo",
+            description = "Permite descargar un archivo especificado por la **key** proporcionada. **Roles requeridos: USER**",
+            security = {
+                    @SecurityRequirement(name = "bearerAuth")
+            }
+    )
     @GetMapping("/download")
     public ResponseEntity<InputStreamResource> download(@RequestParam String key) {
         InputStreamResource resource = is3Service.downloadFile(key);
@@ -35,6 +50,14 @@ public class StorageController {
                 .contentType(MediaType.APPLICATION_OCTET_STREAM)
                 .body(resource);
     }
+
+    @Operation(
+            summary = "Subir un archivo",
+            description = "Permite subir un archivo utilizando la **clave** y el archivo proporcionado. **Roles requeridos: ADMIN**",
+            security = {
+                    @SecurityRequirement(name = "bearerAuth")
+            }
+    )
     @PostMapping("/upload")
     public ResponseEntity<Void> uploadFile(@RequestParam String key,
                                            @RequestPart MultipartFile file) throws IOException {

@@ -69,10 +69,16 @@ public class UserController {
                 .body(iUserService.updateUser(userDto));
     }
 
+    @Operation(
+            summary = "Eliminar una usuario por ID",
+            description = "Elimina un usuario especifico identificado por su **ID**. **Roles requeridos: TEACHER**",
+            security = {
+                    @SecurityRequirement(name = "bearerAuth")
+            }
+    )
     @DeleteMapping("{userId}")
     public ResponseEntity<Void> deleteUserById(@PathVariable Long userId){
         iUserService.deleteUserById(userId);
         return ResponseEntity.noContent().build();
     }
-
 }

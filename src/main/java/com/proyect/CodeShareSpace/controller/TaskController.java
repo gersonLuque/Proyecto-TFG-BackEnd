@@ -93,6 +93,13 @@ public class TaskController {
         return ResponseEntity.ok(iTaskService.updateTask(updateTaskDto));
     }
 
+    @Operation(
+            summary = "Eliminar una tarea por ID",
+            description = "Elimina una tarea específica identificada por su **ID**. **Roles requeridos: TEACHER**",
+            security = {
+                    @SecurityRequirement(name = "bearerAuth")
+            }
+    )
     @DeleteMapping("{taskId}")
     public ResponseEntity<Void> deleteTask(@PathVariable Long taskId){
         iTaskService.deleteById(taskId);
