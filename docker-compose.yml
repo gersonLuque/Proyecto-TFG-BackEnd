@@ -1,0 +1,46 @@
+
+services:
+  codesharespace:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    environment:
+      JWT_SECRET: ${JWT_SECRET}
+      AWS_ACCESS: ${AWS_ACCESS}
+      AWS_SECRET: ${AWS_SECRET}
+      AWS_REGION: ${AWS_REGION}
+      AWS_BUCKET: ${AWS_BUCKET}
+    ports:
+      - "8080:8080"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      -  net_app
+    restart: always
+
+  mysql:
+    image: mysql:9.2.0
+    env_file:
+      - .env
+    environment:
+        MYSQL_DATABASE: ${MYSQL_DATABASE}
+        MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+        MYSQL_USER: ${MYSQL_USER}
+        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+    ports:
+      - "4000:3306"
+    networks:
+      -  net_app
+    restart: always
+    healthcheck:
+      test: ["CMD", "mysqladmin","-h","localhost","ping", "-u", "${MYSQL_USER}", "-p${MYSQL_PASSWORD}"]
+      timeout: 10s
+      retries: 10
+
+networks:
+  net_app:
+    driver: bridge
+

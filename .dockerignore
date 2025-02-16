@@ -1,0 +1,34 @@
+# Ignorar el directorio de dependencias locales (por ejemplo, para Maven)
+target/
+# Ignorar archivos de configuración de IDEs (ej. IntelliJ, Eclipse, VS Code)
+.idea/
+.vscode/
+
+# Ignorar archivos de control de versiones (por ejemplo, Git)
+.git/
+.gitignore
+
+# Ignorar el directorio de node_modules (si es un proyecto que usa Node.js)
+node_modules/
+
+*.log
+*.tmp
+*.bak
+*.swp
+
+# Ignorar archivos de compilación del sistema operativo (por ejemplo, en macOS o Windows)
+.DS_Store
+Thumbs.db
+
+# Ignorar archivos de configuraciones locales, que no son necesarios en la imagen
+*.classpath
+*.project
+
+*.env
+
+*.class
+
+
+# Ignorar otros archivos temporales del sistema
+*.bak
+*.orig
