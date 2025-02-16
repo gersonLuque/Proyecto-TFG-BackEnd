@@ -17,11 +17,14 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfig {
 
+    /*
     @Autowired
     private AuthenticationProvider authenticationProvider;
 
     @Autowired
     private JwtFilter jwtFilter;
+
+     */
 
     // METODO PARA HABILITAR LA AUTENTICACION CON TOKEN
 //    @Bean
