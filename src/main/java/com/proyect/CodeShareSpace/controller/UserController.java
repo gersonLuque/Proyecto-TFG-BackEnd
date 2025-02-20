@@ -2,6 +2,7 @@ package com.proyect.CodeShareSpace.controller;
 
 import com.proyect.CodeShareSpace.dto.user.UserCreateDto;
 import com.proyect.CodeShareSpace.dto.user.UserDto;
+import com.proyect.CodeShareSpace.dto.user.UserUpdateDto;
 import com.proyect.CodeShareSpace.service.interfaces.IUserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -64,7 +65,7 @@ public class UserController {
             }
     )
     @PutMapping
-    public ResponseEntity<UserDto> updateUser(@RequestBody UserDto userDto){
+    public ResponseEntity<UserDto> updateUser(@RequestBody UserUpdateDto userDto){
         return ResponseEntity.status(HttpStatus.OK)
                 .body(iUserService.updateUser(userDto));
     }

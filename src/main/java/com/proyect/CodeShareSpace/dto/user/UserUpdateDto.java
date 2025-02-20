@@ -10,6 +10,7 @@ import java.util.List;
 @Setter
 @ToString
 public class UserUpdateDto {
+    private Long userId;
     private String nameComplete;
     private List<CourseDto> courseDtos;
 }

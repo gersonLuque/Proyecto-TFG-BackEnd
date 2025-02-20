@@ -3,6 +3,7 @@ package com.proyect.CodeShareSpace.service.implementations;
 import com.proyect.CodeShareSpace.dto.course.CourseDto;
 import com.proyect.CodeShareSpace.dto.user.UserCreateDto;
 import com.proyect.CodeShareSpace.dto.user.UserDto;
+import com.proyect.CodeShareSpace.dto.user.UserUpdateDto;
 import com.proyect.CodeShareSpace.exception.CourseNotFoundException;
 import com.proyect.CodeShareSpace.exception.UserExistException;
 import com.proyect.CodeShareSpace.exception.UserNotFoundException;
@@ -59,10 +60,10 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public UserDto updateUser(UserDto userDto){
+    public UserDto updateUser(UserUpdateDto userDto){
         User user = findUserById(userDto.getUserId());
-        user.setCompleteName(userDto.getCompleteName());
-        List<Course> courses = getCoursesFromDto(userDto.getCourses());
+        user.setCompleteName(userDto.getNameComplete());
+        List<Course> courses = getCoursesFromDto(userDto.getCourseDtos());
         user.setCourses(courses);
         return IUserMapper.userToUserDto(userRepository.save(user));
     }
