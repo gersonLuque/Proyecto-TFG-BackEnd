@@ -16,7 +16,6 @@ import com.proyect.CodeShareSpace.repository.UserRepository;
 import com.proyect.CodeShareSpace.service.interfaces.IStorageService;
 import com.proyect.CodeShareSpace.service.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -62,8 +61,8 @@ public class UserServiceImpl implements IUserService {
     @Override
     public UserDto updateUser(UserUpdateDto userDto){
         User user = findUserById(userDto.getUserId());
-        user.setCompleteName(userDto.getNameComplete());
-        List<Course> courses = getCoursesFromDto(userDto.getCourseDtos());
+        user.setCompleteName(userDto.getCompleteName());
+        List<Course> courses = getCoursesFromDto(userDto.getCourses());
         user.setCourses(courses);
         return IUserMapper.userToUserDto(userRepository.save(user));
     }

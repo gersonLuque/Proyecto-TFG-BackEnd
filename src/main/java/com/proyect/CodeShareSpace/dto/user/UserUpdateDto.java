@@ -11,6 +11,6 @@ import java.util.List;
 @ToString
 public class UserUpdateDto {
     private Long userId;
-    private String nameComplete;
-    private List<CourseDto> courseDtos;
+    private String completeName;
+    private List<CourseDto> courses;
 }
