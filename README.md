@@ -14,6 +14,9 @@ Este proyecto es el backend de una plataforma diseñada para gestionar tareas de
 ### 🔹 Base de Datos
 - **MySQL**: Base de datos relacional utilizada para almacenar usuarios, tareas y entregas.
 
+### 🔹 Infraestructura y Desarrollo
+- **Docker + Docker Compose**: Facilita la configuración y despliegue del entorno de desarrollo mediante contenedores.
+
 ## 🎯 Características Destacadas
 - **Manejo de roles**: Diferenciación clara entre profesores y alumnos con permisos específicos para cada uno.
 - **Autenticación segura**: Implementación de JWT para garantizar sesiones seguras.
