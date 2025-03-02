@@ -14,9 +14,10 @@ Este proyecto es el backend de una plataforma diseñada para gestionar tareas de
 ### 🔹 Base de Datos
 - **MySQL**: Base de datos relacional utilizada para almacenar usuarios, tareas y entregas.
 
-## 🎯 Funcionalidades Clave
-- **Gestión de usuarios**: Creación y administración de cuentas de profesores y alumnos.
-- **Autenticación segura**: Uso de JWT para control de acceso.
-- **Gestión de tareas**: Creación, edición y asignación de tareas a alumnos.
-- **Subida de soluciones**: Los alumnos pueden enviar sus respuestas en distintos formatos.
-- **Evaluación y feedback**: Revisión de soluciones por parte de los profesores, con opción de destacar las mejores respuestas.
+## 🎯 Características Destacadas
+- **Manejo de roles**: Diferenciación clara entre profesores y alumnos con permisos específicos para cada uno.
+- **Autenticación segura**: Implementación de JWT para garantizar sesiones seguras.
+- **Gestión de tareas**: Creación, modificación y administración de asignaciones por parte de los profesores.
+- **Entrega de soluciones**: Subida de archivos y código fuente en formatos admitidos por la plataforma.
+- **Revisión y evaluación**: Herramientas para que los profesores puedan visualizar, calificar y resaltar soluciones destacadas.
+- **Infraestructura escalable**: Uso de contenedores para simplificar el despliegue y mejorar la colaboración en el desarrollo.
