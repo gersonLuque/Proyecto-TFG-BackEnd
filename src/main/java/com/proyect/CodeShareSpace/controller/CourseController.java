@@ -83,8 +83,8 @@ public class CourseController {
             }
     )
     @GetMapping("{courseId}/tasks")
-    public ResponseEntity<List<TaskDto>> getTaskByCourseId(@PathVariable Long courseId){
-        return new ResponseEntity<>(iTaskService.findTasksByCourseId(courseId),HttpStatus.OK);
+    public ResponseEntity<List<TaskDto>> getTaskByCourseId(@PathVariable Long courseId,@RequestParam Long userId){
+        return new ResponseEntity<>(iTaskService.findTasksByCourseId(courseId,userId),HttpStatus.OK);
     }
 
     @Operation(

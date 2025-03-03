@@ -9,7 +9,7 @@ import com.proyect.CodeShareSpace.model.Task;
 import java.util.List;
 
 public interface ITaskService {
-    List<TaskDto> findTasksByCourseId(Long courseId);
+    List<TaskDto> findTasksByCourseId(Long courseId,Long userId);
     TaskDto findById(Long taskId);
     TaskDto createTask(CreateTaskDto createTaskDto);
     TaskDto updateTask(UpdateTaskDto updateTaskDto);

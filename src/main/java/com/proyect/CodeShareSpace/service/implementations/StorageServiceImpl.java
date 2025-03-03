@@ -32,10 +32,12 @@ public class StorageServiceImpl implements IStorageService {
     private FileSolutionRepository fileSolutionRepository;
 
     @Override
-    public <T extends FileBase> List<T> upload(List<MultipartFile> files, Function<MultipartFile, T> fileConstructor) {
+    public <T extends FileBase> List<T> upload(List<MultipartFile> files,
+                                               Function<MultipartFile, T> fileConstructor) {
 
         String prefix = UUID.randomUUID().toString();
         List<T> result = new ArrayList<>();
+        if (files == null || files.isEmpty()) return result;
         for (MultipartFile file : files) {
             try {
                 is3Service.uploadFile(prefix, file);
@@ -68,14 +70,14 @@ public class StorageServiceImpl implements IStorageService {
     }
 
     @Override
-    public <T extends FileBase> List<T> update(List<MultipartFile> filesTaskDto,
+    public <T extends FileBase> List<T> update(List<MultipartFile> filesDto,
                                                List<T> filesEntity,
                                                Function<MultipartFile, T> entityConstructor) {
-        if (!filesTaskDto.isEmpty()) {
+        if (!filesDto.isEmpty()) {
             if (!filesEntity.isEmpty()) {
                 delete(filesEntity);
             }
-            return upload(filesTaskDto, entityConstructor);
+            return upload(filesDto, entityConstructor);
         } else {
             delete(filesEntity);
             return List.of();

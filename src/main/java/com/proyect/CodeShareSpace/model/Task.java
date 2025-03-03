@@ -7,6 +7,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @Entity
@@ -28,6 +29,9 @@ public class Task {
 
     @Column(name = "end_date")
     private LocalDate endDate;
+
+    @Column(name = "end_time")
+    private LocalTime endTime;
 
     private boolean visible;
 

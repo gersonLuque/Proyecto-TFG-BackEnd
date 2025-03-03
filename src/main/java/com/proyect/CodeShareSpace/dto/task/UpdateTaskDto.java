@@ -4,6 +4,7 @@ import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 @AllArgsConstructor
@@ -16,6 +17,7 @@ public class UpdateTaskDto {
     private String title;
     private String description;
     private LocalDate endDate;
+    private LocalTime endTime;
     private boolean visible;
     private List<MultipartFile> files;
 }

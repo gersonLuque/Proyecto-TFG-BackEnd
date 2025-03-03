@@ -13,6 +13,7 @@ import com.proyect.CodeShareSpace.model.File.FileTask;
 import com.proyect.CodeShareSpace.model.Task;
 import com.proyect.CodeShareSpace.model.User;
 import com.proyect.CodeShareSpace.repository.CourseRepository;
+import com.proyect.CodeShareSpace.repository.SolutionRepository;
 import com.proyect.CodeShareSpace.repository.TaskRepository;
 import com.proyect.CodeShareSpace.repository.UserRepository;
 import com.proyect.CodeShareSpace.service.interfaces.IStorageService;
@@ -40,12 +41,21 @@ public class TaskServiceImpl implements ITaskService {
     private ITaskMapper taskMapper;
     @Autowired
     private IStorageService iStorageService;
-
+    @Autowired
+    private SolutionRepository solutionRepository;
 
     @Override
-    public List<TaskDto> findTasksByCourseId(Long courseId) {
+    public List<TaskDto> findTasksByCourseId(Long courseId,Long userId) {
         List<Task> tasks = taskRepository.findByCourse_CourseId(courseId);
-        return taskMapper.tasksToTasksDto(tasks);
+        List<TaskDto> taskDtos = taskMapper.tasksToTasksDto(tasks);
+
+        for(TaskDto taskDto : taskDtos){
+            taskDto.setHasSolution(hasSolution(userId,taskDto.getTaskId()));
+        }
+        return taskDtos;
+    }
+    private boolean hasSolution(Long userId,Long taskId){
+        return solutionRepository.existsSolutionByTask_TaskIdAndStudent_UserId(userId,taskId);
     }
 
     @Override
@@ -89,8 +99,10 @@ public class TaskServiceImpl implements ITaskService {
         task.setDescription(updateTaskDto.getDescription());
         task.setVisible(updateTaskDto.isVisible());
         task.setEndDate(updateTaskDto.getEndDate());
+        task.setEndTime(updateTaskDto.getEndTime());
         return taskMapper.taskToTaskDto(taskRepository.save(task));
     }
+
     @Override
     public void deleteById(Long taskId) {
         Task task = taskRepository.findById(taskId)
