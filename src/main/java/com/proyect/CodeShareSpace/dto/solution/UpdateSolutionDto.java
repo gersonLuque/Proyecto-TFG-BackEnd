@@ -3,6 +3,7 @@ package com.proyect.CodeShareSpace.dto.solution;
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
@@ -12,5 +13,6 @@ import java.util.List;
 public class UpdateSolutionDto {
     private Long solutionId;
     private boolean anonymous;
+    private boolean filesHasChanged;
     private List<MultipartFile> files;
 }

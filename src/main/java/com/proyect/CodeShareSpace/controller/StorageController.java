@@ -15,13 +15,12 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.*;
 
 @RestController
-@CrossOrigin("*")
+@CrossOrigin(origins = "*",allowedHeaders = "*")
 @RequestMapping("api/storage")
 public class StorageController {
 
     @Autowired
     private IS3Service is3Service;
-
     @Operation(
             summary = "Obtener el contenido de un archivo por key",
             description = "Obtiene el contenido de un archivo específico identificado por su **key**. **Roles requeridos: STUDENT,TEACHER**",

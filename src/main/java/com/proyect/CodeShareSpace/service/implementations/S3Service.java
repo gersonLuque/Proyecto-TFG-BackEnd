@@ -73,6 +73,10 @@ public class S3Service implements IS3Service {
     @Override
     public void deleteFiles(List<? extends  FileBase> files) throws S3Exception{
 
+        System.out.println(".".repeat(20));
+        System.out.println("eliminado");
+        System.out.println(files);
+
         Delete objectsToDelete = Delete.builder()
                 .objects(getObjectsIdentifier(files))
                 .build();
@@ -89,6 +93,9 @@ public class S3Service implements IS3Service {
 
     @Override
     public void uploadFile(String key, MultipartFile file) throws IOException {
+        System.out.println(".".repeat(20));
+        System.out.println(key);
+        System.out.println(file);
         PutObjectRequest putObjectRequest = PutObjectRequest.builder()
                 .bucket(bucket)
                 .key(key+"/"+file.getOriginalFilename())
@@ -116,13 +123,4 @@ public class S3Service implements IS3Service {
         ResponseBytes<GetObjectResponse> objectBytes = s3Client.getObjectAsBytes(getObjectRequest);
         return objectBytes;
     }
-
-    private boolean isFile(String route) {
-        return !route.endsWith("/");
-    }
-
-    private String extractFileName(String route){
-        return route.substring(route.lastIndexOf("/") + 1);
-    }
-
 }

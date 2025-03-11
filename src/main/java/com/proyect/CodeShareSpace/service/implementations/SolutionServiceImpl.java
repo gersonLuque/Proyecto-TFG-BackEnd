@@ -78,12 +78,12 @@ public class SolutionServiceImpl implements ISolutionService {
         Solution solution = solutionRepository.findById(updateSolutionDto.getSolutionId())
                 .orElseThrow(() -> new SolutionNotFoundException("Solucion no encontrada"));
 
-        List<FileSolution> fileSolutions =  iStorageService.update(updateSolutionDto.getFiles(),
-                               solution.getFileSolutions(),
-                               FileSolution::new);
-
+        if(updateSolutionDto.isFilesHasChanged()){
+            List<FileSolution> fileSolutions =
+                    iStorageService.update(updateSolutionDto.getFiles(),solution.getFileSolutions(),FileSolution::new);
+            solution.setFileSolutions(fileSolutions);
+        }
         solution.setAnonymous(updateSolutionDto.isAnonymous());
-        solution.setFileSolutions(fileSolutions);
         return iSolutionMapper.solutionToSolutionDto(solutionRepository.save(solution));
     }
 

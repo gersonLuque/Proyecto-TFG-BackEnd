@@ -54,7 +54,7 @@ public class StorageServiceImpl implements IStorageService {
     @Override
     public void delete(List<? extends FileBase> files) {
         try {
-            if (!files.isEmpty()) {
+            if (files != null && !files.isEmpty()) {
                 is3Service.deleteFiles(files);
                 files.forEach(file -> {
                     if (file instanceof FileTask fileTask) {
@@ -73,14 +73,15 @@ public class StorageServiceImpl implements IStorageService {
     public <T extends FileBase> List<T> update(List<MultipartFile> filesDto,
                                                List<T> filesEntity,
                                                Function<MultipartFile, T> entityConstructor) {
-        if (!filesDto.isEmpty()) {
-            if (!filesEntity.isEmpty()) {
+
+        if (filesDto != null) {
+            if (filesEntity != null && !filesEntity.isEmpty() ) {
                 delete(filesEntity);
             }
             return upload(filesDto, entityConstructor);
         } else {
             delete(filesEntity);
-            return List.of();
+            return new ArrayList<>();
         }
     }
 

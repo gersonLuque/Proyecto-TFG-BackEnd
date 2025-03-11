@@ -91,10 +91,12 @@ public class TaskServiceImpl implements ITaskService {
         Task task = taskRepository.findById(updateTaskDto.getTaskId())
                 .orElseThrow(() -> new TaskNotFoundException("La tarea no existe"));
 
-        List<FileTask> fileTasks = iStorageService
-                .update(updateTaskDto.getFiles(),task.getFileTasks(),FileTask::new);
 
-        task.setFiletasks(fileTasks);
+        if (updateTaskDto.isFilesHasChanged()){
+            List<FileTask> fileTasks = iStorageService
+                    .update(updateTaskDto.getFiles(),task.getFileTasks(),FileTask::new);
+            task.setFiletasks(fileTasks);
+        }
         task.setTitle(updateTaskDto.getTitle());
         task.setDescription(updateTaskDto.getDescription());
         task.setVisible(updateTaskDto.isVisible());

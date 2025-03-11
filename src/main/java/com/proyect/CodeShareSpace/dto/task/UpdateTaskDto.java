@@ -19,5 +19,6 @@ public class UpdateTaskDto {
     private LocalDate endDate;
     private LocalTime endTime;
     private boolean visible;
+    private boolean filesHasChanged;
     private List<MultipartFile> files;
 }
