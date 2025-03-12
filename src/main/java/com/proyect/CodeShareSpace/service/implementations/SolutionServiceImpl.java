@@ -93,7 +93,7 @@ public class SolutionServiceImpl implements ISolutionService {
                 solutionRepository.findByTask_TaskIdAndStudent_UserId(taskId,userId);
 
         if (!solution.isPresent())
-            new SolutionNotFoundException("Solucion no encontrada");
+          throw new SolutionNotFoundException("Solucion no encontrada");
 
         return iSolutionMapper.solutionToSolutionDto(solution.get());
     }
@@ -104,5 +104,12 @@ public class SolutionServiceImpl implements ISolutionService {
                 .orElseThrow(() -> new SolutionNotFoundException("Solucion no encontrada"));
         iStorageService.delete(solution.getFileSolutions());
         solutionRepository.delete(solution);
+    }
+
+    @Override
+    public SolutionDto getSolutionById(Long solutionId) {
+        Solution solution = solutionRepository.findById(solutionId)
+                .orElseThrow(() -> new SolutionNotFoundException("Solucion no encontrada"));
+        return iSolutionMapper.solutionToSolutionDto(solution);
     }
 }

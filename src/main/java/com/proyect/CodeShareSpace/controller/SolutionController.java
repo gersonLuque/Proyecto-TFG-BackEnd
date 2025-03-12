@@ -13,11 +13,17 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/solutions")
+@CrossOrigin("*")
 public class SolutionController {
 
     @Autowired
     private ISolutionService iSolutionService;
 
+
+    @GetMapping("{solutionId}")
+    public ResponseEntity<SolutionDto> getSolutionById(@PathVariable Long solutionId){
+        return ResponseEntity.ok(iSolutionService.getSolutionById(solutionId));
+    }
     @Operation(
             summary = "Crear una nueva solución",
             description = "Crea una nueva solución utilizando los datos proporcionados en el objeto **CreateSolutionDto**. **Roles requeridos: STUDENT, TEACHER**",
