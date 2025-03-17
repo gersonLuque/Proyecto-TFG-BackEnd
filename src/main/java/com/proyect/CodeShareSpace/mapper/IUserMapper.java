@@ -4,11 +4,12 @@ import com.proyect.CodeShareSpace.dto.user.UserBasicDto;
 import com.proyect.CodeShareSpace.dto.user.UserCreateDto;
 import com.proyect.CodeShareSpace.dto.user.UserDto;
 import com.proyect.CodeShareSpace.model.User;
+import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring", uses = ICourseMapper.class)
+@Mapper(componentModel = "spring", uses = ICourseMapper.class,injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public interface IUserMapper {
 
     UserDto userToUserDto(User user);

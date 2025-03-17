@@ -3,10 +3,11 @@ package com.proyect.CodeShareSpace.mapper;
 import com.proyect.CodeShareSpace.dto.solution.CreateSolutionDto;
 import com.proyect.CodeShareSpace.dto.solution.SolutionDto;
 import com.proyect.CodeShareSpace.model.Solution;
+import org.mapstruct.InjectionStrategy;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-@Mapper(componentModel = "spring",uses = {ITaskMapper.class, IUserMapper.class, IFileMapper.class})
+@Mapper(componentModel = "spring",uses = {ITaskMapper.class, IUserMapper.class, IFileMapper.class},injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public interface ISolutionMapper {
 
     @Mapping(source = "solution.solutionId", target = "solutionId")
