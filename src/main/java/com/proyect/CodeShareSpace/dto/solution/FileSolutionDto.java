@@ -14,4 +14,5 @@ public class FileSolutionDto {
     private String type;
     private Long KBytes;
     private Long solutionId;
+    private String content;
 }

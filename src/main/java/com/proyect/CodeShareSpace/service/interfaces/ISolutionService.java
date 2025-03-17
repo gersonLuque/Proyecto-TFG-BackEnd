@@ -7,7 +7,7 @@ import com.proyect.CodeShareSpace.dto.solution.UpdateSolutionDto;
 import java.util.List;
 
 public interface ISolutionService {
-    SolutionDto findById(Long id);
+    SolutionDto getContentS3Solution(Long id);
     List<SolutionDto> getSolutionsByTaskId(Long taskId);
     SolutionDto createSolution(CreateSolutionDto createSolutionDto);
     SolutionDto updateSolution(UpdateSolutionDto updateSolutionDto);

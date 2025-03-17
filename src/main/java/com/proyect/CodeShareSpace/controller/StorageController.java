@@ -21,17 +21,6 @@ public class StorageController {
 
     @Autowired
     private IS3Service is3Service;
-    @Operation(
-            summary = "Obtener el contenido de un archivo por key",
-            description = "Obtiene el contenido de un archivo específico identificado por su **key**. **Roles requeridos: STUDENT,TEACHER**",
-            security = {
-                    @SecurityRequirement(name = "bearerAuth")
-            }
-    )
-    @GetMapping("/content")
-    public ResponseEntity<String> getContentFromFile(@RequestParam String key){
-        return ResponseEntity.ok(is3Service.getFileContent(key));
-    }
 
     @Operation(
             summary = "Descargar un archivo",

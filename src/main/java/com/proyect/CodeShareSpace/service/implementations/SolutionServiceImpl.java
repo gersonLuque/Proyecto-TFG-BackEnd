@@ -14,6 +14,7 @@ import com.proyect.CodeShareSpace.model.User;
 import com.proyect.CodeShareSpace.repository.SolutionRepository;
 import com.proyect.CodeShareSpace.repository.TaskRepository;
 import com.proyect.CodeShareSpace.repository.UserRepository;
+import com.proyect.CodeShareSpace.service.interfaces.IS3Service;
 import com.proyect.CodeShareSpace.service.interfaces.ISolutionService;
 import com.proyect.CodeShareSpace.service.interfaces.IStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,9 @@ public class SolutionServiceImpl implements ISolutionService {
     @Autowired
     private UserRepository userRepository;
 
+    @Autowired
+    private IS3Service is3Service;
+
 
     @Override
     public List<SolutionDto> getSolutionsByTaskId(Long taskId){
@@ -51,8 +55,13 @@ public class SolutionServiceImpl implements ISolutionService {
     }
 
     @Override
-    public SolutionDto findById(Long id) {
-        return null;
+    public SolutionDto getContentS3Solution(Long solutionId) {
+        Solution solution = solutionRepository.findById(solutionId)
+                .orElseThrow(() -> new SolutionNotFoundException("Solucion no encontrada"));
+
+        SolutionDto solutionDto = iSolutionMapper.solutionToSolutionDto(solution);
+        is3Service.setContentS3(solutionDto.getFileSolutions());
+        return solutionDto;
     }
     @Override
     public SolutionDto createSolution(CreateSolutionDto createSolutionDto){

@@ -24,6 +24,19 @@ public class SolutionController {
     public ResponseEntity<SolutionDto> getSolutionById(@PathVariable Long solutionId){
         return ResponseEntity.ok(iSolutionService.getSolutionById(solutionId));
     }
+
+    @Operation(
+            summary = "Consigue la información de una solución con el contenido de sus ficheros",
+            description = "Información de una solución pasando como parametro un id. **Roles requeridos: STUDENT, TEACHER**",
+            security = {
+                    @SecurityRequirement(name = "bearerAuth")
+            }
+    )
+    @GetMapping("{solutionId}/content")
+    public ResponseEntity<SolutionDto>getContentSolution(@PathVariable Long solutionId){
+        return ResponseEntity.ok(iSolutionService.getContentS3Solution(solutionId));
+    }
+    
     @Operation(
             summary = "Crear una nueva solución",
             description = "Crea una nueva solución utilizando los datos proporcionados en el objeto **CreateSolutionDto**. **Roles requeridos: STUDENT, TEACHER**",
@@ -36,6 +49,8 @@ public class SolutionController {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(iSolutionService.createSolution(createSolutionDto));
     }
+
+
     @Operation(
             summary = "Actualizar una solución existente",
             description = "Actualiza los detalles de una solución existente utilizando los datos proporcionados en el objeto **UpdateSolutionDto**. **Roles requeridos: STUDENT, TEACHER**",

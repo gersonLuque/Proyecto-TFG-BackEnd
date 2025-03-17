@@ -1,5 +1,6 @@
 package com.proyect.CodeShareSpace.service.implementations;
 
+import com.proyect.CodeShareSpace.dto.solution.FileSolutionDto;
 import com.proyect.CodeShareSpace.exception.S3ObjectNotFoundException;
 import com.proyect.CodeShareSpace.model.File.FileBase;
 import com.proyect.CodeShareSpace.service.interfaces.IS3Service;
@@ -48,10 +49,17 @@ public class S3Service implements IS3Service {
                 .orElseThrow(() -> new S3ObjectNotFoundException("Fichero no encontrado : "+filename));
     }
 
-    @Override
-    public String getFileContent(String key) {
+
+    private String getContentUtf8(String key){
         ResponseBytes<GetObjectResponse> objectBytes = getObjectBytes(key);
         return objectBytes.asUtf8String();
+    }
+
+
+    @Override
+    public void setContentS3(List<FileSolutionDto> files){
+        files.forEach(file -> file.setContent(
+                getContentUtf8(getKey(file.getPrefix(),file.getFileName()))));
     }
 
     @Override
@@ -73,10 +81,6 @@ public class S3Service implements IS3Service {
     @Override
     public void deleteFiles(List<? extends  FileBase> files) throws S3Exception{
 
-        System.out.println(".".repeat(20));
-        System.out.println("eliminado");
-        System.out.println(files);
-
         Delete objectsToDelete = Delete.builder()
                 .objects(getObjectsIdentifier(files))
                 .build();
@@ -93,9 +97,6 @@ public class S3Service implements IS3Service {
 
     @Override
     public void uploadFile(String key, MultipartFile file) throws IOException {
-        System.out.println(".".repeat(20));
-        System.out.println(key);
-        System.out.println(file);
         PutObjectRequest putObjectRequest = PutObjectRequest.builder()
                 .bucket(bucket)
                 .key(key+"/"+file.getOriginalFilename())
@@ -111,6 +112,14 @@ public class S3Service implements IS3Service {
     @Override
     public String getFileName(String key){
         return key.substring(key.lastIndexOf("/") + 1);
+    }
+
+    private String getType(String key){
+        return key.substring(key.lastIndexOf("."));
+    }
+
+    private String getKey(String prefix,String fileName){
+        return prefix + "/" + fileName;
     }
 
     private ResponseBytes<GetObjectResponse> getObjectBytes(String key) {

@@ -1,5 +1,6 @@
 package com.proyect.CodeShareSpace.service.interfaces;
 
+import com.proyect.CodeShareSpace.dto.solution.FileSolutionDto;
 import com.proyect.CodeShareSpace.model.File.FileBase;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.web.multipart.MultipartFile;
@@ -13,7 +14,7 @@ public interface IS3Service {
     List<S3Object> listObjectsS3(String prefix);
     S3Object getObjectS3(String prefix,String fileName);
 
-    String getFileContent(String key);
+    void setContentS3(List<FileSolutionDto> files);
 
     InputStreamResource downloadFile(String key);
 
