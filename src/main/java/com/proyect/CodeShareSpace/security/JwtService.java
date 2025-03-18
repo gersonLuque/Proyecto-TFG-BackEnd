@@ -26,7 +26,7 @@ public class JwtService {
 
     public String createToken(User user){
         Date now = new Date();
-        Date timeOfToken = new Date(now.getTime() + 300000 );
+        Date timeOfToken = new Date(now.getTime() + 300000000);
 
         Key key = Keys.hmacShaKeyFor(secretKey.getBytes());
 
