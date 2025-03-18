@@ -10,25 +10,26 @@ import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-//@SpringBootTest
-//public class UserMapperTest {
-//
-//    @Autowired
-//    private IUserMapper iUserMapper;
-//
-//    @Test
-//    public void testUserToUserDto() {
-//        // Given
-//        User user = DataProvider.newUserMock();
-//        // When - se mapea User -> UserDto
-//        UserDto userDto = iUserMapper.userToUserDto(user);
-//        // Then
-//        assertNotNull(userDto);
-//        assertEquals(userDto.getUserId(), user.getUserId());
-//        assertEquals(userDto.getRol(), user.getRol());
-//        assertEquals(userDto.getCompleteName(), user.getCompleteName());
-//    }
-//}
+@SpringBootTest
+public class UserMapperTest {
+
+    @Autowired
+    private IUserMapper iUserMapper;
+
+    @Test
+    public void testUserToUserDto() {
+        // Given
+        User user = DataProvider.newUserMock();
+        // When - se mapea User -> UserDto
+        UserDto userDto = iUserMapper.userToUserDto(user);
+        // Then
+        assertNotNull(userDto);
+        assertEquals(userDto.getUserId(), user.getUserId());
+        assertEquals(userDto.getRol(), user.getRol());
+        assertEquals(userDto.getCompleteName(), user.getCompleteName());
+    }
+}
