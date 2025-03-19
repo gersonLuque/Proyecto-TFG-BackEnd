@@ -19,6 +19,11 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(UnauthorizedException.class)
+    public ResponseEntity<String> handleUnAuthorizedException(RuntimeException e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.UNAUTHORIZED);
+    }
+
     @ExceptionHandler(UserExistException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
     public ResponseEntity<String> handleUserExistException(RuntimeException e){

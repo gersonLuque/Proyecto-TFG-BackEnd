@@ -2,6 +2,7 @@ package com.proyect.CodeShareSpace.service.implementations;
 
 import com.proyect.CodeShareSpace.dto.LoginRequest;
 import com.proyect.CodeShareSpace.dto.LoginResponse;
+import com.proyect.CodeShareSpace.model.Rol;
 import com.proyect.CodeShareSpace.model.User;
 import com.proyect.CodeShareSpace.security.JwtService;
 import com.proyect.CodeShareSpace.service.interfaces.IAuthService;
@@ -9,6 +10,7 @@ import com.proyect.CodeShareSpace.service.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -45,4 +47,18 @@ public class AuthServiceImpl implements IAuthService {
     public void singOut(String jwt) {
         jwtService.tokenLogOut(jwt);
     }
+    
+    @Override
+    public Rol getAuthenticatedRol(){
+        var listaRoles = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+        for ( var userAuthenticadedRole :listaRoles){
+            for (Rol rol : Rol.values()){
+                if (String.valueOf(userAuthenticadedRole).equals("ROLE_"+rol))
+                    return rol;
+            }
+        }
+        return null;
+    }
+
+
 }

@@ -54,4 +54,19 @@ public class Task {
         this.fileTasks = fileTasks;
         fileTasks.forEach(taskfile -> taskfile.setTask(this));
     }
+
+    public boolean isTaskEnded() {
+        LocalDate now = LocalDate.now();
+        LocalTime timeNow = LocalTime.now();
+
+        if (endDate.isBefore(now)) {
+            return true;
+        }
+        if (endDate.isEqual(now) && (endTime.equals(timeNow) || endTime.isBefore(timeNow))) {
+            return true;
+        }
+        return false;
+    }
+
+
 }
