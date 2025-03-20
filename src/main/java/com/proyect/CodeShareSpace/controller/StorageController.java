@@ -15,7 +15,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.*;
 
 @RestController
-@CrossOrigin(origins = "*",allowedHeaders = "*")
 @RequestMapping("api/storage")
 public class StorageController {
 

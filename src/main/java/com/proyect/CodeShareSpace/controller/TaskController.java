@@ -14,13 +14,14 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
 @RequestMapping("api/tasks")
-@CrossOrigin("*")
 public class TaskController {
     @Autowired
     private ITaskService iTaskService;
@@ -58,11 +59,12 @@ public class TaskController {
 
     @Operation(
             summary = "Obtener solución por tarea y usuario",
-            description = "Obtiene la solución asociada a una tarea y un usuario específicos mediante sus IDs. **Roles requeridos: TEACHER,STUDENT**",
+            description = "Obtiene la solución asociada a una tarea y un usuario específicos mediante sus IDs. **Roles requeridos: TEACHER, STUDENT. El profesor puede acceder a cualquier tarea, pero el estudiante solo puede acceder a su propia solución.**",
             security = {
                     @SecurityRequirement(name = "bearerAuth")
             }
     )
+    @PreAuthorize("#userId == principal.userId or hasRole('TEACHER')")
     @GetMapping("{taskId}/solutions/{userId}")
     public ResponseEntity<SolutionDto> getSolutionByUserAndTask(@PathVariable Long taskId, @PathVariable Long userId){
         return ResponseEntity.ok(iSolutionService.getSolutionByUserAndTask(taskId,userId));
