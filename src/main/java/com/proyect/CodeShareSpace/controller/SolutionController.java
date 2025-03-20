@@ -3,6 +3,7 @@ package com.proyect.CodeShareSpace.controller;
 import com.proyect.CodeShareSpace.dto.solution.CreateSolutionDto;
 import com.proyect.CodeShareSpace.dto.solution.SolutionDto;
 import com.proyect.CodeShareSpace.dto.solution.UpdateSolutionDto;
+import com.proyect.CodeShareSpace.model.Rol;
 import com.proyect.CodeShareSpace.service.interfaces.ISolutionService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -28,7 +29,7 @@ public class SolutionController {
 
     @Operation(
             summary = "Consigue la información de una solución con el contenido de sus ficheros",
-            description = "Información de una solución pasando como parametro un id. **Roles requeridos: STUDENT, TEACHER**",
+            description = "Información de una solución pasando como parametro un id, los estudiantes no podran ver soluciones ajenas si la tarea aun no ha terminado. **Roles requeridos: STUDENT, TEACHER**",
             security = {
                     @SecurityRequirement(name = "bearerAuth")
             }

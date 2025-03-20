@@ -70,6 +70,15 @@ public class SolutionServiceImpl implements ISolutionService {
         Solution solution = solutionRepository.findById(solutionId)
                 .orElseThrow(() -> new SolutionNotFoundException("Solucion no encontrada"));
 
+
+        Rol rol = iAuthService.getAuthenticatedRol();
+        if (Rol.STUDENT == rol){
+            Long userIdAuthenticated = iAuthService.getUserAuthenticated().getUserId();
+            if (!solution.getTask().isTaskEnded() && userIdAuthenticated != solution.getStudent().getUserId() ){
+                throw new UnauthorizedException("El estudiante aun no puede ver soluciones ajenas");
+            }
+        }
+
         SolutionDto solutionDto = iSolutionMapper.solutionToSolutionDto(solution);
         is3Service.setContentS3(solutionDto.getFileSolutions());
         return solutionDto;

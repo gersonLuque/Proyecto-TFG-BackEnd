@@ -10,7 +10,9 @@ import com.proyect.CodeShareSpace.service.interfaces.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -60,5 +62,12 @@ public class AuthServiceImpl implements IAuthService {
         return null;
     }
 
-
+    @Override
+    public User getUserAuthenticated(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication.getPrincipal() instanceof User userDetails) {
+            return userDetails;
+        }
+        return null;
+    }
 }
