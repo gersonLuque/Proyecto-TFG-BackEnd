@@ -37,14 +37,15 @@ public class SecurityConfig {
                                 .requestMatchers("/api/users/**").hasRole(ROL_TEACHER)
 
                                 // endpoints cursos
+                                .requestMatchers(HttpMethod.DELETE,"/api/courses/**").hasRole(ROL_TEACHER)
+                                .requestMatchers(HttpMethod.POST,"/api/courses/**").hasRole(ROL_TEACHER)
+                                .requestMatchers(HttpMethod.PUT,"/api/courses/**").hasRole(ROL_TEACHER)
 
                                 // endpoints tasks
                                 .requestMatchers(HttpMethod.DELETE,"/api/tasks/**").hasRole(ROL_TEACHER)
                                 .requestMatchers(HttpMethod.POST,"/api/tasks/**").hasRole(ROL_TEACHER)
                                 .requestMatchers(HttpMethod.PUT,"/api/tasks/**").hasRole(ROL_TEACHER)
 
-                                // endpoints solutions
-//                                .requestMatchers("/api/solutions/**").hasRole(ROL_TEACHER)
 
 
                                 .requestMatchers("api/auth/login").permitAll()
