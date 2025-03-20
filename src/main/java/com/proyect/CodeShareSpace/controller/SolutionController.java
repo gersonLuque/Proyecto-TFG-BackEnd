@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/solutions")
-@CrossOrigin("*")
 public class SolutionController {
 
     @Autowired
