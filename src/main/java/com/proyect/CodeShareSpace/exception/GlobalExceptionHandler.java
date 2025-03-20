@@ -24,7 +24,7 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.UNAUTHORIZED);
     }
 
-    @ExceptionHandler(UserExistException.class)
+    @ExceptionHandler({UserExistException.class,SolutionExistException.class})
     @ResponseStatus(HttpStatus.CONFLICT)
     public ResponseEntity<String> handleUserExistException(RuntimeException e){
         return new ResponseEntity<>(e.getMessage(),HttpStatus.CONFLICT);

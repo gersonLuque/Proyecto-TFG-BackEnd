@@ -39,10 +39,13 @@ public class SecurityConfig {
                                 // endpoints cursos
 
                                 // endpoints tasks
-                                .requestMatchers(HttpMethod.GET, "/api/tasks/{taskId}").hasAnyRole(ROL_STUDENT, ROL_TEACHER)
                                 .requestMatchers(HttpMethod.DELETE,"/api/tasks/**").hasRole(ROL_TEACHER)
                                 .requestMatchers(HttpMethod.POST,"/api/tasks/**").hasRole(ROL_TEACHER)
                                 .requestMatchers(HttpMethod.PUT,"/api/tasks/**").hasRole(ROL_TEACHER)
+
+                                // endpoints solutions
+//                                .requestMatchers("/api/solutions/**").hasRole(ROL_TEACHER)
+
 
                                 .requestMatchers("api/auth/login").permitAll()
                                 .anyRequest().authenticated())
@@ -52,8 +55,7 @@ public class SecurityConfig {
                 .build();
     }
 
-
-    // METODO PARA DESHABILITAR LA AUTENTICACION CON TOKEN
+//     METODO PARA DESHABILITAR LA AUTENTICACION CON TOKEN
 //    @Bean
 //    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 //        return http

@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -39,11 +40,12 @@ public class SolutionController {
     
     @Operation(
             summary = "Crear una nueva solución",
-            description = "Crea una nueva solución utilizando los datos proporcionados en el objeto **CreateSolutionDto**. **Roles requeridos: STUDENT, TEACHER**",
+            description = "Crea una nueva solución si el usuario pasado como parametro es el mismo que el usuario autenticado. **Roles requeridos: STUDENT, TEACHER**",
             security = {
                     @SecurityRequirement(name = "bearerAuth")
             }
     )
+    @PreAuthorize("#createSolutionDto.userId == principal.userId")
     @PostMapping
     public ResponseEntity<SolutionDto> createSolution(@ModelAttribute CreateSolutionDto createSolutionDto){
         return ResponseEntity.status(HttpStatus.CREATED)
@@ -53,11 +55,12 @@ public class SolutionController {
 
     @Operation(
             summary = "Actualizar una solución existente",
-            description = "Actualiza los detalles de una solución existente utilizando los datos proporcionados en el objeto **UpdateSolutionDto**. **Roles requeridos: STUDENT, TEACHER**",
+            description = "Actualiza los detalles de una solución existente si esta pertenece al usuario autenticado. **Roles requeridos: STUDENT, TEACHER**",
             security = {
                     @SecurityRequirement(name = "bearerAuth")
             }
     )
+    @PreAuthorize("@solutionServiceImpl.getUserIdFromSolution(#updateSolutionDto.solutionId) == principal.userId")
     @PutMapping
     public ResponseEntity<SolutionDto> updateSolution(@ModelAttribute UpdateSolutionDto updateSolutionDto){
         return ResponseEntity.ok(iSolutionService.updateSolution(updateSolutionDto));
@@ -65,11 +68,12 @@ public class SolutionController {
 
     @Operation(
             summary = "Eliminar una solución existente",
-            description = "Elimina una solución específica identificada por su **ID**. **Roles requeridos: STUDENT,TEACHER**",
+            description = "Elimina una solución específica identificada por su **ID** siempre y cuando la solucion le pertenezca al usuario autenticado. **Roles requeridos: STUDENT,TEACHER**",
             security = {
                     @SecurityRequirement(name = "bearerAuth")
             }
     )
+    @PreAuthorize("@solutionServiceImpl.getUserIdFromSolution(#updateSolutionDto.solutionId) == principal.userId")
     @DeleteMapping("{solutionId}")
     public ResponseEntity<Void> deleteSolution(@PathVariable Long solutionId){
         iSolutionService.deleteSolution(solutionId);

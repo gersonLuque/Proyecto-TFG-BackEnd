@@ -3,10 +3,7 @@ package com.proyect.CodeShareSpace.service.implementations;
 import com.proyect.CodeShareSpace.dto.solution.CreateSolutionDto;
 import com.proyect.CodeShareSpace.dto.solution.SolutionDto;
 import com.proyect.CodeShareSpace.dto.solution.UpdateSolutionDto;
-import com.proyect.CodeShareSpace.exception.SolutionNotFoundException;
-import com.proyect.CodeShareSpace.exception.TaskNotFoundException;
-import com.proyect.CodeShareSpace.exception.UnauthorizedException;
-import com.proyect.CodeShareSpace.exception.UserNotFoundException;
+import com.proyect.CodeShareSpace.exception.*;
 import com.proyect.CodeShareSpace.mapper.ISolutionMapper;
 import com.proyect.CodeShareSpace.model.File.FileSolution;
 import com.proyect.CodeShareSpace.model.Rol;
@@ -83,8 +80,15 @@ public class SolutionServiceImpl implements ISolutionService {
         Task task = taskRepository.findById(createSolutionDto.getTaskId())
                 .orElseThrow(() -> new TaskNotFoundException("Tarea no encontrada"));
 
+
         User user = userRepository.findById(createSolutionDto.getUserId())
                 .orElseThrow(() -> new UserNotFoundException("Usuario no encontrado"));
+
+        boolean taskHasSolution =
+                solutionRepository.existsSolutionByTask_TaskIdAndStudent_UserId(task.getTaskId(),user.getUserId());
+
+        if (taskHasSolution)
+            throw new SolutionExistException("Ya has creado una solución para esta tarea");
 
         List<FileSolution> fileSolutions = iStorageService.upload(createSolutionDto.getFiles(),FileSolution::new);
 
