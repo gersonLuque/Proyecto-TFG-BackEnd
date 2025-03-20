@@ -135,4 +135,12 @@ public class SolutionServiceImpl implements ISolutionService {
                 .orElseThrow(() -> new SolutionNotFoundException("Solucion no encontrada"));
         return iSolutionMapper.solutionToSolutionDto(solution);
     }
+
+    @Override
+    public Long getUserIdFromSolution(Long solutionId) {
+        Solution solution = solutionRepository.findById(solutionId)
+                .orElseThrow(() -> new SolutionNotFoundException("Solucion no encontrada"));
+
+        return solution.getStudent().getUserId();
+    }
 }

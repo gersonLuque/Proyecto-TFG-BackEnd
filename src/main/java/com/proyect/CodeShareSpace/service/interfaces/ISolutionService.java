@@ -14,4 +14,5 @@ public interface ISolutionService {
     SolutionDto getSolutionByUserAndTask(Long taskId, Long userId);
     void deleteSolution(Long solutionId);
     SolutionDto getSolutionById(Long solutionId);
+    Long getUserIdFromSolution(Long solutionId);
 }
