@@ -3,6 +3,7 @@ package com.proyect.CodeShareSpace;
 import com.proyect.CodeShareSpace.dto.course.CourseDto;
 import com.proyect.CodeShareSpace.dto.solution.SolutionDto;
 import com.proyect.CodeShareSpace.dto.task.TaskDto;
+import com.proyect.CodeShareSpace.dto.user.UserCreateDto;
 import com.proyect.CodeShareSpace.dto.user.UserDto;
 import com.proyect.CodeShareSpace.model.*;
 
@@ -191,4 +192,11 @@ public class DataProvider {
         return List.of(course1, course2, course3, course4, course5);
     }
 
+    public static UserCreateDto newUserCreateDtoMock() {
+        UserCreateDto userCreateDto = new UserCreateDto();
+        userCreateDto.setUsername("testUser");
+        userCreateDto.setPassword("testPassword");
+        userCreateDto.setRol(Rol.STUDENT);
+        return userCreateDto;
+    }
 }
