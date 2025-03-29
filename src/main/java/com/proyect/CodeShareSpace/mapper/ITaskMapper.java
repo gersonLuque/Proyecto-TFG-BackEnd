@@ -15,10 +15,7 @@ public interface ITaskMapper {
     @Mapping(source = "course.name",target = "courseName")
     @Mapping(source = "teacher.completeName", target = "nameTeacher")
     TaskDto taskToTaskDto(Task task);
-
     Task mapToTask(CreateTaskDto createTaskDto);
-
     List<TaskDto> tasksToTasksDto(List<Task> tasks);
-
 
 }
