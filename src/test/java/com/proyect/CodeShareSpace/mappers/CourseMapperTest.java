@@ -19,7 +19,6 @@ public class CourseMapperTest {
         // Given
         Course course = DataProvider.newCourseMock();
 
-
         // Mapea el Course -> CourseDto
         CourseDto courseDto = iCourseMapper.courseToCourseDto(course);
 
@@ -56,6 +55,21 @@ public class CourseMapperTest {
         assertEquals(courseList.size(), courseDtoList.size());
         assertEquals(courseList.get(2).getCourseId(), courseDtoList.get(2).getCourseId());
         assertEquals(courseList.get(1).getName(), courseDtoList.get(1).getName());
+    }
+
+    @Test
+    public void testCourseDtoToCourses(){
+        // Given
+        List<CourseDto> courseDtoList = DataProvider.newCourseDTOListMock();
+
+        // Mapea una lista de CourseDto -> Course
+        List<Course> courseList = iCourseMapper.coursesDtoToCourses(courseDtoList);
+
+        // Then
+        assertNotNull(courseList);
+        assertEquals(courseDtoList.size(), courseList.size());
+        assertEquals(courseDtoList.get(1).getCourseId(), courseList.get(1).getCourseId());
+        assertEquals(courseDtoList.get(0).getName(), courseList.get(0).getName());
     }
 
 }
