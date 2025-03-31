@@ -2,7 +2,9 @@ package com.proyect.CodeShareSpace;
 
 import com.proyect.CodeShareSpace.dto.course.CourseDto;
 import com.proyect.CodeShareSpace.dto.solution.SolutionDto;
+import com.proyect.CodeShareSpace.dto.task.CreateTaskDto;
 import com.proyect.CodeShareSpace.dto.task.TaskDto;
+import com.proyect.CodeShareSpace.dto.user.UserCreateDto;
 import com.proyect.CodeShareSpace.dto.user.UserDto;
 import com.proyect.CodeShareSpace.model.*;
 
@@ -191,4 +193,32 @@ public class DataProvider {
         return List.of(course1, course2, course3, course4, course5);
     }
 
+    public static UserCreateDto newUserCreateDtoMock() {
+        UserCreateDto userCreateDto = new UserCreateDto();
+        userCreateDto.setUsername("testUser");
+        userCreateDto.setPassword("testPassword");
+        userCreateDto.setRol(Rol.STUDENT);
+        return userCreateDto;
+    }
+
+    public static CreateTaskDto newCreateTaskDto() {
+        CreateTaskDto createTaskDto = new CreateTaskDto();
+        createTaskDto.setDescription("Example description of create task dto");
+        Course course = new Course();
+        course.setCourseId(3L);
+        createTaskDto.setCourseId(course.getCourseId());
+        User teacher = new User();
+        teacher.setUserId(14L);
+        createTaskDto.setTeacherId(teacher.getUserId());
+        return createTaskDto;
+    }
+
+    public static List<Task> newTaskListMock() {
+        Task task1 = new Task(); task1.setTaskId(1L); task1.setDescription("Simplify code"); task1.setCourse(new Course());
+        Task task2 = new Task(); task2.setTaskId(2L); task2.setDescription("Activate coverage");
+        Course course = new Course(); course.setName("2ºDAM");
+        task2.setCourse(course);
+        Task task3 = new Task(); task3.setTaskId(3L); task3.setDescription("Send email");
+        return List.of(task1, task2, task3);
+    }
 }
