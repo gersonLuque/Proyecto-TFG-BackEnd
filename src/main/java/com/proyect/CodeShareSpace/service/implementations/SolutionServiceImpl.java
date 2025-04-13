@@ -27,6 +27,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class SolutionServiceImpl implements ISolutionService {
+
     @Autowired
     private SolutionRepository solutionRepository;
 
@@ -121,4 +122,19 @@ public class SolutionServiceImpl implements ISolutionService {
                 .orElseThrow(() -> new SolutionNotFoundException("Solucion no encontrada"));
         return iSolutionMapper.solutionToSolutionDto(solution);
     }
+
+    @Override
+    public SolutionDto updateStarSolution(Long solutionId, Boolean star) {
+
+        // 1. Validar que el ID de la solución existe
+        Solution solution = solutionRepository.findById(solutionId)
+                .orElseThrow(() -> new SolutionNotFoundException("Solucion no encontrada"));
+
+        // 2. Si el parámetro "star" no es null, actualizar el campo "starred"
+        if(star != null)
+            solution.setStar(star);
+
+        return iSolutionMapper.solutionToSolutionDto(solutionRepository.save(solution));
+    }
+
 }
