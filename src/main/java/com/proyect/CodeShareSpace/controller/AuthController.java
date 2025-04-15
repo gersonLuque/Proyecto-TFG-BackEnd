@@ -1,5 +1,6 @@
 package com.proyect.CodeShareSpace.controller;
 
+import com.proyect.CodeShareSpace.dto.ChangePasswordRequest;
 import com.proyect.CodeShareSpace.dto.LoginRequest;
 import com.proyect.CodeShareSpace.dto.LoginResponse;
 import com.proyect.CodeShareSpace.security.JwtService;
@@ -44,5 +45,18 @@ public class AuthController {
     public ResponseEntity<Void> singOut(HttpServletRequest request){
         iAuthService.singOut(jwtService.getTokenFromRequest(request));
         return ResponseEntity.ok().build();
+    }
+
+    @Operation(
+            summary = "Cambiar password",
+            description = "Permite a un usuario cambiar su propia password. **Roles requeridos: NINGUNO**",
+            security = {
+                    @SecurityRequirement(name = "bearerAuth")
+            }
+    )
+    @PostMapping("change-password")
+    public ResponseEntity<Void> changePassword(@RequestBody ChangePasswordRequest changePasswordRequest){
+        iAuthService.resetPassword(changePasswordRequest);
+        return ResponseEntity.noContent().build();
     }
 }
