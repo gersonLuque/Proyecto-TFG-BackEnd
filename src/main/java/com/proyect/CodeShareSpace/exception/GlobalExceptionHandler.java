@@ -19,7 +19,17 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(UserExistException.class)
+    @ExceptionHandler(UnauthorizedException.class)
+    public ResponseEntity<String> handleUnAuthorizedException(RuntimeException e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler(PasswordNotMatchesException.class)
+    public ResponseEntity<String> handlePasswordNotMatches(RuntimeException e){
+        return new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler({UserExistException.class,SolutionExistException.class})
     @ResponseStatus(HttpStatus.CONFLICT)
     public ResponseEntity<String> handleUserExistException(RuntimeException e){
         return new ResponseEntity<>(e.getMessage(),HttpStatus.CONFLICT);
