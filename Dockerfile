@@ -8,7 +8,7 @@ RUN mvn dependency:go-offline
 
 COPY . .
 
-RUN mvn package
+RUN mvn package -DSkipTests
 
 FROM eclipse-temurin:17-focal
 

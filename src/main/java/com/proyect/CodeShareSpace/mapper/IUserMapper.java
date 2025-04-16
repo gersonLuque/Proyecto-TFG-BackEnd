@@ -14,7 +14,7 @@ public interface IUserMapper {
 
     UserDto userToUserDto(User user);
     User userDtoToUser(UserDto userDto);
-    UserBasicDto mapToUserBasicDto(User user);
+    UserBasicDto userToUserBasicDto(User user);
     User userCreateToUser(UserCreateDto userCreateDto);
     List<UserDto> usersToUsersDto(List<User> users);
 

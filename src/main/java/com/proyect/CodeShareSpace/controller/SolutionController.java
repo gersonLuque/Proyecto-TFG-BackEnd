@@ -7,6 +7,7 @@ import com.proyect.CodeShareSpace.model.Rol;
 import com.proyect.CodeShareSpace.service.interfaces.ISolutionService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,10 +16,10 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/solutions")
+@RequiredArgsConstructor
 public class SolutionController {
 
-    @Autowired
-    private ISolutionService iSolutionService;
+    private final ISolutionService iSolutionService;
 
 
     @GetMapping("{solutionId}")
@@ -66,6 +67,11 @@ public class SolutionController {
         return ResponseEntity.ok(iSolutionService.updateSolution(updateSolutionDto));
     }
 
+    @PutMapping("/{solutionId}") //PUT /12?star=(true/false)
+    public ResponseEntity<SolutionDto> updateSolution(@PathVariable Long solutionId, @RequestParam(required = false) Boolean star) {
+        return ResponseEntity.ok(iSolutionService.updateStarSolution(solutionId, star));
+    }
+
     @Operation(
             summary = "Eliminar una solución existente",
             description = "Elimina una solución específica identificada por su **ID** siempre y cuando la solucion le pertenezca al usuario autenticado. **Roles requeridos: STUDENT,TEACHER**",
@@ -79,4 +85,5 @@ public class SolutionController {
         iSolutionService.deleteSolution(solutionId);
         return ResponseEntity.noContent().build();
     }
+
 }

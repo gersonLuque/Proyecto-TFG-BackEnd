@@ -15,4 +15,5 @@ public interface ISolutionService {
     void deleteSolution(Long solutionId);
     SolutionDto getSolutionById(Long solutionId);
     Long getUserIdFromSolution(Long solutionId);
+    SolutionDto updateStarSolution(Long solutionId, Boolean star);
 }
