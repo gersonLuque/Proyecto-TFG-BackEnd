@@ -75,6 +75,19 @@ public class User implements UserDetails {
     public String getUsername() {
         return username;
     }
+    public void addCourse(Course course){
+        if (course != null) {
+            if (this.courses == null) {
+                this.courses = new ArrayList<>();
+            }
+            this.courses.add(course);
+
+            if (course.getUsers() == null) {
+                course.setUsers(new ArrayList<>());
+            }
+            course.getUsers().add(this);
+        }
+    }
 }
 
 

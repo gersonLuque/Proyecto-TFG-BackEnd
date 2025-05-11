@@ -94,10 +94,10 @@ public class CourseController {
             }
     )
     @PostMapping
-    public ResponseEntity<CourseDto> createCourse(@RequestBody CourseCreateDto courseCreateDto){
+    public ResponseEntity<CourseDto> createCourse(@RequestBody CourseCreateDto courseCreateDto,@RequestParam Long userId){
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(iCourseService.createCourse(courseCreateDto));
+                .body(iCourseService.createCourse(courseCreateDto,userId));
     }
 
     @Operation(

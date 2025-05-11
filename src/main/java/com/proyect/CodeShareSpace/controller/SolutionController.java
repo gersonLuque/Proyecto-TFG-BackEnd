@@ -67,7 +67,15 @@ public class SolutionController {
         return ResponseEntity.ok(iSolutionService.updateSolution(updateSolutionDto));
     }
 
-    @PutMapping("/{solutionId}") //PUT /12?star=(true/false)
+    @Operation(
+            summary = "Actualizar una solucion agregando una estrella",
+            description = "Agrega una estrella a una solucion si tiene el rol adecuado . **Roles requeridos:  TEACHER**",
+            security = {
+                    @SecurityRequirement(name = "bearerAuth")
+            }
+    )
+    @PreAuthorize("hasRole('TEACHER')")
+    @PutMapping("/{solutionId}")
     public ResponseEntity<SolutionDto> updateSolution(@PathVariable Long solutionId, @RequestParam(required = false) Boolean star) {
         return ResponseEntity.ok(iSolutionService.updateStarSolution(solutionId, star));
     }

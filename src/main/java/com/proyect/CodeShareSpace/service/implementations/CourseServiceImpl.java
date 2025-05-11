@@ -4,20 +4,21 @@ import com.proyect.CodeShareSpace.dto.course.CourseCreateDto;
 import com.proyect.CodeShareSpace.dto.course.CourseDto;
 import com.proyect.CodeShareSpace.dto.user.UserDto;
 import com.proyect.CodeShareSpace.exception.CourseNotFoundException;
+import com.proyect.CodeShareSpace.exception.UserNotFoundException;
 import com.proyect.CodeShareSpace.mapper.ICourseMapper;
 import com.proyect.CodeShareSpace.mapper.IUserMapper;
 import com.proyect.CodeShareSpace.model.Course;
 import com.proyect.CodeShareSpace.model.File.FileBase;
-import com.proyect.CodeShareSpace.model.Task;
 import com.proyect.CodeShareSpace.model.User;
 import com.proyect.CodeShareSpace.repository.CourseRepository;
+import com.proyect.CodeShareSpace.repository.UserRepository;
 import com.proyect.CodeShareSpace.service.interfaces.ICourseService;
 import com.proyect.CodeShareSpace.service.interfaces.IStorageService;
 import com.proyect.CodeShareSpace.service.interfaces.ITaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -35,6 +36,8 @@ public class CourseServiceImpl implements ICourseService {
     private ITaskService iTaskService;
     @Autowired
     private IStorageService iStorageService;
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     public List<UserDto> findUsersByCourseId(Long courseId) {
@@ -68,11 +71,17 @@ public class CourseServiceImpl implements ICourseService {
         return iCourseMapper.courseToCourseDto(courseRepository.save(course));
     }
 
+    @Transactional
     @Override
-    public CourseDto createCourse(CourseCreateDto courseCreateDto) {
+    public CourseDto createCourse(CourseCreateDto courseCreateDto, Long userId) {
         Course course = new Course();
         course.setName(courseCreateDto.getName());
-        return iCourseMapper.courseToCourseDto(courseRepository.save(course));
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new UserNotFoundException("El usuario no existe"));
+        Course newCourse = courseRepository.save(course);
+        user.addCourse(newCourse);
+        userRepository.save(user);
+        return iCourseMapper.courseToCourseDto(newCourse);
     }
 
     @Override

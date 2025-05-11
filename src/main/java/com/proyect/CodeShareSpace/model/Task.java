@@ -7,6 +7,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -56,13 +57,14 @@ public class Task {
     }
 
     public boolean isTaskEnded() {
-        LocalDate now = LocalDate.now();
-        LocalTime timeNow = LocalTime.now();
+        LocalDateTime now = LocalDateTime.now();
+        LocalDate currentDate = now.toLocalDate();
+        LocalTime currentTime = now.toLocalTime();
 
-        if (endDate.isBefore(now)) {
+        if (endDate.isBefore(currentDate)) {
             return true;
         }
-        if (endDate.isEqual(now) && (endTime.equals(timeNow) || endTime.isBefore(timeNow))) {
+        if (endDate.isEqual(currentDate) && (endTime.isBefore(currentTime) || endTime.equals(currentTime))) {
             return true;
         }
         return false;
