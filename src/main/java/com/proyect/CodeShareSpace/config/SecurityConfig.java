@@ -49,7 +49,14 @@ public class SecurityConfig {
                                 .requestMatchers(HttpMethod.PUT,"/api/tasks/**").hasRole(ROL_TEACHER)
 
 
-                                .requestMatchers("api/auth/login").permitAll()
+                                .requestMatchers(
+                                        "api/auth/login",
+                                        "/swagger-ui/**",
+                                        "/swagger-ui.html",
+                                        "/swagger-ui/**",
+                                        "/api-docs/**",
+                                        "/swagger-resources/**"
+                                ).permitAll()
                                 .anyRequest().authenticated())
                 .sessionManagement( sesion -> sesion.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider)
