@@ -1,4 +1,4 @@
-# 📌 Gestión de Tareas Académicas - Backend(En desarrollo)
+# 📌 Gestión de Tareas Académicas - Backend
 
 ## 📖 Descripción
 Este proyecto es el backend de una plataforma diseñada para gestionar tareas de programación entre profesores y alumnos. Los profesores pueden crear tareas, mientras que los alumnos pueden enviar sus soluciones y, tras la fecha límite, explorar las respuestas de sus compañeros. 
